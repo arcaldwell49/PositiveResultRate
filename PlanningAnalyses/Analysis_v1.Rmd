@@ -1,7 +1,7 @@
 ---
 title: "Bayesian Sample Size Justification"
 author: "Aaron R. Caldwell"
-date: "Sys.Date()"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 bibliography: sample.bib
 output: pdf_document
 ---
@@ -25,7 +25,7 @@ In this study we plan on collecting data on 300 sport and exercise science resea
 
 ## Prior Choice
 
-The prior we selected for this analysis was informed by the previous studies assuming the true positive rate is approximately 85%. For this, we selected a prior of $\beta(17,3)$, and is visualized below.
+The prior we selected for this analysis was informed by the previous studies assuming the true positive rate is approximately 85%. For this, we selected a prior of $\beta(17,3)$, and is visualized it below.
 
 ```{r prior_plot, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
 alpha_single = 17
@@ -53,7 +53,7 @@ ggplot(data.frame(x = c(0, 1)), aes(x)) +
 
 ## Data Analysis Example
 
-Below, we have incorporated this prior (`prior_1`) into a simulated dataset and then analyzed this with the `brm` function (saved as `m_test`).
+Below, we have incorporated this prior (`prior_1`) into a simulated dataset (`test_df`) and then analyzed this with the `brm` function (saved as `m_test`).
 
 ```{r ex1, eval=FALSE}
 #Set prior
@@ -111,13 +111,13 @@ test_pos = posterior_interval(m_test,
 knitr::kable(test_pos, caption = "95% Posterior C.I.")
 ```
 
-From the simulated scenario we find that given the data the hypothesis that the true positive result rate is greater than 80% is `r round(h_test$hypothesis$Evid.Ratio,2)` times more likely than the true value being less than 80%.
+From the simulated scenario we find that given the data the hypothesis that the true positive result rate is greater than 80% is `r round(h_test$hypothesis$Evid.Ratio,2)` times more likely than the true value being less than 80%. Now, this is only over 1 simulated dataset, and, in order to estimate our "power, we will need to replicate this process over a thousand simulations.
 
 # Simulations
 
 Now that we have established the process by which the data are analyze I will summarize the results of a simulation (1000 iterations) of the performance of this model. Please note that code to reproduce these analyses can be found at the end of the document.
 
-First, this analysis, under the previously stated assumptions, would be able to yield a Bayes Factor in favor of our hypothesis `r round(mean(hyp_df$Evid.Ratio > 3)*100,2)`% of the time. Below is a plot of the simulated Bayes Factors (excluding Bayes Factors > 100).
+First, this analysis, under the previously stated assumptions, would be able to yield a Bayes Factor in favor of our hypothesis (BF > 3) `r round(mean(hyp_df$Evid.Ratio >= 3)*100,2)`% of the time. Below is a plot of the simulated Bayes Factors (excluding Bayes Factors > 100).
 
 ```{r hyp_plot, echo=FALSE,  fig.height=2.75, fig.width=5}
 hyp_df %>%
