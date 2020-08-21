@@ -3,7 +3,7 @@ library(broom)
 library(brms)
 
 
-# Data generating function
+# Data generating function --------------------------- 
 gen_data = function(run,n,prop){
   df = data.frame(run = run,
                   pos = rbinom(1, n, prop),
@@ -12,7 +12,7 @@ gen_data = function(run,n,prop){
   return(df)
 }
 
-# Create an initial fit
+# Build the initial model --------------------------- 
 initial_form = function(n = 150,
                         prop = .85,
                         sim_prior = set_prior("beta(17, 3)", class = "b", lb = 0, ub = 1)){
@@ -28,6 +28,7 @@ initial_form = function(n = 150,
   return(fit)
 }
 
+# Set the parameters for the simulation --------------------------- 
 set.seed(08202020)
 nsims = 1000
 ci = .95
@@ -40,14 +41,16 @@ bin_sims = data.frame(run = NA,
                       fit = NA)
 bin_sims = bin_sims[FALSE,]
 
+## Split simulations --------------------------- 
 # Must run in parts due to C error (possibly memory issues)
 for (i in 1:10) {
-bin_run = tibble(run = 1:(nsims/10)) %>%
-  mutate(d = map(run, gen_data, n = 150, prop = .85)) %>%
-  mutate(fit  = map(d, ~update(fit, newdata = .x, refresh = 0)))
-bin_sims = rbind(bin_sims,bin_run)
+  bin_run = tibble(run = 1:(nsims/10)) %>%
+    mutate(d = map(run, gen_data, n = 150, prop = .85)) %>%
+    mutate(fit  = map(d, ~update(fit, newdata = .x, refresh = 0)))
+  bin_sims = rbind(bin_sims,bin_run)
 }
 
+## Calclulate estimates --------------------------- 
 bin_est = bin_sims %>%
   mutate(test = map(fit,tidy,prob=ci)) %>%
   unnest(test) %>%
@@ -55,6 +58,7 @@ bin_est = bin_sims %>%
   select(-d,-fit) %>%
   mutate(width = upper-lower)
 
+## Calclulate hypothesis tests --------------------------- 
 bin_hyp = bin_sims %>%
   mutate(hyp = map(fit,hypothesis,hyp_test)) %>%
   select(run,hyp)
@@ -68,13 +72,4 @@ for (i in 1:nrow(bin_hyp)){
   
 }
 
-mean(hyp_df$Evid.Ratio > 3)
-head(hyp_df)
-
-hyp_df %>%
-  filter(Evid.Ratio != Inf,
-         Evid.Ratio < 100) %>%
-  ggplot(aes(Evid.Ratio)) +
-  geom_density(aes(y=..count..),
-               fill = "blue",
-               alpha = .25)
+#save.image(file = "sin_v2.RData")

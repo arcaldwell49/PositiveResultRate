@@ -274,6 +274,8 @@ for (i in 1:nrow(bin_hyp)){
   
 }
 
+#save.image(file = "sin_v2.RData")
+
 ```
 
 # References
