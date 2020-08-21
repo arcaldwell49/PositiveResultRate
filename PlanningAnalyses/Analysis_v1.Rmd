@@ -1,0 +1,280 @@
+---
+title: "Bayesian Sample Size Justification"
+author: "Aaron R. Caldwell"
+date: "Sys.Date()"
+bibliography: sample.bib
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library(tidyverse)
+library(brms)
+library(broom)
+load(file = "sin_v2.RData")
+m_test = readRDS("m_test.rds")
+```
+
+# Introduction
+
+In this study we plan on collecting data on 300 sport and exercise science research articles (100 from 3 journals). Based on the work of @buttner2020, we anticipate at least 150 (50%) of the articles will include a hypothesis that was tested. Further, the work of @Fanelli_2010, @Scheel_Schijen_Lakens_2020, and @buttner2020 we believe that the percentage of articles that find support for their hypothesis is greater than 80%. Given this existing data, we believe we have an informative prior on the underlying distribution of postive results, and have opted for a Bayesian analysis of this primary endpoint. For this analysis, we will use the `brms` R package [@brms_cite].
+
+## Prior Choice
+
+The prior we selected for this analysis was informed by the previous studies assuming the true positive rate is approximately 85%. For this, we selected a prior of $\beta(17,3)$, and is visualized below.
+
+```{r prior_plot, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
+alpha_single = 17
+beta_single = 3
+ggplot(data.frame(x = c(0, 1)), aes(x)) +
+  stat_function(fun = dbeta,
+                args = list(shape1 = alpha_single, shape2 = beta_single)) +
+  stat_function(
+    data = data.frame(x = c(0, 1)),
+    aes(x),
+    fun = dbeta,
+    args = list(shape1 = alpha_single, shape2 = beta_single),
+    geom = "area",
+    fill = "blue",
+    alpha = .25,
+    inherit.aes = F
+  ) +
+  labs(y = "Density", x = bquote(theta)) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40))
+```
+
+## Data Analysis Example
+
+Below, we have incorporated this prior (`prior_1`) into a simulated dataset and then analyzed this with the `brm` function (saved as `m_test`).
+
+```{r ex1, eval=FALSE}
+#Set prior
+prior_1 = set_prior("beta(17, 3)", class = "b", lb = 0, ub = 1)
+
+#Generate test data
+test_df = data.frame(run = 1,
+                pos = rbinom(1, 150, .85),
+                N = rep(150, 1)) %>%
+  mutate(rate = pos/N)
+
+#Build model
+m_test <- brm(
+  pos | trials(N) ~ 0 + Intercept,
+  family = binomial(link = "identity"),
+  prior = prior_1,
+  data = test_df,
+  sample_prior = TRUE,
+  iter = 1e4,
+  cores = 4,
+  refresh = 0
+)
+```
+
+We can then visualize the performance of the prior and the posterior from this model.
+
+```{r echo=FALSE,  fig.height=2.75, fig.width=5}
+#Gather samples from the model
+samples <- posterior_samples(m_test, "b") 
+  
+#plot it
+gather(samples, Type, value) %>% 
+  ggplot(aes(value, fill = Type)) +
+  geom_density(alpha = .25) +
+  geom_vline(xintercept = .8) +
+  labs(y = "Density", x = bquote(theta)) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(limits = c(0,1),
+                     breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40)) +
+  scale_fill_viridis_d(labels = c("Posterior","Prior"),
+                       option = "D")
+```
+
+In addition, the hypothesis can be tested with the `hypothesis` function and the posterior compatibility intervals (C.I.).
+
+```{r}
+h_test <- hypothesis(m_test, "Intercept > 0.8")
+knitr::kable(h_test$hypothesis, caption = "Hypothesis Test")
+
+test_pos = posterior_interval(m_test,
+                   prob = .95)
+knitr::kable(test_pos, caption = "95% Posterior C.I.")
+```
+
+From the simulated scenario we find that given the data the hypothesis that the true positive result rate is greater than 80% is `r round(h_test$hypothesis$Evid.Ratio,2)` times more likely than the true value being less than 80%.
+
+# Simulations
+
+Now that we have established the process by which the data are analyze I will summarize the results of a simulation (1000 iterations) of the performance of this model. Please note that code to reproduce these analyses can be found at the end of the document.
+
+First, this analysis, under the previously stated assumptions, would be able to yield a Bayes Factor in favor of our hypothesis `r round(mean(hyp_df$Evid.Ratio > 3)*100,2)`% of the time. Below is a plot of the simulated Bayes Factors (excluding Bayes Factors > 100).
+
+```{r hyp_plot, echo=FALSE,  fig.height=2.75, fig.width=5}
+hyp_df %>%
+  filter(Evid.Ratio != Inf,
+         Evid.Ratio < 100) %>%
+  ggplot(aes(Evid.Ratio)) +
+  geom_density(aes(y = ..count..),
+               fill = "blue",
+               alpha = .25) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0, .12)) +
+  scale_x_continuous(expand = c(0, 0),
+                     breaks = seq(5, 95, 10),
+                     name = "Bayes Factor") +
+  theme(axis.text.x = element_text(angle = 40)) +
+  labs(title = "Distribution of Bayes Factors in Simulation")
+```
+
+\newpage
+
+Second, we have included a plot of the distribution of posterior credible intervals below. Approximately `r round(mean(bin_est$lower >= .8)*100,2)`% of all CI lower bounds were greater than 80%.
+
+```{r est_plot, echo=FALSE, fig.height = 5, fig.width=5}
+library(ggpubr)
+p1 = bin_est %>%
+  ggplot(aes(estimate)) +
+  geom_density(fill = "blue",
+               alpha = .25) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0, .12)) +
+  scale_x_continuous(
+    expand = c(0, 0),
+    limits = c(min(bin_est$estimate), max(bin_est$estimate)),
+    breaks = seq(.8, .95, .025),
+    name = "Estimate"
+  ) +
+  theme(axis.text.x = element_text(angle = 30)) 
+
+p2 = bin_est %>%
+  ggplot(aes(lower)) +
+  geom_density(fill = "blue",
+               alpha = .25) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0, .12)) +
+  scale_x_continuous(
+    expand = c(0, 0),
+    breaks = seq(.7, .85, .025),
+    name = "Lower Bound"
+  ) +
+  theme(axis.text.x = element_text(angle = 30)) 
+
+p3 = bin_est %>%
+  ggplot(aes(upper)) +
+  geom_density(fill = "blue",
+               alpha = .25) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0, .12)) +
+  scale_x_continuous(
+    expand = c(0, 0),
+    breaks = seq(.85, .95, .025),
+    name = "Upper Bound"
+  ) +
+  theme(axis.text.x = element_text(angle = 30)) 
+
+p4 = bin_est %>%
+  ggplot(aes(width)) +
+  geom_density(fill = "blue",
+               alpha = .25) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0, .12)) +
+  scale_x_continuous(
+    expand = c(0, 0),
+    #breaks = seq(.8, .95, .025),
+    name = "Width"
+  ) +
+  theme(axis.text.x = element_text(angle = 30)) 
+
+ggpubr::ggarrange(p1,p4,p2,p3)
+```
+
+# Conclusion
+
+Overall, the data from this study will be adequate to test our hypothesis since the `r round(mean(hyp_df$Evid.Ratio > 3)*100,2)`% of the simulations demonstarted at least some evidence for our hypothesis. Also, we only assumed 150 manuscripts would be analyzed and the underlying distribution is exactly 85%. In reality, we anticipate that we should actually have more than 180 manuscripts (60% of the sample) with hypotheses to test which will only increase the "power" of this Bayesian analysis.
+
+# Appendix: Code to Reproduce the Simulations
+
+```{r appendix, eval=FALSE}
+# Data generating function --------------------------- 
+gen_data = function(run,n,prop){
+  df = data.frame(run = run,
+                  pos = rbinom(1, n, prop),
+                  N = n) %>%
+    mutate(rate = pos/N)
+  return(df)
+}
+
+# Build the initial model --------------------------- 
+initial_form = function(n = 150,
+                        prop = .85,
+                        sim_prior = set_prior("beta(17, 3)", class = "b", lb = 0, ub = 1)){
+  init_df = data.frame(run = 1,
+                       pos = rbinom(1, n, prop),
+                       N = n) %>%
+    mutate(rate = pos/N)
+  fit <- brm(
+    pos | trials(N) ~ 0 + Intercept,
+    family = binomial(link = "identity"),
+    prior = sim_prior,
+    data = init_df)
+  return(fit)
+}
+
+# Set the parameters for the simulation --------------------------- 
+set.seed(08202020)
+nsims = 1000
+ci = .95
+hyp_test = "Intercept > 0.8"
+fit = initial_form(n = 150,
+                   prop = .85,
+                   sim_prior = set_prior("beta(17, 3)", class = "b", lb = 0, ub = 1))
+bin_sims = data.frame(run = NA,
+                      d = NA,
+                      fit = NA)
+bin_sims = bin_sims[FALSE,]
+
+## Split simulations --------------------------- 
+# Must run in parts due to C error (possibly memory issues)
+for (i in 1:10) {
+bin_run = tibble(run = 1:(nsims/10)) %>%
+  mutate(d = map(run, gen_data, n = 150, prop = .85)) %>%
+  mutate(fit  = map(d, ~update(fit, newdata = .x, refresh = 0)))
+bin_sims = rbind(bin_sims,bin_run)
+}
+
+## Calclulate estimates --------------------------- 
+bin_est = bin_sims %>%
+  mutate(test = map(fit,tidy,prob=ci)) %>%
+  unnest(test) %>%
+  filter(term == "b_Intercept") %>%
+  select(-d,-fit) %>%
+  mutate(width = upper-lower)
+
+## Calclulate hypothesis tests --------------------------- 
+bin_hyp = bin_sims %>%
+  mutate(hyp = map(fit,hypothesis,hyp_test)) %>%
+  select(run,hyp)
+
+hyp_df = data.frame(1,2,3,4,5,6,7,8)
+colnames(hyp_df) = colnames(bin_hyp$hyp[[1]]$hypothesis)
+hyp_df = hyp_df[FALSE,]
+
+for (i in 1:nrow(bin_hyp)){
+  hyp_df = rbind(hyp_df, as.data.frame(bin_hyp$hyp[[i]]$hypothesis))
+  
+}
+
+```
+
+# References
+
