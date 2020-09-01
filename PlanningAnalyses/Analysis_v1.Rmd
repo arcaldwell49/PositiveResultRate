@@ -23,9 +23,19 @@ m_test = readRDS("m_test.rds")
 
 In this study we plan on collecting data on 300 sport and exercise science research articles (100 from 3 journals). Based on the work of @buttner2020, we anticipate at least 150 (50%) of the articles will include a hypothesis that was tested. Further, the work of @Fanelli_2010, @Scheel_Schijen_Lakens_2020, and @buttner2020 we believe that the percentage of articles that find support for their hypothesis is greater than 80%. Given this existing data, we believe we have an informative prior on the underlying distribution of postive results, and have opted for a Bayesian analysis of this primary endpoint. For this analysis, we will use the `brms` R package [@brms_cite].
 
-## Prior Choice
+# Hypothesis
 
-The prior we selected for this analysis was informed by the previous studies assuming the true positive rate is approximately 85%. For this, we selected a prior of $\beta(17,3)$, and is visualized it below.
+For this study, we hypothesize that the rate of positive results (i.e., studies that find at least partial support for their hypothesis) is greater than 80%. Therefore, the null hypothesis ($H_0$) is that the proportion of positive results is less than .8 and our alternative is greater than .8. There is no other effect being estimated in this study therefore the intercept of the model is what will be tested.
+
+$H_0: Intercept \leq .8$
+
+$H_1: Intercept > .8$
+
+\newpage
+
+# Prior Choice
+
+The prior we selected for this analysis was informed by the previous studies assuming the true positive rate is approximately 85% [@Fanelli_2010]. However, we would like to avoid "spiking" the prior in favor of our hypothesis and therefore want a skeptical prior. Based on the work of @Scheel_Schijen_Lakens_2020 and @buttner2020 the estimated positive rates in original research investigations ranged from 82%-92%, and even some fields included in the survey by @Fanelli_2010 observed rates at low as ~70%. Therefore, we selected a prior of $\beta(17,3)$, and is visualized it below. This prior is centered around .85, but includes the possibility of higher (.9) and much lower (.7) proportions as compatible parameter estimates.
 
 ```{r prior_plot, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
 alpha_single = 17
@@ -50,6 +60,8 @@ ggplot(data.frame(x = c(0, 1)), aes(x)) +
                      expand = c(0,0)) +
   theme(axis.text.x = element_text(angle = 40))
 ```
+
+\newpage
 
 ## Data Analysis Example
 
@@ -117,7 +129,7 @@ From the simulated scenario we find that given the data the hypothesis that the 
 
 Now that we have established the process by which the data are analyze I will summarize the results of a simulation (1000 iterations) of the performance of this model. Please note that code to reproduce these analyses can be found at the end of the document.
 
-First, this analysis, under the previously stated assumptions, would be able to yield a Bayes Factor in favor of our hypothesis (BF > 3) `r round(mean(hyp_df$Evid.Ratio >= 3)*100,2)`% of the time. Below is a plot of the simulated Bayes Factors (excluding Bayes Factors > 100).
+First, this analysis, under the previously stated assumptions, would be able to yield a Bayes Factor in favor of our hypothesis (BF > 3) `r round(mean(hyp_df$Evid.Ratio >= 3)*100,2)`% of the time. Below is a plot of the simulated Bayes Factors (excluding Bayes Factors > 100). As a note, in the final manuscript we also plan to report the posterior probabilites of our selected hypotheses.
 
 ```{r hyp_plot, echo=FALSE,  fig.height=2.75, fig.width=5}
 hyp_df %>%
@@ -201,6 +213,8 @@ ggpubr::ggarrange(p1,p4,p2,p3)
 # Conclusion
 
 Overall, the data from this study will be adequate to test our hypothesis since the `r round(mean(hyp_df$Evid.Ratio > 3)*100,2)`% of the simulations demonstarted at least some evidence for our hypothesis. Also, we only assumed 150 manuscripts would be analyzed and the underlying distribution is exactly 85%. In reality, we anticipate that we should actually have more than 180 manuscripts (60% of the sample) with hypotheses to test which will only increase the "power" of this Bayesian analysis.
+
+\newpage
 
 # Appendix: Code to Reproduce the Simulations
 
