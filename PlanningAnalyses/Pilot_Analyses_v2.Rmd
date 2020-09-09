@@ -1,0 +1,138 @@
+---
+title: "Pilot Analyses"
+author: "Aaron R. Caldwell"
+date: "9/9/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.pos = 'H')
+#options(knitr.table.format = "latex")
+#options(knitr.duplicate.label = "allow")
+
+```
+
+# Introduction
+
+In this document I will detail our planned analyses using our pilot data from 15 manuscripts. Please note that additional analyses may be present in the final manuscript. All results reported in brackets `[XX, XX]` represent 95% confidence intervals.
+
+```{r importsets, message=FALSE, warning=FALSE}
+library(readr)
+library(tidyverse)
+library(brms)
+library(epitab)
+df_pilot <- read_csv("df_pilot.csv") %>% 
+  mutate_if(is.character,as.factor)
+```
+
+
+# Hypothesis Tests
+
+First, we have two hypotheses included in our manuscript. 
+
+1. For manuscripts with hypotheses, more than 80% will include some support for their hypothesis.
+  - Prior of $\beta(17,3)$
+  
+```{r priorplot1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
+alpha_single = 17
+beta_single = 3
+ggplot(data.frame(x = c(0, 1)), aes(x)) +
+  stat_function(fun = dbeta,
+                args = list(shape1 = alpha_single, shape2 = beta_single)) +
+  stat_function(
+    data = data.frame(x = c(0, 1)),
+    aes(x),
+    fun = dbeta,
+    args = list(shape1 = alpha_single, shape2 = beta_single),
+    geom = "area",
+    fill = "blue",
+    alpha = .25,
+    inherit.aes = F
+  ) +
+  labs(y = "Density", x = bquote(theta)) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40))
+```
+  
+
+2. The proportion of manuscripts that explicitly state they are testing hypotheses is greater than 60%.
+  - Prior of $\beta(12,8)$
+  
+```{r priorplot2, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
+alpha_single = 12
+beta_single = 8
+ggplot(data.frame(x = c(0, 1)), aes(x)) +
+  stat_function(fun = dbeta,
+                args = list(shape1 = alpha_single, shape2 = beta_single)) +
+  stat_function(
+    data = data.frame(x = c(0, 1)),
+    aes(x),
+    fun = dbeta,
+    args = list(shape1 = alpha_single, shape2 = beta_single),
+    geom = "area",
+    fill = "blue",
+    alpha = .25,
+    inherit.aes = F
+  ) +
+  labs(y = "Density", x = bquote(theta)) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40))
+```
+
+\newpage
+
+## Rate of Positive Results
+
+From the pilot results, we would conclude that our hypothesis is less likely than the null hypothesis and therefore the positive result rate is more likely to be less than 80%
+
+```{r hyp1}
+#Set prior
+prior_1 = set_prior("beta(17, 3)", class = "b", lb = 0, ub = 1)
+
+#transform data
+hyp_pos = df_pilot %>%
+  filter(hypo_tested == "Yes") %>%
+  summarize(
+    pos = sum(di_sup == "Y"),
+    N = length(di_sup),
+    rate = pos/N
+  )
+
+```
+
+```{r hyp1mod, eval=FALSE}
+#Build model
+m_test <- brm(
+  pos | trials(N) ~ 0 + Intercept,
+  family = binomial(link = "identity"),
+  prior = prior_1,
+  data = hyp_pos,
+  refresh = 0
+)
+```
+
+```{r hyp1import, include=FALSE}
+m_test = readRDS("m_test_hyp1.rds")
+```
+
+```{r hyp1summary}
+h_test <- hypothesis(m_test, "Intercept > 0.8")
+knitr::kable(h_test$hypothesis, caption = "Hypothesis Test #1") 
+```
+```{r hyp1summary2}
+test_pos = posterior_interval(m_test,
+                   prob = .95)
+knitr::kable(test_pos, caption = "Hyp Test #1: 95% Posterior C.I.")
+```
+
+\newpage

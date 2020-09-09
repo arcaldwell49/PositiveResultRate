@@ -2,10 +2,7 @@
 title: "Pilot Analysis Demonstration"
 author: "Aaron R. Caldwell"
 date: "9/8/2020"
-output:
-  html_document:
-    df_print: paged
-  pdf_document: default
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -14,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE,
                       message = FALSE,
                       fig.pos = 'H')
-#options(knitr.table.format = "latex")
+
 options(knitr.duplicate.label = "allow")
 
 ```
@@ -38,7 +35,7 @@ df_pilot <- read_csv("df_pilot.csv") %>%
 First, we have two hypotheses included in our manuscript. 
 
 1. For manuscripts with hypotheses, more than 80% will include some support for their hypothesis.
-  - Prior of $\beta(17,3)$
+
   
 ```{r priorplot1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
 alpha_single = 17
@@ -66,7 +63,6 @@ ggplot(data.frame(x = c(0, 1)), aes(x)) +
   
 
 2. The proportion of manuscripts that explicitly state they are testing hypotheses is greater than 60%.
-  - Prior of $\beta(12,8)$
   
 ```{r priorplot2, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
 alpha_single = 12
