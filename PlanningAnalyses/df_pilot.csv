@@ -1,0 +1,16 @@
+,a_doi,sci_cat,replic,hypo_tested,num_hyp,support,sig_test,pval_sig,pval_type,rel_pval,effect_size,clin_trial,prereg,prereg_link,data_state,open_data,RCT,animal,sample_info,N,N_just,di_sup
+1,black_10.1080/17461391.2018.1491626,Sport performance,No,Yes,1,Partial support,No,NA,NA,NA,Yes,Yes,No,NA,No,No,Yes,No,Yes (total and group sample sizes provided),20,No,Y
+2,coates_10.1249/MSS.0000000000001725,Applied exercise physiology (human),No,Yes,1,Full support,Yes,Yes,"Exact (e.g., p = .049)",NA,No,Yes,No,NA,No,No,Yes,No,Yes (total and group sample sizes provided),26,No,Y
+3,combes_10.1080/17461391.2018.1491627,Applied exercise physiology (human),No,Yes,3,Full support,Yes,Yes,"Relative (e.g., p < .05)",NA,No,Yes,No,NA,No,No,No,No,Yes (total and group sample sizes provided),12,No,Y
+4,gerber_10.1016/j.jsams.2018.05.018,Sport/exercise psychology,No,Yes,1,NA,Yes,Yes,"Relative (e.g., p < .05)",p < .001,No,No,No,NA,Yes,Yes,No,No,Yes (total and group sample sizes provided),197,Yes,Yes
+5,govus_10.1080/17461391.2018.1484521,Sport performance,No,Yes,1,Not supported,Yes,No,"Relative (e.g., p < .05)",p <.05,Yes,Yes,No,NA,No,No,Yes,No,Yes (total and group sample sizes provided),32,No,N
+6,layec_10.1249/MSS.0000000000001735,Applied exercise physiology (human),No,Yes,1,Full support,Yes,Yes,"Relative (e.g., p < .05)",p <.05,No,Yes,No,NA,No,No,No,No,Yes (total and group sample sizes provided),8,No,Y
+7,linton_10.1016/j.jsams.2018.05.021,Epidemiology,No,No,NA,NA,NA,NA,NA,NA,No,No,No,NA,Yes,Yes,No,No,Yes (total and group sample sizes provided),1145,No,NA
+8,mcdermott_10.1016/j.jsams.2018.05.003,"Environmental physiology (heat, cold, & altitude)",No,Yes,1,Not supported,Yes,No,"Exact (e.g., p = .049)",NA,Yes,Yes,No,NA,No,No,Yes,No,Yes (total and group sample sizes provided),40,Yes,N
+9,pocock_10.1080/17461391.2018.1486459,Sport performance,No,No,NA,NA,NA,NA,NA,NA,Yes,No,No,NA,No,No,No,No,Yes (total and group sample sizes provided),51,No,NA
+10,praet_10.1016/j.jsams.2018.05.013,Clinical research,No,Yes,1,Not supported,Yes,No,"Exact (e.g., p = .049)",NA,Yes,Yes,Yes,ANZCTR#12615001035516,Yes,Yes,No,No,Yes (total and group sample sizes provided),20,No,N
+11,semplonius_10.1249/MSS.0000000000001706,Epidemiology,No,No,NA,NA,NA,NA,NA,NA,Yes,No,No,NA,No,No,No,No,Yes (total and group sample sizes provided),827,No,NA
+12,silveira_10.1080/17461391.2018.1486460,Biomechanics,No,Yes,1,Full support,Yes,Yes,"Exact (e.g., p = .049)",NA,Yes,No,No,NA,No,No,No,No,Yes (total and group sample sizes provided),13,No,Y
+13,veldman_10.1016/j.jsams.2018.05.001,Motor learning/control/behavior,No,No,NA,NA,NA,NA,NA,NA,Yes,No,No,NA,Yes,Yes,No,No,Yes (total and group sample sizes provided),335,No,NA
+14,webber_10.1249/MSS.0000000000001720,Applied exercise physiology (human),No,No,NA,NA,NA,NA,NA,NA,Yes,No,No,NA,No,No,No,No,Yes (total and group sample sizes provided),210461,No,NA
+15,zhou_10.1249/MSS.0000000000001741,Clinical research,No,Yes,2,Full support,Yes,Yes,"Relative (e.g., p < .05)",p <.05,No,No,No,NA,No,No,No,Yes,Yes (total and group sample sizes provided),444,No,Y

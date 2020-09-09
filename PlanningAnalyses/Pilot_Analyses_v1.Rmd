@@ -1,0 +1,274 @@
+---
+title: "Pilot Analysis Demonstration"
+author: "Aaron R. Caldwell"
+date: "9/8/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+# Introduction
+
+In this document I will detail our planned analyses using our pilot data from 15 manuscripts. Please note that additional analyses may be present in the final manuscript. All results reported in brackets `[XX, XX]` represent 95% confidence intervals.
+
+```{r import, message=FALSE, warning=FALSE}
+library(readr)
+library(tidyverse)
+library(brms)
+library(epitab)
+df_pilot <- read_csv("df_pilot.csv") %>% 
+  mutate_if(is.character,as.factor)
+```
+
+
+# Hypothesis Tests
+
+First, we have two hypotheses included in our manuscript. 
+
+1. For manuscripts with hypotheses, more than 80% will include some support for their hypothesis.
+  - Prior of $\beta(17,3)$
+  
+```{r prior_plot1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
+alpha_single = 17
+beta_single = 3
+ggplot(data.frame(x = c(0, 1)), aes(x)) +
+  stat_function(fun = dbeta,
+                args = list(shape1 = alpha_single, shape2 = beta_single)) +
+  stat_function(
+    data = data.frame(x = c(0, 1)),
+    aes(x),
+    fun = dbeta,
+    args = list(shape1 = alpha_single, shape2 = beta_single),
+    geom = "area",
+    fill = "blue",
+    alpha = .25,
+    inherit.aes = F
+  ) +
+  labs(y = "Density", x = bquote(theta)) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40))
+```
+  
+
+2. The proportion of manuscripts that explicitly state they are testing hypotheses is greater than 60%.
+  - Prior of $\beta(12,8)$
+  
+```{r prior_plot2, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
+alpha_single = 12
+beta_single = 8
+ggplot(data.frame(x = c(0, 1)), aes(x)) +
+  stat_function(fun = dbeta,
+                args = list(shape1 = alpha_single, shape2 = beta_single)) +
+  stat_function(
+    data = data.frame(x = c(0, 1)),
+    aes(x),
+    fun = dbeta,
+    args = list(shape1 = alpha_single, shape2 = beta_single),
+    geom = "area",
+    fill = "blue",
+    alpha = .25,
+    inherit.aes = F
+  ) +
+  labs(y = "Density", x = bquote(theta)) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40))
+```
+
+\newpage
+
+## Rate of Positive Results
+
+From the pilot results, we would conclude that our hypothesis is less likely than the null hypothesis and therefore the positive result rate is more likely to be less than 80%
+
+```{r hyp1, }
+#Set prior
+prior_1 = set_prior("beta(17, 3)", class = "b", lb = 0, ub = 1)
+
+#transform data
+hyp_pos = df_pilot %>%
+  filter(hypo_tested == "Yes") %>%
+  summarize(
+    pos = sum(di_sup == "Y"),
+    N = length(di_sup),
+    rate = pos/N
+  )
+
+```
+```{r eval=FALSE}
+#Build model
+m_test <- brm(
+  pos | trials(N) ~ 0 + Intercept,
+  family = binomial(link = "identity"),
+  prior = prior_1,
+  data = hyp_pos,
+  refresh = 0
+)
+```
+```{r include=FALSE}
+m_test = readRDS("m_test_hyp1.rds")
+```
+```{r}
+h_test <- hypothesis(m_test, "Intercept > 0.8")
+knitr::kable(h_test$hypothesis, caption = "Hypothesis Test #1")
+
+test_pos = posterior_interval(m_test,
+                   prob = .95)
+knitr::kable(test_pos, caption = "Hyp Test #1: 95% Posterior C.I.")
+```
+
+\newpage
+
+## Rate of Hypotheses Tested
+
+However, we would conclude that there is some weak evidence for our hypothesis that more than 60% of manuscripts explicitly test a hypothesis.
+
+```{r hyp2, eval=FALSE}
+#Set prior
+prior_2 = set_prior("beta(12, 8)", class = "b", lb = 0, ub = 1)
+
+#Generate test data
+hyp_test = df_pilot %>%
+  summarize(
+    pos = sum(hypo_tested == "Yes"),
+    N = length(hypo_tested),
+    rate = pos/N
+  )
+```
+```{r eval=FALSE}
+#Build model
+m_test2 <- brm(
+  pos | trials(N) ~ 0 + Intercept,
+  family = binomial(link = "identity"),
+  prior = prior_2,
+  data = hyp_test,
+  refresh = 0
+)
+```
+```{r include=FALSE}
+m_test2 = readRDS("m_test_hyp2.rds")
+```
+```{r}
+h_test2 <- hypothesis(m_test2, "Intercept > 0.6")
+knitr::kable(h_test2$hypothesis, caption = "Hypothesis Test #1")
+
+test_pos2 = posterior_interval(m_test2,
+                   prob = .95)
+knitr::kable(test_pos2, caption = "Hyp Test #1: 95% Posterior C.I.")
+```
+
+
+# Descriptive Statistics
+
+For the rest of the paper, since we do not have any explicit hypotheses we will only use descriptive statistics to how the general rates and trends of other good, or bad, practices.
+
+## Preregistration
+
+Recently, there has been an emphasis on trial preregistration. This should be a requirement for clinical trials and any randomized control trial (RCT), and is highly encouraged for animal studies. Overall, from the pilot data, we would conclude that most manuscripts are out of compliance for clinical trials and no animal studies included preregistration information
+
+```{r}
+contingency_table(independents=list("Clinical Trial"="clin_trial",
+                                            "RCT"="RCT",
+                                            "Animal" = "animal"),
+                  outcomes=list("Preregistration"="prereg"),
+                  crosstab_funcs=list(freq()),
+                  data=df_pilot) %>%
+  neat_table()
+
+ct_prereg = table(df_pilot$prereg)
+
+binom_prereg = binom.test(ct_prereg[[2]],sum(ct_prereg))
+prereg_pr = paste0(round(binom_prereg$estimate*100,2),"% [",
+       round(binom_prereg$conf.int[1]*100,2),", ", 
+       round(binom_prereg$conf.int[2]*100,2)
+       ,"] of manuscripts reported preregistration or clinical trial registration information.")
+```
+
+`r prereg_pr`
+
+## Sample Size Information
+
+All current guidelines for these three types of studies also require sample size reporting and encourage sample size justification. In our pilot sample all of the studies at least included some sample size information. However, only 2 studies included some form of sample size justification. Therefore, Kinesiology studies are 6.5 times more likely to *not* report a sample size justification.
+
+```{r}
+contingency_table(independents=list("Clinical Trial"="clin_trial",
+                                            "RCT"="RCT",
+                                            "Animal" = "animal"),
+                  outcomes=list("Sample Size Justification"="N_just"),
+                  crosstab_funcs=list(freq()),
+                  data=df_pilot) %>%
+  neat_table()
+
+ct_njust = table(df_pilot$N_just)
+
+binom_njust = binom.test(ct_njust[[2]],sum(ct_njust))
+njust_pr = paste0(round(binom_njust$estimate*100,2),"% [",
+       round(binom_njust$conf.int[1]*100,2),", ", 
+       round(binom_njust$conf.int[2]*100,2)
+       ,"] of manuscripts reported some form of sample size justification.")
+```
+
+`r njust_pr`
+
+Further, we can illustrate the range of sample sizes with a histogram of the total reported sample size. And compare the sample sizes by sub-discipline. Due to the skewed distribution, the differences in the sample sizes for sub-disisplines will be compared with a heteroscedastic one-way ANOVA for trimmed means (WRS2 `t1way` function). Overall, from the given data we would conclude that the sample sizes have a large range, and unsurprisingly epidemiology has the largest sample size.
+
+```{r}
+df_pilot %>%
+  filter(N < 50000) %>%
+ggplot(aes(x = N)) +
+  geom_histogram() 
+
+df_pilot %>%
+  group_by(sci_cat) %>%
+  summarize(median = median(N),
+            IQR = IQR(N),
+    .groups = 'drop'
+  )
+```
+
+## Other Open Sciences Practices
+
+We can estimate the proportion of studies that report some type of open data or data sharing in their manuscript.
+
+```{r}
+knitr::kable(table(df_pilot$open_data),
+             caption = "Data Sharing Reported")
+
+ct_odat = table(df_pilot$open_data)
+
+binom_odat = binom.test(ct_odat[[2]],sum(ct_odat))
+odat_pr = paste0(round(binom_odat$estimate*100,2),"% [",
+       round(binom_odat$conf.int[1]*100,2),", ", 
+       round(binom_odat$conf.int[2]*100,2)
+       ,"] of manuscripts reported some form of data sharing or open data.")
+```
+
+`r odat_pr`
+
+There is some concern that the replicability of kinesiology is not know so we can also report the proportion of studies that explicitly stating they are replicating previous work.
+
+```{r}
+knitr::kable(table(df_pilot$replic),
+             caption = "Replication Studies")
+
+ct_replic = table(df_pilot$replic)
+
+binom_replic = binom.test(0,15)
+replic_pr = paste0(round(binom_replic$estimate*100,2),"% [",
+       round(binom_replic$conf.int[1]*100,2),", ", 
+       round(binom_replic$conf.int[2]*100,2)
+       ,"] of manuscripts explicitly stated they were replicating a previous study.")
+```
+
+`r replic_pr`

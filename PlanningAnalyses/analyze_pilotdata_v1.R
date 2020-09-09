@@ -50,4 +50,4 @@ df_pilot = pilotv1 %>%
   summarize(across(everything(), Mode),
             .groups = 'drop')
 
-
+write.csv(df_pilot,"df_pilot.csv")
