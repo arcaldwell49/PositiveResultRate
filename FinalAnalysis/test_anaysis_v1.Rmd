@@ -1,0 +1,132 @@
+---
+title: "Data Analysis"
+author: "Aaron R. Caldwell"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: sample.bib
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library(tidyverse)
+library(brms)
+library(broom)
+# Import brms analysis 1 (positive) ---------
+m_test = read_rds("m_test.rds")
+# Import brms analysis 2 (prop. of hyp. tested) ------
+m_test2 = read_rds("m_test2.rds")
+```
+
+# Introduction
+
+In this study we collected data on 300 sport and exercise science research articles (100 from 3 journals). Based on the work of @buttner2020, we anticipated at least 150 (50%) of the articles would include a hypothesis that was tested. Further, based on the work of @Fanelli_2010, @Scheel_Schijen_Lakens_2020, and @buttner2020 we hypothesized that the percentage of articles that find support for their hypothesis was greater than 80%. 
+
+# Hypothesis
+
+For this study, we hypothesized that the rate of positive results (i.e., studies that find at least partial support for their hypothesis) was greater than 80%. Therefore, the null hypothesis ($H_0$) was that the proportion of positive results was less than .8 and our alternative was greater than .8. There was no other effect being estimated in this study therefore the intercept of the model is what will be tested.
+
+$H_0: Intercept \leq .8$
+
+$H_1: Intercept > .8$
+
+\newpage
+
+# Prior Choice
+
+The prior we selected for this analysis was informed by the previous studies assuming the true positive rate is approximately 85% [@Fanelli_2010]. However, we would like to avoid "spiking" the prior in favor of our hypothesis and therefore want a skeptical prior. Based on the work of @Scheel_Schijen_Lakens_2020 and @buttner2020 the estimated positive rates in original research investigations ranged from 82%-92%, and even some fields included in the survey by @Fanelli_2010 observed rates at low as ~70%. Therefore, we selected a prior of $\beta(17,3)$, and is visualized it below. This prior is centered around .85, but includes the possibility of higher (.9) and much lower (.7) proportions as compatible parameter estimates.
+
+```{r prior_plot, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
+alpha_single = 17
+beta_single = 3
+ggplot(data.frame(x = c(0, 1)), aes(x)) +
+  stat_function(fun = dbeta,
+                args = list(shape1 = alpha_single, shape2 = beta_single)) +
+  stat_function(
+    data = data.frame(x = c(0, 1)),
+    aes(x),
+    fun = dbeta,
+    args = list(shape1 = alpha_single, shape2 = beta_single),
+    geom = "area",
+    fill = "blue",
+    alpha = .25,
+    inherit.aes = F
+  ) +
+  labs(y = "Density", x = bquote(theta)) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40))
+```
+
+\newpage
+
+## Data Analysis Example
+
+Below, we have incorporated this prior (`prior_1`) and then analyzed this with the `brm` function (saved as `m_test`).
+
+```{r ex1, eval=FALSE}
+#Set prior
+prior_1 = set_prior("beta(17, 3)", class = "b", lb = 0, ub = 1)
+
+#Generate test data
+test_df = data.frame(run = 1,
+                pos = rbinom(1, 150, .85),
+                N = rep(150, 1)) %>%
+  mutate(rate = pos/N)
+
+#Build model
+m_test <- brm(
+  pos | trials(N) ~ 0 + Intercept,
+  family = binomial(link = "identity"),
+  prior = prior_1,
+  data = test_df,
+  sample_prior = TRUE,
+  iter = 1e4,
+  cores = 4,
+  refresh = 0
+)
+```
+
+We can then visualize the performance of the prior and the posterior from this model.
+
+```{r echo=FALSE,  fig.height=2.75, fig.width=5}
+#Gather samples from the model
+samples <- posterior_samples(m_test, "b") 
+  
+#plot it
+gather(samples, Type, value) %>% 
+  ggplot(aes(value, fill = Type)) +
+  geom_density(alpha = .25) +
+  geom_vline(xintercept = .8) +
+  labs(y = "Density", x = bquote(theta)) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(limits = c(0,1),
+                     breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40)) +
+  scale_fill_viridis_d(labels = c("Posterior","Prior"),
+                       option = "D")
+```
+
+In addition, the hypothesis was tested with the `hypothesis` function and the posterior compatibility intervals (C.I.).
+
+```{r}
+h_test <- hypothesis(m_test, "Intercept > 0.8")
+knitr::kable(h_test$hypothesis, caption = "Hypothesis Test")
+
+test_pos = posterior_interval(m_test,
+                   prob = .95)
+knitr::kable(test_pos, caption = "95% Posterior C.I.")
+```
+
+From the simulated scenario we find that given the data the hypothesis that the true positive result rate is greater than 80% is `r round(h_test$hypothesis$Evid.Ratio,2)` times more likely than the true value being less than 80%. 
+
+
+# References
+

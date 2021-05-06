@@ -21,7 +21,7 @@ m_test = readRDS("m_test.rds")
 
 # Introduction
 
-In this study we plan on collecting data on 300 sport and exercise science research articles (100 from 3 journals). Based on the work of @buttner2020, we anticipate at least 150 (50%) of the articles will include a hypothesis that was tested. Further, the work of @Fanelli_2010, @Scheel_Schijen_Lakens_2020, and @buttner2020 we believe that the percentage of articles that find support for their hypothesis is greater than 80%. Given this existing data, we believe we have an informative prior on the underlying distribution of postive results, and have opted for a Bayesian analysis of this primary endpoint. For this analysis, we will use the `brms` R package [@brms_cite].
+In this study we plan on collecting data on 300 sport and exercise science research articles (100 from 3 journals). Based on the work of @buttner2020, we anticipate at least 150 (50%) of the articles will include a hypothesis that was tested. Further, the work of @Fanelli_2010, @Scheel_Schijen_Lakens_2020, and @buttner2020 we believe that the percentage of articles that find support for their hypothesis is greater than 80%. Given this existing data, we believe we have an informative prior on the underlying distribution of positive results, and have opted for a Bayesian analysis of this primary endpoint. For this analysis, we will use the `brms` R package [@brms_cite].
 
 # Hypothesis
 
@@ -129,7 +129,7 @@ From the simulated scenario we find that given the data the hypothesis that the 
 
 Now that we have established the process by which the data are analyze I will summarize the results of a simulation (1000 iterations) of the performance of this model. Please note that code to reproduce these analyses can be found at the end of the document.
 
-First, this analysis, under the previously stated assumptions, would be able to yield a Bayes Factor in favor of our hypothesis (BF > 3) `r round(mean(hyp_df$Evid.Ratio >= 3)*100,2)`% of the time. Below is a plot of the simulated Bayes Factors (excluding Bayes Factors > 100). As a note, in the final manuscript we also plan to report the posterior probabilites of our selected hypotheses.
+First, this analysis, under the previously stated assumptions, would be able to yield a Bayes Factor in favor of our hypothesis (BF > 3) `r round(mean(hyp_df$Evid.Ratio >= 3)*100,2)`% of the time. Below is a plot of the simulated Bayes Factors (excluding Bayes Factors > 100). As a note, in the final manuscript we also plan to report the posterior probabilities of our selected hypotheses.
 
 ```{r hyp_plot, echo=FALSE,  fig.height=2.75, fig.width=5}
 hyp_df %>%
