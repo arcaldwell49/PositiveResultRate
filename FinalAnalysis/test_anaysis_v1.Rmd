@@ -3,6 +3,9 @@ title: "Data Analysis"
 author: "Aaron R. Caldwell"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 bibliography: sample.bib
+header-includes:
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
 output: pdf_document
 ---
 
@@ -10,9 +13,10 @@ output: pdf_document
 knitr::opts_chunk$set(
 	echo = FALSE,
 	message = FALSE,
-	warning = FALSE
+	warning = FALSE,
+	fig.pos = "!H", out.extra = ""
 )
-
+#library(kableExtra)
 source("test_script_run.R")
 ```
 
@@ -124,11 +128,13 @@ In addition, the hypothesis was tested with the `hypothesis` function and the po
 
 ```{r}
 h_test <- hypothesis(m_test, "Intercept > 0.8")
-knitr::kable(h_test$hypothesis, caption = "Hypothesis Test")
+knitr::kable(h_test$hypothesis, caption = "Hypothesis Test", 
+               booktabs = TRUE)
 
 test_pos = posterior_interval(m_test,
                    prob = .95)
-knitr::kable(test_pos, caption = "95% Posterior C.I.")
+knitr::kable(test_pos, caption = "95% Posterior C.I.", 
+               booktabs = TRUE)
 ```
 
 From the simulated scenario we find that given the data the hypothesis that the true positive result rate is greater than 80% is `r round(h_test$hypothesis$Evid.Ratio,2)` times more likely than the true value being less than 80%. 
@@ -162,14 +168,157 @@ gather(samples, Type, value) %>%
 In addition, the hypothesis was tested with the `hypothesis` function and the posterior compatibility intervals (C.I.).
 
 ```{r}
-knitr::kable(h_test2$hypothesis, caption = "Hypothesis Test")
+knitr::kable(h_test2$hypothesis, caption = "Hypothesis Test", 
+               booktabs = TRUE)
 
-knitr::kable(test_pos2, caption = "95% Posterior C.I.")
+knitr::kable(test_pos2, caption = "95% Posterior C.I.", 
+               booktabs = TRUE)
 ```
 
 From the simulated scenario we find that given the data the hypothesis that the true positive result rate is greater than 80% is `r round(h_test$hypothesis$Evid.Ratio,2)` times more likely than the true value being less than 80%. 
 
 \newpage
+
+# Descriptives Statistics
+
+## Hypothesis Testing and Statistics
+
+Contingency tables and binomial probabilities can be created for other data collected in this study of published studies.
+
+```{r}
+ctab1 %>%
+  neat_table(caption = "Statistics on Hypothesis Testing",
+             format = "latex",
+             position = "!h", 
+               booktabs = TRUE) 
+```
+
+```{r}
+ctab2 %>%
+  neat_table(caption = "Statistics on Significance Testing",
+             format = "latex",
+             position = "!h", 
+               booktabs = TRUE) 
+```
+
+
+```{r}
+ct_es = table(df_all$effect_size)
+
+binom_es = binom.test(ct_es[[2]],sum(ct_es))
+es_pr = paste0(round(binom_es$estimate*100,2),"% [",
+       round(binom_es$conf.int[1]*100,2),", ", 
+       round(binom_es$conf.int[2]*100,2)
+       ,"] of manuscripts reported some estimate of effect size.")
+
+ct_sig = table(df_all$pval_sig)
+
+binom_sig = binom.test(ct_sig[[2]],sum(ct_sig))
+sig_pr = paste0(round(binom_sig$estimate*100,2),"% [",
+       round(binom_sig$conf.int[1]*100,2),", ", 
+       round(binom_sig$conf.int[2]*100,2)
+       ,"] of manuscripts reported a \"significant\" p-value.")
+
+ct_ptype = table(df_all$pval_type)
+
+binom_ptype = binom.test(ct_ptype[[2]],sum(ct_ptype))
+ptype_pr = paste0(round(binom_ptype$estimate*100,2),"% [",
+       round(binom_ptype$conf.int[1]*100,2),", ", 
+       round(binom_ptype$conf.int[2]*100,2)
+       ,"] of manuscripts reported exact p-values (p = .045) versus relative p-values (p < .05).")
+
+ct_ptype2 = table(df_all$pval_type)
+
+binom_ptype2 = binom.test(ct_ptype[[2]]+ct_ptype[[1]],sum(ct_ptype))
+ptype_pr2 = paste0(round(binom_ptype$estimate*100,2),"% [",
+       round(binom_ptype$conf.int[1]*100,2),", ", 
+       round(binom_ptype$conf.int[2]*100,2)
+       ,"] of manuscripts reported at least *some* exact p-values (e.g., p = .045) versus relative p-values (e.g., p < .05).")
+
+```
+
+- Effect sizes were reported often with `r es_pr` 
+- `r sig_pr`
+- `r ptype_pr` 
+- `r ptype_pr2`
+
+\newpage
+
+## Preregistration
+
+Recently, there has been an emphasis on trial preregistration. This should be a requirement for clinical trials and any randomized control trial (RCT), and is highly encouraged for animal studies. Overall, from the pilot data, we would conclude that most manuscripts are out of compliance for clinical trials and no animal studies included preregistration information
+
+```{r prereg}
+ctab_prereg %>%
+  neat_table(caption = "Preregistration Reported",
+             format = "latex",
+             position = "!h", 
+               booktabs = TRUE) 
+
+```
+
+- `r prereg_pr`
+
+\newpage
+
+## Sample Size Information
+
+All current guidelines require sample size reporting and encourage sample size justification. However, very few studies actually included a sample size justification. We should note that a sample size justification *does not* mean a power analysis necessarily.
+
+```{r sampsize}
+ctab_ss %>%
+  neat_table(caption = "Sample Size Justification",
+             format = "latex",
+             position = "!h", 
+               booktabs = TRUE)
+```
+
+- `r njust_pr`
+- `r samp_pr`
+
+
+Further, we can illustrate the range of sample sizes with plots of sample sizes reported sample size and compare the sample sizes by sub-discipline. No significant differences in sub-disciplines. Overall, from the given data we would conclude that the sample sizes have a large range, and unsurprisingly epidemiology has the largest median sample size.
+
+```{r}
+df_all %>%
+  select(sci_cat, N) %>%
+  drop_na()%>%
+  group_by(sci_cat) %>%
+  summarize(median = round(median(N),0),
+            IQR = round(IQR(N),0),
+            n = n(),
+    .groups = 'drop'
+  ) %>%
+  knitr::kable(caption = "Sample Size by Category", 
+               booktabs = TRUE)
+
+knitr::kable(df_samp1way ,
+             digits = 4,
+             caption = "ANOVA: Compare Sample Size", 
+             booktabs = TRUE)
+```
+
+\newpage
+
+```{r fig.height=8,fig.width=6}
+p_n
+```
+
+\newpage
+
+
+\newpage
+
+## Other Open Science Practices
+
+We can estimate the proportion of studies that report some type of open data or data sharing in their manuscript.
+
+- `r odat_pr`
+
+There is some concern that the replicability of kinesiology is not know so we can also report the proportion of studies that explicitly stating they are replicating previous work.
+
+- `r replic_pr`
+
 
 # References
 

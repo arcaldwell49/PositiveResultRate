@@ -29,7 +29,6 @@ df_pilot <- read_csv("df_pilot.csv") %>%
   mutate_if(is.character,as.factor)
 ```
 
-
 # Hypothesis Tests
 
 First, we have two hypotheses included in our manuscript. 
@@ -315,7 +314,7 @@ knitr::kable(table(df_pilot$open_data),
 
 ct_odat = table(df_pilot$open_data)
 
-binom_odat = binom.test(ct_odat[[2]],sum(ct_odat))
+binom_odat = binom.test(ct_odat[[2]],300)
 odat_pr = paste0(round(binom_odat$estimate*100,2),"% [",
        round(binom_odat$conf.int[1]*100,2),", ", 
        round(binom_odat$conf.int[2]*100,2)
