@@ -4,6 +4,7 @@ library(tidyselect)
 library(brms)
 library(ggdist)
 library(distributional)
+library(broom)
 
 # Testing out data analysis
 # import data ------------
