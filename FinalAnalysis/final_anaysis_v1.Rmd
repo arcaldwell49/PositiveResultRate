@@ -1,0 +1,405 @@
+---
+title: "Data Analysis"
+author: "Aaron R. Caldwell"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: sample.bib
+header-includes:
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+output: 
+  pdf_document: default
+  github_document: default
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	fig.pos = "!H", out.extra = ""
+)
+#library(kableExtra)
+source("final_script_run.R")
+```
+
+# Introduction
+
+In this study we collected data on 300 sport and exercise science research articles (100 from 3 journals). Based on the work of @buttner2020, we anticipated at least 150 (50%) of the articles would include a hypothesis that was tested. Based on the work of @Fanelli_2010, @Scheel_Schijen_Lakens_2020, and @buttner2020 we hypothesized that the percentage of articles that find support for their hypothesis was greater than 80%. 
+
+# Hypothesis
+
+For this study, we hypothesized that the rate of positive results (i.e., studies that find at least partial support for their hypothesis) was greater than 80%. Therefore, the null hypothesis ($H_0$) was that the proportion of positive results was less than .8 and our alternative was greater than .8. There was no other effect being estimated in this study therefore the intercept of the model is what will be tested.
+
+$H_0: Intercept \leq 0.8$
+
+$H_1: Intercept > 0.8$
+
+We also hypothesized that more than 60% of studies would test a hypothesis.
+
+$H_0: Intercept \leq 0.6$
+
+$H_1: Intercept > 0.6$
+
+\newpage
+
+# Prior Choice
+
+The prior we selected for this analysis was informed by the previous studies assuming the true positive rate is approximately 85% [@Fanelli_2010]. However, we would like to avoid "spiking" the prior in favor of our hypothesis and therefore want a skeptical prior. Based on the work of @Scheel_Schijen_Lakens_2020 and @buttner2020 the estimated positive rates in original research investigations ranged from 82%-92%, and even some fields included in the survey by @Fanelli_2010 observed rates as low as ~70%. Therefore, we selected a prior of $\beta(17,3)$, and is visualized it below. This prior is centered around .85, but includes the possibility of higher (.9) and much lower (.7) proportions as compatible parameter estimates.
+
+```{r prior_plot, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
+alpha_single = 17
+beta_single = 3
+ggplot(data.frame(x = c(0, 1)), aes(x)) +
+  stat_function(fun = dbeta,
+                args = list(shape1 = alpha_single, shape2 = beta_single)) +
+  stat_function(
+    data = data.frame(x = c(0, 1)),
+    aes(x),
+    fun = dbeta,
+    args = list(shape1 = alpha_single, shape2 = beta_single),
+    geom = "area",
+    fill = "blue",
+    alpha = .25,
+    inherit.aes = F
+  ) +
+  labs(y = "Density", x = bquote(theta),
+       title = "Positive Result Prior") +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40))
+```
+
+Similarly, we used prior centered at 60% for the secondary hypothesis test.
+
+```{r prior_plot2, echo=FALSE, message=FALSE, warning=FALSE, fig.height=2.75, fig.width=3.5}
+alpha_single = 12
+beta_single = 8
+ggplot(data.frame(x = c(0, 1)), aes(x)) +
+  stat_function(fun = dbeta,
+                args = list(shape1 = alpha_single, shape2 = beta_single)) +
+  stat_function(
+    data = data.frame(x = c(0, 1)),
+    aes(x),
+    fun = dbeta,
+    args = list(shape1 = alpha_single, shape2 = beta_single),
+    geom = "area",
+    fill = "blue",
+    alpha = .25,
+    inherit.aes = F
+  ) +
+  labs(y = "Density", x = bquote(theta),
+       title = "Hypothesis Tested Prior") +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40))
+```
+
+\newpage
+
+# Hypothesis Test Analyses
+
+## Positive Result Rate Analysis
+
+Below, we have incorporated this prior (`prior_1`) and then analyzed this with the `brm` function (saved as `m_final`).
+
+```{r echo=FALSE,  fig.height=2.75, fig.width=5}
+#Gather samples from the model
+samples <- posterior_samples(m_final, "b") 
+  
+#plot it
+gather(samples, Type, value) %>% 
+  ggplot(aes(value, fill = Type)) +
+  geom_density(alpha = .25) +
+  geom_vline(xintercept = .8) +
+  labs(y = "Density", x = bquote(theta)) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(limits = c(0,1),
+                     breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40)) +
+  scale_fill_viridis_d(labels = c("Posterior","Prior"),
+                       option = "D")
+```
+
+In addition, the hypothesis was tested with the `hypothesis` function and the posterior compatibility intervals (C.I.).
+
+```{r}
+h_test <- hypothesis(m_final, "Intercept > 0.8")
+knitr::kable(h_test$hypothesis, caption = "Hypothesis Test", 
+               booktabs = TRUE)
+
+test_pos = posterior_interval(m_final,
+                   prob = .95)
+knitr::kable(test_pos, caption = "95% Posterior C.I.", 
+               booktabs = TRUE)
+```
+
+From the simulated scenario we find that given the data the hypothesis that the true positive result rate is greater than 80% is `r round(h_test$hypothesis$Evid.Ratio,2)` times more likely than the true value being less than 80%. 
+
+\newpage
+
+### Level of Support Reported
+
+```{r fig.height=8,fig.width=6}
+df_all %>%
+  select(support) %>%
+  drop_na() %>%
+  ggplot(aes(support,
+             fill = support)) +
+  geom_bar(aes(y = (..count..) / sum(..count..)),
+           color = "black") +
+  scale_y_continuous(labels = scales::percent,
+                     limits = c(0,.5),
+                     breaks = c(0,.1,.2,.3,.4,.5),
+                     expand = c(0,0)) +
+  labs(x = "Level of Hypothesis Support",
+       y = "Relative Frequency",
+       fill = "") +
+  theme_classic() +
+  scale_fill_viridis_d(option = "E") +
+  theme(legend.position = "none")
+
+```
+
+
+\newpage
+
+### Positive Results by Journal
+
+We can also break down the positive results by journal.
+
+```{r fig.height=6,fig.width=6}
+df_all %>%
+  group_by(journal, support) %>%
+  summarize(count = n(),
+            .groups = 'drop') %>%
+  filter(!is.na(support)) %>%
+ggplot( aes(fill=support, y=count, x=journal)) + 
+    geom_bar(position="fill", stat="identity",
+             color = "black")+
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Level of Hypothesis Support",
+       y = "Relative Frequency",
+       fill = "") +
+  theme_classic() +
+  scale_fill_viridis_d(option = "E") +
+  theme(legend.position = "top")
+```
+
+We can also tabulate the "support" by journal.
+
+```{r}
+tab_jhyp = table(df_all$journal,df_all$support)
+chisq_support = chisq.test(tab_jhyp)
+knitr::kable(tab_jhyp)
+#report(chisq_support)
+```
+
+Overall, there were no discernible differences in the degree of support reported in the three journals, $\chi^2$(`r chisq_support$parameter`) = `r round(chisq_support$statistic,2)`, *p* = `r round(chisq_support$p.value,2)`.
+
+\newpage
+
+## Hypothesis Tested Analysis
+
+Below, we have incorporated this prior (`prior_1`) and then analyzed this with the `brm` function (saved as `m_final`).
+
+```{r echo=FALSE,  fig.height=2.75, fig.width=5}
+#Gather samples from the model
+samples <- posterior_samples(m_final2, "b") 
+  
+#plot it
+gather(samples, Type, value) %>% 
+  ggplot(aes(value, fill = Type)) +
+  geom_density(alpha = .25) +
+  geom_vline(xintercept = .6) +
+  labs(y = "Density", x = bquote(theta)) +
+  theme_bw() +
+  scale_y_continuous(expand = c(0,.05)) +
+  scale_x_continuous(limits = c(0,1),
+                     breaks = seq(0.1,.9,.1),
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 40)) +
+  scale_fill_viridis_d(labels = c("Posterior","Prior"),
+                       option = "D")
+```
+
+In addition, the hypothesis was tested with the `hypothesis` function and the posterior compatibility intervals (C.I.).
+
+```{r}
+knitr::kable(h_test2$hypothesis, caption = "Hypothesis Test", 
+               booktabs = TRUE)
+
+knitr::kable(test_pos2, caption = "95% Posterior C.I.", 
+               booktabs = TRUE)
+```
+
+From the simulated scenario we find that given the data the hypothesis that the true positive result rate is greater than 80% is `r round(h_test2$hypothesis$Evid.Ratio,2)` times more likely than the true value being less than 80%. 
+
+\newpage
+
+## Comparing Hypothesis Testing by Journal
+
+While there were no discernible differences in the degree of support reported in the three journals, there was a difference in the rate at which hypothesis testing was reported.
+
+```{r}
+tab_jhyp = table(df_all$journal,df_all$hypo_tested)
+chisq_support = chisq.test(tab_jhyp)
+knitr::kable(tab_jhyp)
+#report(chisq_support)
+```
+
+$\chi^2$(`r chisq_support$parameter`) = `r round(chisq_support$statistic,2)`, *p* = `r round(chisq_support$p.value,6)`
+
+\newpage
+
+# Descriptives Statistics
+
+## Hypothesis Testing and Statistics
+
+Contingency tables and binomial probabilities can be created for other data collected in this study of published studies.
+
+```{r}
+ctab1 %>%
+  neat_table(caption = "Statistics on Hypothesis Testing",
+             format = "latex",
+             position = "!h", 
+               booktabs = TRUE) 
+```
+
+```{r}
+ctab2 %>%
+  neat_table(caption = "Statistics on Significance Testing",
+             format = "latex",
+             position = "!h", 
+               booktabs = TRUE) 
+```
+
+
+```{r}
+ct_es = table(df_all$effect_size)
+
+binom_es = binom.test(ct_es[[2]],sum(ct_es))
+es_pr = paste0(round(binom_es$estimate*100,2),"% [",
+       round(binom_es$conf.int[1]*100,2),", ", 
+       round(binom_es$conf.int[2]*100,2)
+       ,"] of manuscripts reported some estimate of effect size.")
+
+ct_sig = table(df_all$pval_sig)
+
+binom_sig = binom.test(ct_sig[[2]],sum(ct_sig))
+sig_pr = paste0(round(binom_sig$estimate*100,2),"% [",
+       round(binom_sig$conf.int[1]*100,2),", ", 
+       round(binom_sig$conf.int[2]*100,2)
+       ,"] of manuscripts reported a \"significant\" p-value.")
+
+ct_ptype = table(df_all$pval_type)
+
+binom_ptype = binom.test(ct_ptype[[2]],sum(ct_ptype))
+ptype_pr = paste0(round(binom_ptype$estimate*100,2),"% [",
+       round(binom_ptype$conf.int[1]*100,2),", ", 
+       round(binom_ptype$conf.int[2]*100,2)
+       ,"] of manuscripts reported exact p-values (p = .045) versus relative p-values (p < .05).")
+
+ct_ptype2 = table(df_all$pval_type)
+
+binom_ptype2 = binom.test(ct_ptype2[[2]]+ct_ptype2[[1]],sum(ct_ptype2))
+ptype_pr2 = paste0(round(binom_ptype2$estimate*100,2),"% [",
+       round(binom_ptype2$conf.int[1]*100,2),", ", 
+       round(binom_ptype2$conf.int[2]*100,2)
+       ,"] of manuscripts reported at least *some* exact p-values (e.g., p = .045) versus relative p-values (e.g., p < .05).")
+
+```
+
+- Effect sizes were reported often with `r es_pr` 
+- `r sig_pr`
+- `r ptype_pr` 
+- `r ptype_pr2`
+
+\newpage
+
+## Preregistration
+
+Recently, there has been an emphasis on trial preregistration. This should be a requirement for clinical trials and any randomized control trial (RCT), and is highly encouraged for animal studies. Overall, we estimate that most manuscripts are out of compliance for clinical trials and no animal studies included preregistration information
+
+```{r prereg}
+ctab_prereg %>%
+  neat_table(caption = "Preregistration Reported",
+             format = "latex",
+             position = "!h", 
+               booktabs = TRUE) 
+```
+
+- `r prereg_pr`
+
+\newpage
+
+## Sample Size Information
+
+All current guidelines require sample size reporting and encourage sample size justification. However, very few studies actually included a sample size justification. We should note that a sample size justification *does not* mean a power analysis was reported.
+
+```{r sampsize}
+ctab_ss %>%
+  neat_table(caption = "Sample Size Justification",
+             format = "latex",
+             position = "!h", 
+               booktabs = TRUE)
+```
+
+- `r njust_pr`
+- `r samp_pr`
+
+\newpage
+
+Further, we can illustrate the range of sample sizes with plots of sample sizes reported sample size and compare the sample sizes by sub-discipline. Overall, from the given data we would conclude that the sample sizes have a large range, and unsurprisingly epidemiology has the largest median sample size.
+
+```{r samplessizes}
+med_samps %>%
+  knitr::kable(caption = "Sample Sizes by Category", 
+               booktabs = TRUE)
+```
+
+
+An ANOVA on the log transformed values of sample size indicate significant differences between disciplines in sample size.
+
+```{r}
+knitr::kable(df_samp1way ,
+             digits = 4,
+             caption = "ANOVA: Compare Sample Size", 
+             booktabs = TRUE)
+```
+
+```{r}
+knitr::kable(emm_samps,
+             digits = 0,
+             caption = "Estimated Means: Compare Sample Size", 
+             booktabs = TRUE)
+
+```
+
+\newpage
+
+```{r emmsamp1, fig.height=8,fig.width=6}
+emm_plot
+```
+
+\newpage
+
+## Other Open Science Practices
+
+We can estimate the proportion of studies that report some type of open data or data sharing in their manuscript.
+
+- `r odat_pr`
+
+There is some concern that the replicability of kinesiology is not known so we can also report the proportion of studies that explicitly stating they are replicating previous work.
+
+- `r replic_pr`
+
+# References
+
