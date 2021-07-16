@@ -15,7 +15,9 @@ df_all =  read_csv("df_all.csv") %>%
                           levels = c("Unclear or not stated", 
                                      "Not supported",
                                      "Partial support", 
-                                     "Full support")))
+                                     "Full support"))) %>%
+  # Coding error in 20 cases
+  mutate(sig_test = ifelse(is.na(sig_test), "No", sig_test))
 # Get hypothesis tested set ------------
 hyp_tested = df_all %>%
   filter(hypo_tested == "Yes")
@@ -48,6 +50,25 @@ ctab1 = df_all %>%
                                       "Effect Size Reported" = "effect_size"),
                     outcomes=list("Hypothesis Tested" = "hypo_tested"),
                     crosstab_funcs=list(freq())) #%>%
+
+ct_effsize = table(df_all$effect_size)
+
+binom_eff = binom.test(ct_effsize[2], sum(ct_effsize))
+eff_pr = paste0(round(binom_eff$estimate*100,2),"% [",
+                   round(binom_eff$conf.int[1]*100,2),", ", 
+                   round(binom_eff$conf.int[2]*100,2)
+                   ,"] of manuscripts reported information on the effect size.")
+
+ct_sig = table(df_all$sig_test)
+
+binom_sig = binom.test(ct_sig[2], sum(ct_sig))
+sig_pr = paste0("Most manuscripts, ",round(binom_sig$estimate*100,2),"% [",
+                round(binom_sig$conf.int[1]*100,2),", ", 
+                round(binom_sig$conf.int[2]*100,2)
+                ,"], reported using significance testing.")
+
+
+
 
 ctab2 = df_all %>% 
   filter(sig_test == "Yes") %>%
@@ -211,3 +232,26 @@ p_n = df_all %>%
   theme(axis.ticks.y = element_blank(),
         axis.text.y = element_blank())
 
+# By Journal ----
+
+## Hypothesis Support -----
+tab_jhyp = table(df_all$journal,df_all$support)
+chisq_support = chisq.test(tab_jhyp)
+
+## Hypothesis Tested
+tab_jtest = table(df_all$journal,df_all$hypo_tested)
+chisq_jtest = chisq.test(tab_jtest)
+
+## Significance Testing
+tab_jsig = table(df_all$journal,df_all$sig_test)
+chisq_jsig = chisq.test(tab_jsig)
+
+## Effect Size
+tab_jes = table(df_all$journal,df_all$effect_size)
+chisq_jes = chisq.test(tab_jes)
+
+## Sample Size Justification
+tab_jjust = table(df_all$journal,df_all$n_just)
+chisq_jjust = chisq.test(tab_jjust)
+
+# 

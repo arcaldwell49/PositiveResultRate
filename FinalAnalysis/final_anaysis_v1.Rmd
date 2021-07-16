@@ -196,8 +196,7 @@ ggplot( aes(fill=support, y=count, x=journal)) +
 We can also tabulate the "support" by journal.
 
 ```{r}
-tab_jhyp = table(df_all$journal,df_all$support)
-chisq_support = chisq.test(tab_jhyp)
+
 knitr::kable(tab_jhyp)
 #report(chisq_support)
 ```
@@ -240,7 +239,7 @@ knitr::kable(test_pos2, caption = "95% Posterior C.I.",
                booktabs = TRUE)
 ```
 
-From the simulated scenario we find that given the data the hypothesis that the true positive result rate is greater than 80% is `r round(h_test2$hypothesis$Evid.Ratio,2)` times more likely than the true value being less than 80%. 
+From the simulated scenario we find that given the data the hypothesis that the true positive result rate is greater than 60% is `r round(h_test2$hypothesis$Evid.Ratio,2)` times more likely than the true value being less than 60%. 
 
 \newpage
 
@@ -400,6 +399,21 @@ We can estimate the proportion of studies that report some type of open data or 
 There is some concern that the replicability of kinesiology is not known so we can also report the proportion of studies that explicitly stating they are replicating previous work.
 
 - `r replic_pr`
+
+# Things to Add
+
+- Journals
+  - Statistics Reported
+  
+- Clinical Trial / RCT
+  - Sample Size Just
+  - Sample Size Reported
+  - Hypothesis Tested
+  - Positive Result Rate
+
+- Discipline Breakdown
+  - Hypothesis Tested
+  - Positive Result Rate
 
 # References
 
