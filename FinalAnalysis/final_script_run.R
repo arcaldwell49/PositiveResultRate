@@ -7,6 +7,7 @@ library(distributional)
 library(broom)
 library(epitab)
 library(WRS2)
+library(extrafont)
 
 # Testing out data analysis
 # import data ------------
@@ -38,6 +39,40 @@ h_test2 <- hypothesis(m_final2, "Intercept > 0.6")
 
 test_pos2 = posterior_interval(m_final2,
                                prob = .95)
+
+# Main Figures
+
+dat_mfinal = posterior_samples(m_final, "b") %>%
+  mutate(Test = "Positive Result Rate")
+dat_mfinal2 = posterior_samples(m_final2, "b") %>%
+  mutate(Test = "Rate of Hypothesis Tests")
+
+df_mfinal = rbind(dat_mfinal, dat_mfinal2)
+
+p_f1a = df_mfinal %>%
+  ggplot(aes(x=b_Intercept,
+             fill = Test)) +
+  stat_halfeye(alpha = .75) +
+  #scale_fill_brewer(direction = -1, na.translate = FALSE) +
+  #scale_fill_viridis_d() +
+  #scale_fill_brewer(direction = -1, na.translate = FALSE) +
+  labs(fill = "Interval",
+       x = "Probability") +
+  theme_tidybayes() +
+  facet_wrap(~Test) +
+  scale_fill_manual(values =c("lightgreen","skyblue2")) +
+  theme(legend.position = "none",
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        text = element_text(size = 14,
+                            face = "bold"))
+ggsave("p_f1a.png",
+       p_f1a,
+       #compression = "lzw",
+       height = 6,
+       width = 8,
+       dpi = 800)
 
 # Contingency Table 1 ----
 
@@ -238,20 +273,107 @@ p_n = df_all %>%
 tab_jhyp = table(df_all$journal,df_all$support)
 chisq_support = chisq.test(tab_jhyp)
 
-## Hypothesis Tested
+## Hypothesis Tested -----
 tab_jtest = table(df_all$journal,df_all$hypo_tested)
 chisq_jtest = chisq.test(tab_jtest)
 
-## Significance Testing
+## Significance Testing -----
 tab_jsig = table(df_all$journal,df_all$sig_test)
 chisq_jsig = chisq.test(tab_jsig)
 
-## Effect Size
+## Effect Size -----
 tab_jes = table(df_all$journal,df_all$effect_size)
 chisq_jes = chisq.test(tab_jes)
 
-## Sample Size Justification
+## Sample Size Justification -----
 tab_jjust = table(df_all$journal,df_all$n_just)
 chisq_jjust = chisq.test(tab_jjust)
 
-# 
+# Clinical Trial breakdown ------
+df_clin = subset(df_all, clin_trial == "Yes")
+
+## Hypothesis Support (di)
+tab_clindisup = table(df_clin$di_sup)
+binom_clindisup = binom.test(tab_clindisup[2], sum(tab_clindisup),
+                             p = .8)
+tab_clinsup = table(df_clin$support)
+
+## Hypothesis Tested
+tab_clinhypo = table(df_clin$hypo_tested)
+binom_clinhypo = binom.test(tab_clinhypo[2], sum(tab_clinhypo),
+                             p = .6)
+
+## Sample Size Just ---------
+tab_clinjust = table(df_clin$n_just)
+binom_clinjust = binom.test(tab_clinjust[2], sum(tab_clinjust))
+
+# RCT breakdown ---------
+
+df_rct = subset(df_all, rct == "Yes")
+
+## Hypothesis Support (di)
+tab_rctdisup = table(df_rct$di_sup)
+binom_rctdisup = binom.test(tab_rctdisup[2], sum(tab_rctdisup),
+                             p = .8)
+tab_rctsup = table(df_rct$support)
+
+## Hypothesis Tested
+tab_rcthypo = table(df_rct$hypo_tested)
+binom_rcthypo = binom.test(tab_rcthypo[2], sum(tab_rcthypo),
+                            p = .6)
+
+## Sample Size Just ---------
+tab_rctjust = table(df_rct$n_just)
+binom_rctjust = binom.test(tab_rctjust[2], sum(tab_rctjust))
+
+## Sample Size Info -------
+# All studies reported sample size information
+#tab_clinssj = table(df_clin$sample_info)
+#binom_clinssj = binom.test(tab_clinssj)
+
+
+# Breakdown by Discipline ----------
+
+## Hypothesis Tested ---------
+
+tab_dissupp = table(df_all$sci_cat, df_all$support)
+chisq_dissupp = chisq.test(tab_dissupp)
+
+tab_dishypop = table(df_all$sci_cat, df_all$hypo_tested)
+chisq_dishypop = chisq.test(tab_dishypop)
+
+p_dissup = df_all %>%
+  group_by(support, sci_cat) %>%
+  summarize(count = n(),
+            .groups = 'drop') %>%
+  filter(!is.na(support)) %>%
+  ggplot( aes(fill=support, y=count, x=sci_cat)) + 
+  geom_bar(position="fill", stat="identity",
+           color = "black")+
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "",
+       y = "Relative Frequency",
+       fill = "") +
+  theme_classic() +
+  scale_fill_viridis_d(option = "E") +
+  theme(legend.position = "bottom") +
+  coord_flip()
+
+p_dishypo = df_all %>%
+  group_by(hypo_tested, sci_cat) %>%
+  summarize(count = n(),
+            .groups = 'drop') %>%
+  filter(!is.na(hypo_tested)) %>%
+  ggplot( aes(fill=hypo_tested, y=count, x=sci_cat)) + 
+  geom_bar(position="fill", stat="identity",
+           color = "black")+
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "",
+       y = "Relative Frequency",
+       fill = "Hypothesis Tested") +
+  theme_classic() +
+  scale_fill_viridis_d(option = "E") +
+  theme(legend.position = "bottom") +
+  coord_flip()
+
+# Main Figures
