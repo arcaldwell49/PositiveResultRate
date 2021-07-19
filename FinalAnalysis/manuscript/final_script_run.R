@@ -8,6 +8,7 @@ library(broom)
 library(epitab)
 library(WRS2)
 library(extrafont)
+library(ggpubr)
 
 # Testing out data analysis
 # import data ------------
@@ -30,13 +31,13 @@ m_final2 = read_rds("m_final2.rds")
 
 h_test <- hypothesis(m_final, "Intercept > 0.8")
 #knitr::kable(h_test$hypothesis, caption = "Hypothesis Test #1")
-
+h_ci = fixef(m_final)
 test_pos = posterior_interval(m_final,
                               prob = .95)
 #knitr::kable(test_pos, caption = "Hyp Test #1: 95% Posterior C.I.")
 
 h_test2 <- hypothesis(m_final2, "Intercept > 0.6")
-
+h_ci2 = fixef(m_final2)
 test_pos2 = posterior_interval(m_final2,
                                prob = .95)
 
@@ -58,7 +59,7 @@ p_f1a = df_mfinal %>%
   #scale_fill_brewer(direction = -1, na.translate = FALSE) +
   labs(fill = "Interval",
        x = "Probability") +
-  theme_tidybayes() +
+  theme_bw() +
   facet_wrap(~Test) +
   scale_fill_manual(values =c("lightgreen","skyblue2")) +
   theme(legend.position = "none",
@@ -67,7 +68,7 @@ p_f1a = df_mfinal %>%
         axis.ticks.y=element_blank(),
         text = element_text(size = 14,
                             face = "bold"))
-ggsave("p_f1a.png",
+ggsave("figure1.jpg",
        p_f1a,
        #compression = "lzw",
        height = 6,
@@ -389,10 +390,11 @@ p_2a = df_all %>%
   scale_y_continuous(labels = scales::percent) +
   labs(x = "Journal",
        y = "Relative Frequency",
-       fill = "Level of Hypothesis Support") +
+       fill = "Hypothesis Support") +
   theme_classic() +
   scale_fill_viridis_d(option = "E") +
-  theme(legend.position = "top")
+  theme(legend.position = "top",
+        text = element_text(face = "bold"))
 
 p_2b = df_all %>%
   group_by(journal, hypo_tested) %>%
@@ -408,4 +410,49 @@ p_2b = df_all %>%
        fill = "Hypothesis Tested") +
   theme_classic() +
   scale_fill_viridis_d(option = "E") +
-  theme(legend.position = "top")
+  theme(legend.position = "top",
+        text = element_text(face = "bold"))
+
+p_2c = df_all %>%
+  group_by(journal, effect_size) %>%
+  summarize(count = n(),
+            .groups = 'drop') %>%
+  filter(!is.na(effect_size)) %>%
+  ggplot( aes(fill=effect_size, y=count, x=journal)) + 
+  geom_bar(position="fill", stat="identity",
+           color = "black")+
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Journal",
+       y = "Relative Frequency",
+       fill = "Effect Size Reported") +
+  theme_classic() +
+  scale_fill_viridis_d(option = "E") +
+  theme(legend.position = "top",
+        text = element_text(face = "bold"))
+
+p_2d = df_all %>%
+  group_by(journal, n_just) %>%
+  summarize(count = n(),
+            .groups = 'drop') %>%
+  filter(!is.na(n_just)) %>%
+  ggplot( aes(fill=n_just, y=count, x=journal)) + 
+  geom_bar(position="fill", stat="identity",
+           color = "black")+
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Journal",
+       y = "Relative Frequency",
+       fill = "Sample Size Justification") +
+  theme_classic() +
+  scale_fill_viridis_d(option = "E") +
+  theme(legend.position = "top",
+        text = element_text(face = "bold"))
+
+
+fig_2  = ggarrange(p_2a, p_2b, p_2c, p_2d,
+                   labels = "AUTO")
+
+ggsave("figure2.jpg",
+       fig_2,
+       dpi = 1000,
+       width = 15,
+       height = 9)

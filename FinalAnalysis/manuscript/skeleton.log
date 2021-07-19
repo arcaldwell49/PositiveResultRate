@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.7.16)  18 JUL 2021 16:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.7.16)  19 JUL 2021 17:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -916,7 +916,7 @@ Package xcolor Warning: Incompatible color definition on input line 277.
 Package xcolor Warning: Incompatible color definition on input line 293.
 
 
-Package xcolor Warning: Incompatible color definition on input line 319.
+Package xcolor Warning: Incompatible color definition on input line 293.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
@@ -957,161 +957,173 @@ Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 Package xcolor Warning: Incompatible color definition on input line 392.
 
 
-Package xcolor Warning: Incompatible color definition on input line 422.
+Package xcolor Warning: Incompatible color definition on input line 421.
 
 
-Package xcolor Warning: Incompatible color definition on input line 425.
+Package xcolor Warning: Incompatible color definition on input line 424.
 
-<figure1.png, id=179, 578.16pt x 433.62pt>
+<figure1.png, id=178, 578.16pt x 433.62pt>
 File: figure1.png Graphic file (type png)
 <use figure1.png>
-Package pdftex.def Info: figure1.png  used on input line 428.
+Package pdftex.def Info: figure1.png  used on input line 437.
 (pdftex.def)             Requested size: 418.25368pt x 313.68826pt.
 
-Package xcolor Warning: Incompatible color definition on input line 430.
+Package xcolor Warning: Incompatible color definition on input line 439.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [5]
 
-Package xcolor Warning: Incompatible color definition on input line 431.
+Package xcolor Warning: Incompatible color definition on input line 440.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [6 <./figure1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 434.
+Package xcolor Warning: Incompatible color definition on input line 443.
 
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.20007pt on input line 437.
+(Font)              scaled to size 10.20007pt on input line 446.
 
-Package xcolor Warning: Incompatible color definition on input line 437.
-
-
-Package xcolor Warning: Incompatible color definition on input line 441.
+Package xcolor Warning: Incompatible color definition on input line 446.
 
 
-Package xcolor Warning: Incompatible color definition on input line 444.
+Package xcolor Warning: Incompatible color definition on input line 450.
 
 
-Package xcolor Warning: Incompatible color definition on input line 447.
+Package xcolor Warning: Incompatible color definition on input line 453.
+
+<figure2.png, id=195, 1084.05pt x 650.43pt>
+File: figure2.png Graphic file (type png)
+<use figure2.png>
+Package pdftex.def Info: figure2.png  used on input line 456.
+(pdftex.def)             Requested size: 418.25368pt x 250.9473pt.
+
+Package xcolor Warning: Incompatible color definition on input line 460.
 
 
-Package xcolor Warning: Incompatible color definition on input line 451.
+Package xcolor Warning: Incompatible color definition on input line 464.
 
 
-Package xcolor Warning: Incompatible color definition on input line 454.
+Package xcolor Warning: Incompatible color definition on input line 467.
 
 
-Package xcolor Warning: Incompatible color definition on input line 502.
-
-
-Package xcolor Warning: Incompatible color definition on input line 515.
+Package xcolor Warning: Incompatible color definition on input line 513.
 
 
 Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
-[7]
+[7 <./figure2.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 518.
-
-
-Package xcolor Warning: Incompatible color definition on input line 521.
-
-
-Underfull \hbox (badness 6775) in paragraph at lines 523--526
-\T1/ppl/m/n/9 The au-thors agree to share the raw data, dig-i-tal study ma-te-r
-i-als and anal-y-sis code. All
- []
-
-
-Underfull \hbox (badness 2799) in paragraph at lines 523--526
-\T1/ppl/m/n/9 study ma-te-ri-als can be found on our OSF repos-i-tory [][]$\T1/
-pcr/m/n/9 https : / / osf . io / nwcx6 / ?view _ only =
- []
+Package xcolor Warning: Incompatible color definition on input line 515.
 
 
 Package xcolor Warning: Incompatible color definition on input line 528.
-
-LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 5
-33.
-(c:/Users/arcal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ppl.fd
-File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
-)
-
-Package xcolor Warning: Incompatible color definition on input line 545.
-
-
-Package xcolor Warning: Incompatible color definition on input line 550.
-
-
-Package xcolor Warning: Incompatible color definition on input line 557.
-
-
-Package xcolor Warning: Incompatible color definition on input line 562.
-
-
-Package xcolor Warning: Incompatible color definition on input line 569.
-
-
-Package xcolor Warning: Incompatible color definition on input line 584.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [8]
 
-Package xcolor Warning: Incompatible color definition on input line 587.
+Package xcolor Warning: Incompatible color definition on input line 531.
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 626--632
+Package xcolor Warning: Incompatible color definition on input line 534.
+
+
+Underfull \hbox (badness 6775) in paragraph at lines 536--539
+\T1/ppl/m/n/9 The au-thors agree to share the raw data, dig-i-tal study ma-te-r
+i-als and anal-y-sis code. All
+ []
+
+
+Underfull \hbox (badness 2799) in paragraph at lines 536--539
+\T1/ppl/m/n/9 study ma-te-ri-als can be found on our OSF repos-i-tory [][]$\T1/
+pcr/m/n/9 https : / / osf . io / nwcx6 / ?view _ only =
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 541.
+
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 5
+46.
+(c:/Users/arcal/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+)
+
+Package xcolor Warning: Incompatible color definition on input line 558.
+
+
+Package xcolor Warning: Incompatible color definition on input line 563.
+
+
+Package xcolor Warning: Incompatible color definition on input line 570.
+
+
+Package xcolor Warning: Incompatible color definition on input line 575.
+
+
+Package xcolor Warning: Incompatible color definition on input line 582.
+
+
+Package xcolor Warning: Incompatible color definition on input line 597.
+
+
+Overfull \vbox (21.51176pt too high) has occurred while \output is active []
+
+[9]
+
+Package xcolor Warning: Incompatible color definition on input line 600.
+
+
+Underfull \hbox (badness 1546) in paragraph at lines 639--645
 [][]\T1/ppl/m/n/9 Büttner, F., Toomey, E., Mc-Clean, S., Roe, M., & De-lahunt, 
 E. (2020). Are ques-tion-able re-search
  []
 
 
-Underfull \hbox (badness 1675) in paragraph at lines 626--632
+Underfull \hbox (badness 1675) in paragraph at lines 639--645
 \T1/ppl/m/n/9 hy-pothe-ses is im-plau-si-bly high. \T1/ppl/m/it/9 British Jour-
 nal of Sports Medicine\T1/ppl/m/n/9 . [][]$\T1/pcr/m/n/9 https : / / doi . org 
 / 10 . 1136 /
  []
 
 
-Underfull \hbox (badness 1681) in paragraph at lines 648--653
+Underfull \hbox (badness 1681) in paragraph at lines 661--666
 \T1/ppl/m/n/9 Re-align-ing in-cen-tives in sci-en-tific pub-lish-ing. \T1/ppl/m
 /it/9 Cor-tex\T1/ppl/m/n/9 , \T1/ppl/m/it/9 66\T1/ppl/m/n/9 , A1--2. [][]$\T1/p
 cr/m/n/9 https : / / doi . org / 10 . 1016 / j .
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 687.
+Package xcolor Warning: Incompatible color definition on input line 700.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
-[9]
-Underfull \hbox (badness 1910) in paragraph at lines 726--730
+[10]
+Underfull \hbox (badness 1910) in paragraph at lines 739--743
 \T1/ppl/m/n/9 psy-chol-ogy lit-er-a-ture with reg-is-tered re-ports. \T1/ppl/m/
 it/9 PsyArXiv\T1/ppl/m/n/9 . [][]$\T1/pcr/m/n/9 https : / / doi . org / 10 . 31
 234 / osf . io /
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 744--749
+Underfull \hbox (badness 1360) in paragraph at lines 757--762
 [][]\T1/ppl/m/n/9 Turner, B. O., Paul, E. J., Miller, M. B., & Bar-bey, A. K. (
 2018). Small sam-ple sizes re-duce the
  []
 
 Setting LastPage
 
-Package xcolor Warning: Incompatible color definition on input line 766.
+Package xcolor Warning: Incompatible color definition on input line 779.
 
 
-Overfull \vbox (21.51176pt too high) has occurred while \output is active []
+Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
-[10]
+[11]
 
 Package caption Warning: Unused \captionsetup[table] on input line 112.
 See the caption package documentation for explanation.
@@ -1125,11 +1137,11 @@ Package rerunfilecheck Info: File `skeleton.out' has not changed.
 (rerunfilecheck)             Checksum: 50FD72B6F002810BF638806E25EF4377;5328.
  ) 
 Here is how much of TeX's memory you used:
- 14375 strings out of 480477
- 215574 string characters out of 5896913
- 545346 words of memory out of 5000000
- 31657 multiletter control sequences out of 15000+600000
- 451639 words of font info for 108 fonts, out of 8000000 for 9000
+ 14389 strings out of 480477
+ 215781 string characters out of 5896913
+ 545385 words of memory out of 5000000
+ 31669 multiletter control sequences out of 15000+600000
+ 452570 words of font info for 109 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
  75i,12n,80p,425b,462s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/arcal/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.en
@@ -1146,10 +1158,10 @@ r8a.pfb><c:/Users/arcal/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helv
 etic/uhvro8a.pfb><c:/Users/arcal/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1
 /urw/palatino/uplr8a.pfb><c:/Users/arcal/AppData/Roaming/TinyTeX/texmf-dist/fon
 ts/type1/urw/palatino/uplri8a.pfb>
-Output written on skeleton.pdf (10 pages, 371802 bytes).
+Output written on skeleton.pdf (11 pages, 770318 bytes).
 PDF statistics:
- 374 PDF objects out of 1000 (max. 8388607)
- 329 compressed objects within 4 object streams
- 100 named destinations out of 1000 (max. 500000)
- 261 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 380 PDF objects out of 1000 (max. 8388607)
+ 332 compressed objects within 4 object streams
+ 102 named destinations out of 1000 (max. 500000)
+ 266 words of extra memory for PDF output out of 10000 (max. 10000000)
 
