@@ -7,7 +7,7 @@ library(distributional)
 library(broom)
 library(epitab)
 library(WRS2)
-library(extrafont)
+#library(extrafont)
 library(ggpubr)
 
 # Testing out data analysis
@@ -90,20 +90,41 @@ ctab1 = df_all %>%
 ct_effsize = table(df_all$effect_size)
 
 binom_eff = binom.test(ct_effsize[2], sum(ct_effsize))
-eff_pr = paste0(round(binom_eff$estimate*100,2),"% [",
+eff_pr = paste0(round(binom_eff$estimate*100,2),"\\% [",
                    round(binom_eff$conf.int[1]*100,2),", ", 
                    round(binom_eff$conf.int[2]*100,2)
-                   ,"] of manuscripts reported information on the effect size.")
+                   ,"]")
 
 ct_sig = table(df_all$sig_test)
 
 binom_sig = binom.test(ct_sig[2], sum(ct_sig))
-sig_pr = paste0("Most manuscripts, ",round(binom_sig$estimate*100,2),"% [",
+sig_pr = paste0(round(binom_sig$estimate*100,2),"\\% [",
                 round(binom_sig$conf.int[1]*100,2),", ", 
                 round(binom_sig$conf.int[2]*100,2)
-                ,"], reported using significance testing.")
+                ,"]")
 
+ct_sig2 = table(subset(df_all, hypo_tested == "No")$sig_test)
 
+binom_sig2 = binom.test(ct_sig2[2], sum(ct_sig2))
+sig_pr2 = paste0(round(binom_sig2$estimate*100,2),"\\% [",
+                round(binom_sig2$conf.int[1]*100,2),", ", 
+                round(binom_sig2$conf.int[2]*100,2)
+                ,"]")
+
+ct_ptype = table(df_all$pval_type)
+binom_ptype = binom.test(ct_ptype[[2]],sum(ct_ptype))
+ptype_pr = paste0(round(binom_ptype$estimate*100,2),"\\% [",
+                  round(binom_ptype$conf.int[1]*100,2),", ", 
+                  round(binom_ptype$conf.int[2]*100,2)
+                  ,"] of manuscripts reported exact p-values (p = .045) versus relative p-values (p < .05)")
+
+ct_ptype2 = table(df_all$pval_type)
+
+binom_ptype2 = binom.test(ct_ptype2[[2]]+ct_ptype2[[1]],sum(ct_ptype2))
+ptype_pr2 = paste0(round(binom_ptype2$estimate*100,2),"\\% [",
+                   round(binom_ptype2$conf.int[1]*100,2),", ", 
+                   round(binom_ptype2$conf.int[2]*100,2)
+                   ,"] of manuscripts reported at least *some* exact p-values (e.g., p = .045) versus relative p-values (e.g., p < .05)")
 
 
 ctab2 = df_all %>% 
@@ -135,10 +156,10 @@ ctab_prereg = df_all %>%
 ct_prereg = table(df_all$prereg)
 
 binom_prereg = binom.test(ct_prereg[[2]],sum(ct_prereg))
-prereg_pr = paste0(round(binom_prereg$estimate*100,2),"% [",
+prereg_pr = paste0(round(binom_prereg$estimate*100,2),"\\% [",
                    round(binom_prereg$conf.int[1]*100,2),", ", 
                    round(binom_prereg$conf.int[2]*100,2)
-                   ,"] of manuscripts reported preregistration or clinical trial registration information.")
+                   ,"] of manuscripts reporting preregistration or clinical trial registration information")
 
 # Sample Size Information -----------
 
@@ -165,7 +186,7 @@ njust_pr = paste0(
   ", ",
   round(binom_njust$conf.int[2] * 100, 2)
   ,
-  "] of manuscripts reported some form of sample size justification."
+  "]"
 )
 
 ct_samp = table(df_all$sample_info)
@@ -178,7 +199,7 @@ samp_pr = paste0(
   ", ",
   round(binom_samp$conf.int[2] * 100, 2)
   ,
-  "] of manuscripts reported all the required sample size information."
+  "] of manuscripts reported all the required sample size information"
 )
 
 # Sample Size Analysis ------
@@ -230,7 +251,7 @@ binom_datstat = binom.test(ct_datstat[[2]],300)
 datstat_pr = paste0(round(binom_datstat$estimate*100,2),"% [",
                  round(binom_datstat$conf.int[1]*100,2),", ", 
                  round(binom_datstat$conf.int[2]*100,2)
-                 ,"] of manuscripts had a data accessibility statement.")
+                 ,"] of manuscripts had a data accessibility statement")
 
 ct_odat = table(df_all$open_data)
 
@@ -238,7 +259,7 @@ binom_odat = binom.test(ct_odat[[2]],300)
 odat_pr = paste0(round(binom_odat$estimate*100,2),"% [",
                  round(binom_odat$conf.int[1]*100,2),", ", 
                  round(binom_odat$conf.int[2]*100,2)
-                 ,"] of manuscripts reported some form of data sharing or open data.")
+                 ,"] of manuscripts reported some form of data sharing or open data")
 
 
 ct_replic = table(df_all$replic)
