@@ -58,21 +58,63 @@ p_f1a = df_mfinal %>%
   #scale_fill_viridis_d() +
   #scale_fill_brewer(direction = -1, na.translate = FALSE) +
   labs(fill = "Interval",
-       x = "Probability") +
+       x = "Probability",
+       y = "") +
   theme_bw() +
   facet_wrap(~Test) +
   scale_fill_manual(values =c("lightgreen","skyblue2")) +
   theme(legend.position = "none",
-        axis.title.y=element_blank(),
+        #axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank(),
         text = element_text(size = 14,
                             face = "bold"))
+
+fig_1b = df_all %>%
+  select(support) %>%
+  drop_na() %>%
+  ggplot(aes(support,
+             fill = support)) +
+  geom_bar(aes(y = (..count..) / sum(..count..)),
+           color = "black") +
+  scale_y_continuous(labels = scales::percent,
+                     limits = c(0,.5),
+                     breaks = c(0,.1,.2,.3,.4,.5),
+                     expand = c(0,0)) +
+  labs(x = "Level of Hypothesis Support",
+       y = "Relative Frequency",
+       fill = "") +
+  theme_classic() +
+  scale_fill_viridis_d(option = "E") +
+  theme(legend.position = "none")
+
+fig_1c = df_all %>%
+  select(hypo_tested) %>%
+  drop_na() %>%
+  ggplot(aes(hypo_tested,
+             fill = hypo_tested)) +
+  geom_bar(aes(y = (..count..) / sum(..count..)),
+           color = "black") +
+  scale_y_continuous(labels = scales::percent,
+                     limits = c(0,.75),
+                     breaks = c(0,.25,.5,.75),
+                     expand = c(0,0)) +
+  labs(x = "Hypothesis Tested",
+       y = "Relative Frequency",
+       fill = "") +
+  theme_classic() +
+  scale_fill_viridis_d(option = "E") +
+  theme(legend.position = "none")
+fig1 = ggarrange(p_f1a,
+                 fig_1b,
+                 hjust = -0.2,
+                 ncol = 1,
+                 labels = "AUTO")
 ggsave("figure1.jpg",
-       p_f1a,
+       fig1,
        #compression = "lzw",
-       height = 6,
-       width = 8,
+       height = 8,
+       width = 7,
        dpi = 800)
 
 # Contingency Table 1 ----
@@ -220,28 +262,11 @@ aov_1way = df_all %>%
   drop_na() %>%
   afex::aov_4(formula = log(n) ~ sci_cat + (1|doi))
 
-df_samp1way = aov_1way$anova_table
 
-med_samps = df_all %>%
-  select(n, sci_cat) %>%
-  mutate(n = as.numeric(n)) %>%
-  drop_na() %>%
-  group_by(sci_cat) %>%
-  summarize(median_n = round(median(n, na.rm = TRUE) , 0),
-            IQR_n = round(IQR(n, na.rm  = TRUE),0),
-            max = max(n),
-            min = min(n),
-            count = n(),
-            .groups = 'drop')
 library(emmeans)
 emm_samps = emmeans::emmeans(aov_1way, ~ sci_cat,
                              type = "response")
-emm_plot = plot(emm_samps) +
-  scale_x_continuous(trans = "log",
-                     breaks = c(20,150,1095)) +
-  labs(x = "Estimated Mean Sample Size (log scale)",
-       y = "") +
-  theme_bw()
+
   
 # Other open Science Practices -----
 
@@ -329,6 +354,12 @@ binom_clinhypo = binom.test(tab_clinhypo[2], sum(tab_clinhypo),
 tab_clinjust = table(df_clin$n_just)
 binom_clinjust = binom.test(tab_clinjust[2], sum(tab_clinjust))
 
+## Pregreg -------
+
+tab_clinreg = table(df_clin$prereg)
+
+binom_clinreg = binom.test(tab_clinreg[2], sum(tab_clinreg))
+
 # RCT breakdown ---------
 
 df_rct = subset(df_all, rct == "Yes")
@@ -347,6 +378,10 @@ binom_rcthypo = binom.test(tab_rcthypo[2], sum(tab_rcthypo),
 ## Sample Size Just ---------
 tab_rctjust = table(df_rct$n_just)
 binom_rctjust = binom.test(tab_rctjust[2], sum(tab_rctjust))
+
+tab_rctreg = table(df_rct$prereg)
+
+binom_rctreg = binom.test(tab_rctreg[2], sum(tab_rctreg))
 
 ## Sample Size Info -------
 # All studies reported sample size information
@@ -379,7 +414,8 @@ p_dissup = df_all %>%
   theme_classic() +
   scale_fill_viridis_d(option = "E") +
   theme(legend.position = "bottom") +
-  coord_flip()
+  coord_flip()+
+  theme(text = element_text(face = "bold"))
 
 p_dishypo = df_all %>%
   group_by(hypo_tested, sci_cat) %>%
@@ -396,7 +432,26 @@ p_dishypo = df_all %>%
   theme_classic() +
   scale_fill_viridis_d(option = "E") +
   theme(legend.position = "bottom") +
-  coord_flip()
+  coord_flip() +
+  theme(text = element_text(face = "bold"))
+
+emm_plot = plot(emm_samps) +
+  scale_x_continuous(trans = "log",
+                     breaks = c(20,150,1095)) +
+  labs(x = "Estimated Mean Sample Size (log scale)",
+       y = "") +
+  theme_bw() +
+  theme(text = element_text(face = "bold"))
+
+fig3 = ggarrange(p_dissup,p_dishypo,emm_plot,
+                 ncol = 1,
+                 labels = "AUTO")
+
+ggsave("figure3.jpg",
+       fig3,
+       dpi = 1000,
+       width = 9,
+       height = 11)
 
 # Main Figures --------------
 
@@ -470,10 +525,11 @@ p_2d = df_all %>%
 
 
 fig_2  = ggarrange(p_2a, p_2b, p_2c, p_2d,
+                   ncol = 1,
                    labels = "AUTO")
 
 ggsave("figure2.jpg",
        fig_2,
        dpi = 1000,
-       width = 15,
-       height = 9)
+       width = 8,
+       height = 11)
