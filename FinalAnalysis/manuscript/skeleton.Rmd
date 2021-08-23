@@ -10,10 +10,10 @@ author:
   affiliation: '2'
 date: "`r Sys.Date()`"
 output:
-  word_document: default
   html_document:
     template: simplehtml.html
     self_contained: no
+  word_document: default
   pdf_document:
     template: template.tex
 address:
