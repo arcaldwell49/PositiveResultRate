@@ -1188,7 +1188,7 @@
 \def\titlehead{\@inserttype}
 
 \def\researchname{{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{18}{31}\selectfont\raggedright%
-\raisebox{9pt}{\titlehead}\ifopenacc\hfill\hfill%
+\raisebox{7pt}{\titlehead}\ifopenacc\hfill\hfill%
 \else\hfill\fi{\includegraphics{OpenAccesslogo_bw}\hfill}\par}}
 
 \def\@citearticle{}
@@ -1209,7 +1209,7 @@
      
 \def\@inserttype{}
 \newcommand\inserttype[1]{%
-     \gdef\@inserttype{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright }\par #1}}%
+     \gdef\@inserttype{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{7}{11}\selectfont\raggedright }\par #1}}%
 
 %\def\@history{{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright Article Accepted for Publication}}
 %\newcommand\history[1]{%

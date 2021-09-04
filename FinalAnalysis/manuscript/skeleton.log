@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.20)  20 JUL 2021 12:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.9.1)  1 SEP 2021 12:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **skeleton.tex
 (./skeleton.tex
 LaTeX2e <2021-06-01> patch level 1
-L3 programming layer <2021-06-01> (./cik.cls
+L3 programming layer <2021-08-27> (./cik.cls
 Document Class: cik 2005/12/01 v1.1 Standard LaTeX document class
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/vruler/vruler.sty 2.
 3 <24/10/96>
@@ -411,6 +411,23 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \Hy@SectionHShift=\skip64
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 1542.
+) (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count299
+\output=\toks54
+\linenoprevgraf=\count300
+\linenumbersep=\dimen181
+\linenumberwidth=\dimen182
+\c@linenumber=\count301
+\c@pagewiselinenumber=\count302
+\c@LN@truepage=\count303
+\c@internallinenumber=\count304
+\c@internallinenumbers=\count305
+\quotelinenumbersep=\dimen183
+\bframerule=\dimen184
+\bframesep=\dimen185
+\bframebox=\box63
+LaTeX Info: Redefining \\ on input line 3056.
 ) (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 LaTeX Font Info:    Trying to load font information for T1+ppl on input line 11
@@ -419,22 +436,22 @@ LaTeX Font Info:    Trying to load font information for T1+ppl on input line 11
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 )) (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks54
-\inpenc@posthook=\toks55
+\inpenc@prehook=\toks55
+\inpenc@posthook=\toks56
 )
 \csllabelwidth=\skip65
 \cslhangindent=\skip66
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count299
-\calc@Bcount=\count300
-\calc@Adimen=\dimen181
-\calc@Bdimen=\dimen182
+\calc@Acount=\count306
+\calc@Bcount=\count307
+\calc@Adimen=\dimen186
+\calc@Bdimen=\dimen187
 \calc@Askip=\skip67
 \calc@Bskip=\skip68
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count301
+\calc@Ccount=\count308
 \calc@Cskip=\skip69
 ) (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.st
 y
@@ -442,13 +459,13 @@ Package: caption 2020/10/26 v3.5g Customizing captions (AR)
 
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen183
-\captionmargin@=\dimen184
-\captionwidth=\dimen185
-\caption@tempdima=\dimen186
-\caption@indent=\dimen187
-\caption@parindent=\dimen188
-\caption@hangindent=\dimen189
+\captionmargin=\dimen188
+\captionmargin@=\dimen189
+\captionwidth=\dimen190
+\caption@tempdima=\dimen191
+\caption@indent=\dimen192
+\caption@parindent=\dimen193
+\caption@hangindent=\dimen194
 Package caption Info: Unknown document class (or package),
 (caption)             standard defaults will be used.
 Package caption Info: \@makecaption = \long macro:#1#2->\vskip \abovecaptionski
@@ -463,31 +480,31 @@ Package caption Warning: Unknown document class (or package),
 (caption)                standard defaults will be used.
 See the caption package documentation for explanation.
 
-\c@caption@flags=\count302
-\c@continuedfloat=\count303
+\c@caption@flags=\count309
+\c@continuedfloat=\count310
 Package caption Info: hyperref package is loaded.
 Package caption Info: rotating package is loaded.
 )
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.st
 y
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen190
-\lightrulewidth=\dimen191
-\cmidrulewidth=\dimen192
-\belowrulesep=\dimen193
-\belowbottomsep=\dimen194
-\aboverulesep=\dimen195
-\abovetopsep=\dimen196
-\cmidrulesep=\dimen197
-\cmidrulekern=\dimen198
-\defaultaddspace=\dimen199
-\@cmidla=\count304
-\@cmidlb=\count305
-\@aboverulesep=\dimen256
-\@belowrulesep=\dimen257
-\@thisruleclass=\count306
-\@lastruleclass=\count307
-\@thisrulewidth=\dimen258
+\heavyrulewidth=\dimen195
+\lightrulewidth=\dimen196
+\cmidrulewidth=\dimen197
+\belowrulesep=\dimen198
+\belowbottomsep=\dimen199
+\aboverulesep=\dimen256
+\abovetopsep=\dimen257
+\cmidrulesep=\dimen258
+\cmidrulekern=\dimen259
+\defaultaddspace=\dimen260
+\@cmidla=\count311
+\@cmidlb=\count312
+\@aboverulesep=\dimen261
+\@belowrulesep=\dimen262
+\@thisruleclass=\count313
+\@lastruleclass=\count314
+\@thisrulewidth=\dimen263
 ) (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.st
 y
 Package: longtable 2021-05-07 v4.16 Multi-page Table package (DPC)
@@ -495,41 +512,41 @@ Package: longtable 2021-05-07 v4.16 Multi-page Table package (DPC)
 \LTright=\skip71
 \LTpre=\skip72
 \LTpost=\skip73
-\LTchunksize=\count308
-\LTcapwidth=\dimen259
-\LT@head=\box63
-\LT@firsthead=\box64
-\LT@foot=\box65
-\LT@lastfoot=\box66
-\LT@gbox=\box67
-\LT@cols=\count309
-\LT@rows=\count310
-\c@LT@tables=\count311
-\c@LT@chunks=\count312
-\LT@p@ftn=\toks56
+\LTchunksize=\count315
+\LTcapwidth=\dimen264
+\LT@head=\box64
+\LT@firsthead=\box65
+\LT@foot=\box66
+\LT@lastfoot=\box67
+\LT@gbox=\box68
+\LT@cols=\count316
+\LT@rows=\count317
+\c@LT@tables=\count318
+\c@LT@chunks=\count319
+\LT@p@ftn=\toks57
 )
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.st
 y
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip74
-\multirow@cntb=\count313
+\multirow@cntb=\count320
 \multirow@dima=\skip75
-\bigstrutjot=\dimen260
+\bigstrutjot=\dimen265
 ) (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.st
 y
-\wrapoverhang=\dimen261
-\WF@size=\dimen262
-\c@WF@wrappedlines=\count314
-\WF@box=\box68
-\WF@everypar=\toks57
+\wrapoverhang=\dimen266
+\WF@size=\dimen267
+\c@WF@wrappedlines=\count321
+\WF@box=\box69
+\WF@everypar=\toks58
 Package: wrapfig 2003/01/31  v 3.6
 ) (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count315
-\float@exts=\toks58
-\float@box=\box69
-\@float@everytoks=\toks59
-\@floatcapt=\box70
+\c@float@type=\count322
+\float@exts=\toks59
+\float@box=\box70
+\@float@everytoks=\toks60
+\@floatcapt=\box71
 )
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.
 sty
@@ -544,38 +561,38 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.st
 y
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box71
-\sift@deathcycles=\count316
-\@vwid@loff=\dimen263
-\@vwid@roff=\dimen264
+\@vwid@box=\box72
+\sift@deathcycles=\count323
+\@vwid@loff=\dimen268
+\@vwid@roff=\dimen269
 )
-\c@taburow=\count317
-\tabu@nbcols=\count318
-\tabu@cnt=\count319
-\tabu@Xcol=\count320
-\tabu@alloc=\count321
-\tabu@nested=\count322
-\tabu@target=\dimen265
-\tabu@spreadtarget=\dimen266
-\tabu@naturalX=\dimen267
-\tabucolX=\dimen268
-\tabu@Xsum=\dimen269
-\extrarowdepth=\dimen270
-\abovetabulinesep=\dimen271
-\belowtabulinesep=\dimen272
-\tabustrutrule=\dimen273
-\tabu@thebody=\toks60
-\tabu@footnotes=\toks61
-\tabu@box=\box72
-\tabu@arstrutbox=\box73
-\tabu@hleads=\box74
-\tabu@vleads=\box75
+\c@taburow=\count324
+\tabu@nbcols=\count325
+\tabu@cnt=\count326
+\tabu@Xcol=\count327
+\tabu@alloc=\count328
+\tabu@nested=\count329
+\tabu@target=\dimen270
+\tabu@spreadtarget=\dimen271
+\tabu@naturalX=\dimen272
+\tabucolX=\dimen273
+\tabu@Xsum=\dimen274
+\extrarowdepth=\dimen275
+\abovetabulinesep=\dimen276
+\belowtabulinesep=\dimen277
+\tabustrutrule=\dimen278
+\tabu@thebody=\toks61
+\tabu@footnotes=\toks62
+\tabu@box=\box73
+\tabu@arstrutbox=\box74
+\tabu@hleads=\box75
+\tabu@vleads=\box76
 \tabu@cellskip=\skip76
 )
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/threeparttable/three
 parttable.sty
 Package: threeparttable 2003/06/13  v 3.0
-\@tempboxb=\box76
+\@tempboxb=\box77
 )
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/threeparttablex/thre
 eparttablex.sty
@@ -589,23 +606,23 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
 \TPTL@width=\skip77
 ) (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
-\UL@box=\box77
-\UL@hyphenbox=\box78
+\UL@box=\box78
+\UL@hyphenbox=\box79
 \UL@skip=\skip78
-\UL@hook=\toks62
-\UL@height=\dimen274
-\UL@pe=\count323
-\UL@pixel=\dimen275
-\ULC@box=\box79
+\UL@hook=\toks63
+\UL@height=\dimen279
+\UL@pe=\count330
+\UL@pixel=\dimen280
+\ULC@box=\box80
 Package: ulem 2019/11/18
-\ULdepth=\dimen276
+\ULdepth=\dimen281
 )
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/makecell/makecell.st
 y
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen277
-\c@nlinenum=\count324
-\TeXr@lab=\toks63
+\rotheadsize=\dimen282
+\c@nlinenum=\count331
+\TeXr@lab=\toks64
 ) (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
@@ -625,36 +642,36 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-\c@theorem=\count325
-\c@condition=\count326
-\c@corollary=\count327
+\c@theorem=\count332
+\c@condition=\count333
+\c@corollary=\count334
 
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-
 pdftex.def
-File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count328
-\l__pdf_internal_box=\box80
+File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count335
+\l__pdf_internal_box=\box81
 ) (./skeleton.aux)
 \openout1 = `skeleton.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
 
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopd
 f-base.sty
@@ -667,9 +684,9 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package crop Info: requested driver: `' on input line 66.
-Package crop Info: detected driver: `pdftex' on input line 66.
-Package crop Info: using `pdftex' graphics driver on input line 66.
+Package crop Info: requested driver: `' on input line 68.
+Package crop Info: detected driver: `pdftex' on input line 68.
+Package crop Info: using `pdftex' graphics driver on input line 68.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -704,7 +721,7 @@ Package crop Info: using `pdftex' graphics driver on input line 66.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 66.
+Package hyperref Info: Link coloring ON on input line 68.
 
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -717,11 +734,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 titlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count329
+\c@section@level=\count336
 )
-LaTeX Info: Redefining \ref on input line 66.
-LaTeX Info: Redefining \pageref on input line 66.
-LaTeX Info: Redefining \nameref on input line 66.
+LaTeX Info: Redefining \ref on input line 68.
+LaTeX Info: Redefining \pageref on input line 68.
+LaTeX Info: Redefining \nameref on input line 68.
 (./skeleton.out) (./skeleton.out)
 \@outlinefile=\write4
 \openout4 = `skeleton.out'.
@@ -737,110 +754,141 @@ Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
 Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
+
+Underfull \hbox (badness 1742) in paragraph at lines 110--136
+\T1/ppl/m/n/9 and poor re-port-ing prac-tices may be hin-der-ing sci-en-tific 
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 110--136
+\T1/ppl/m/n/9 to Ki-ne-si-ol-ogy, stud-ies that tested a hy-poth-e-sis in-di-ca
+ted 
+ []
+
+
+Underfull \hbox (badness 2119) in paragraph at lines 110--136
+\T1/ppl/m/n/9 sup-port for their pri-mary hy-poth-e-sis ~70% of the time. 
+ []
+
+
+Underfull \hbox (badness 1484) in paragraph at lines 110--136
+\T1/ppl/m/n/9 eval-u-ated 300 orig-i-nal re-search ar-ti-cles from the flag-shi
+p 
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 110--136
+\T1/ppl/m/n/9 jour-nals of Amer-ica (Medicine and Sci-ence in Sport and 
+ []
+
 <CIK_title_blktxt.png, id=124, 271.0125pt x 90.3375pt>
 File: CIK_title_blktxt.png Graphic file (type png)
 <use CIK_title_blktxt.png>
-Package pdftex.def Info: CIK_title_blktxt.png  used on input line 135.
+Package pdftex.def Info: CIK_title_blktxt.png  used on input line 146.
 (pdftex.def)             Requested size: 162.60875pt x 54.2029pt.
 
-Overfull \hbox (14.2387pt too wide) in paragraph at lines 135--135
+Overfull \hbox (14.2387pt too wide) in paragraph at lines 146--146
 [][] 
  []
 
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 15.30011pt on input line 135.
+(Font)              scaled to size 15.30011pt on input line 146.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.50006pt on input line 135.
+(Font)              scaled to size 5.95004pt on input line 146.
 <OpenAccesslogo_bw.pdf, id=126, 20.075pt x 32.12pt>
 File: OpenAccesslogo_bw.pdf Graphic file (type pdf)
 <use OpenAccesslogo_bw.pdf>
-Package pdftex.def Info: OpenAccesslogo_bw.pdf  used on input line 135.
+Package pdftex.def Info: OpenAccesslogo_bw.pdf  used on input line 146.
 (pdftex.def)             Requested size: 20.07494pt x 32.1199pt.
 
-Underfull \hbox (badness 2894) in paragraph at lines 135--135
+Underfull \hbox (badness 2894) in paragraph at lines 146--146
 \T1/ppl/m/n/7 Open-ness, and Repli-ca-tion in Ki-ne-si-ol-ogy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--135
+Underfull \hbox (badness 10000) in paragraph at lines 146--146
 \T1/ppl/m/n/7 At-tri-bu-tion Li-cense[][], which per-mits
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--135
+Underfull \hbox (badness 10000) in paragraph at lines 146--146
 \T1/ppl/m/n/7 un-re-stricted use, pro-vided the orig-i-nal
  []
 
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.50006pt on input line 135.
+(Font)              scaled to size 8.50006pt on input line 146.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 8.50006pt on input line 146.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 135.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 146.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.50006pt on input line 135.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 135
+(Font)              scaled to size 8.50006pt on input line 146.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 146
 .
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 135
+LaTeX Font Info:    Trying to load font information for U+msb on input line 146
 .
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+euex on input line 13
-5.
+LaTeX Font Info:    Trying to load font information for U+euex on input line 14
+6.
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/ueuex.fd
 File: ueuex.fd 2013/01/14 v3.01 Euler extra symbols
 )
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 13
-5.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 14
+6.
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 <STORK_overlay_black.png, id=129, 1188.69093pt x 1043.39813pt>
 File: STORK_overlay_black.png Graphic file (type png)
 <use STORK_overlay_black.png>
-Package pdftex.def Info: STORK_overlay_black.png  used on input line 135.
+Package pdftex.def Info: STORK_overlay_black.png  used on input line 146.
 (pdftex.def)             Requested size: 534.90598pt x 469.52483pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 17.00012pt on input line 135.
+(Font)              scaled to size 17.00012pt on input line 146.
 
-Package xcolor Warning: Incompatible color definition on input line 135.
+Package xcolor Warning: Incompatible color definition on input line 146.
 
 
-Package xcolor Warning: Incompatible color definition on input line 135.
+Package xcolor Warning: Incompatible color definition on input line 146.
 
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 135.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 146.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 135.
+(Font)              size <5> substituted on input line 146.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <5.5> not available
-(Font)              size <5> substituted on input line 135.
+(Font)              size <5> substituted on input line 146.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 135.
+(Font)              size <5> substituted on input line 146.
 
 
-Overfull \hbox (170.7147pt too wide) in paragraph at lines 135--135
+Overfull \hbox (170.7147pt too wide) in paragraph at lines 146--146
 [] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 135.
+Package xcolor Warning: Incompatible color definition on input line 146.
 
 
-Overfull \hbox (3.46417pt too wide) in paragraph at lines 135--135
+Overfull \hbox (3.46417pt too wide) in paragraph at lines 146--146
 [][][][][][][] 
  []
 
 
-Overfull \hbox (5.79492pt too wide) in paragraph at lines 135--135
+Overfull \hbox (5.79492pt too wide) in paragraph at lines 146--146
 $[]$|  $[]$ 
  []
 
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 4.25003pt on input line 146.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 []
@@ -858,239 +906,293 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 map} <./CIK_title_blktxt.png> <./OpenAccesslogo_bw.pdf> <./STORK_overlay_black.
 png>]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 13.6001pt on input line 143.
+(Font)              scaled to size 13.6001pt on input line 154.
 
-Package xcolor Warning: Incompatible color definition on input line 143.
+Package xcolor Warning: Incompatible color definition on input line 154.
 
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 7.65005pt on input line 247.
+(Font)              scaled to size 7.65005pt on input line 260.
 
-Package xcolor Warning: Incompatible color definition on input line 247.
+Package xcolor Warning: Incompatible color definition on input line 260.
 
 
 Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
 [2]
 
-Package xcolor Warning: Incompatible color definition on input line 249.
+Package xcolor Warning: Incompatible color definition on input line 262.
 
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 11.90009pt on input line 252.
+(Font)              scaled to size 11.90009pt on input line 265.
 
-Package xcolor Warning: Incompatible color definition on input line 252.
+Package xcolor Warning: Incompatible color definition on input line 265.
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 254--276
+Underfull \hbox (badness 1418) in paragraph at lines 267--289
 \T1/ppl/m/n/9 tu-to-ri-als/reports, opin-ions, com-men-taries, per-spec-tives, 
 con-fer-ence pro-ceed-ings, nar-ra-tive re-views,
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 278.
+Package xcolor Warning: Incompatible color definition on input line 291.
 
 
-Package xcolor Warning: Incompatible color definition on input line 302.
+Package xcolor Warning: Incompatible color definition on input line 315.
 
 
-Package xcolor Warning: Incompatible color definition on input line 318.
-
-
-Package xcolor Warning: Incompatible color definition on input line 318.
+Package xcolor Warning: Incompatible color definition on input line 328.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [3]
 
-Package xcolor Warning: Incompatible color definition on input line 346.
+Package xcolor Warning: Incompatible color definition on input line 331.
 
 
-Package xcolor Warning: Incompatible color definition on input line 356.
+Package xcolor Warning: Incompatible color definition on input line 360.
 
 
-Package xcolor Warning: Incompatible color definition on input line 375.
+Package xcolor Warning: Incompatible color definition on input line 370.
 
 
-Package xcolor Warning: Incompatible color definition on input line 388.
+Package xcolor Warning: Incompatible color definition on input line 389.
 
 
-Underfull \hbox (badness 1163) in paragraph at lines 390--415
+Package xcolor Warning: Incompatible color definition on input line 402.
+
+
+Underfull \hbox (badness 1163) in paragraph at lines 404--429
 \T1/ppl/m/n/9 Fif-teen orig-i-nal re-search ar-ti-cles pub-lished in 2018, five
  from each of our three cho-sen jour-nals,
  []
 
 
-Underfull \hbox (badness 1286) in paragraph at lines 390--415
+Underfull \hbox (badness 1286) in paragraph at lines 404--429
 \T1/pcr/m/n/9 a41116388e9244b7821bfb9fe5496bd2$[][]\T1/ppl/m/n/9 . Over-all, ou
 r pi-lot work in-di-cated min-i-mally ac-cept-able
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 415.
+Package xcolor Warning: Incompatible color definition on input line 429.
 
 
 Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
 [4]
 
-Package xcolor Warning: Incompatible color definition on input line 417.
+Package xcolor Warning: Incompatible color definition on input line 431.
 
 
-Package xcolor Warning: Incompatible color definition on input line 448.
+Package xcolor Warning: Incompatible color definition on input line 462.
 
 
-Package xcolor Warning: Incompatible color definition on input line 451.
+Package xcolor Warning: Incompatible color definition on input line 465.
 
-<figure1.png, id=178, 578.16pt x 433.62pt>
+<figure1.png, id=180, 578.16pt x 433.62pt>
 File: figure1.png Graphic file (type png)
 <use figure1.png>
-Package pdftex.def Info: figure1.png  used on input line 464.
-(pdftex.def)             Requested size: 418.25368pt x 313.68826pt.
+Package pdftex.def Info: figure1.png  used on input line 480.
+(pdftex.def)             Requested size: 376.42575pt x 282.31943pt.
 
-Package xcolor Warning: Incompatible color definition on input line 466.
+Package xcolor Warning: Incompatible color definition on input line 482.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [5]
 
-Package xcolor Warning: Incompatible color definition on input line 467.
+Package xcolor Warning: Incompatible color definition on input line 483.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [6 <./figure1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 470.
+Package xcolor Warning: Incompatible color definition on input line 486.
 
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.20007pt on input line 473.
+(Font)              scaled to size 10.20007pt on input line 489.
 
-Package xcolor Warning: Incompatible color definition on input line 473.
-
-
-Package xcolor Warning: Incompatible color definition on input line 488.
+Package xcolor Warning: Incompatible color definition on input line 489.
 
 
-Package xcolor Warning: Incompatible color definition on input line 503.
-
-<figure2.png, id=195, 1084.05pt x 650.43pt>
-File: figure2.png Graphic file (type png)
-<use figure2.png>
-Package pdftex.def Info: figure2.png  used on input line 506.
-(pdftex.def)             Requested size: 418.25368pt x 250.9473pt.
-
-Package xcolor Warning: Incompatible color definition on input line 510.
+Package xcolor Warning: Incompatible color definition on input line 504.
 
 
-Package xcolor Warning: Incompatible color definition on input line 514.
+Package xcolor Warning: Incompatible color definition on input line 519.
 
 
-Package xcolor Warning: Incompatible color definition on input line 517.
-
-
-Package xcolor Warning: Incompatible color definition on input line 529.
+Package xcolor Warning: Incompatible color definition on input line 537.
 
 
 Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
-[7 <./figure2.png>]
+[7]
+<figure2.png, id=206, 1084.05pt x 650.43pt>
+File: figure2.png Graphic file (type png)
+<use figure2.png>
+Package pdftex.def Info: figure2.png  used on input line 540.
+(pdftex.def)             Requested size: 376.42575pt x 225.85753pt.
 
-Package xcolor Warning: Incompatible color definition on input line 565.
-
-
-Package xcolor Warning: Incompatible color definition on input line 578.
+Package xcolor Warning: Incompatible color definition on input line 543.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
-[8]
+[8 <./figure2.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 581.
-
-
-Package xcolor Warning: Incompatible color definition on input line 584.
+Package xcolor Warning: Incompatible color definition on input line 546.
 
 
-Underfull \hbox (badness 6775) in paragraph at lines 586--589
-\T1/ppl/m/n/9 The au-thors agree to share the raw data, dig-i-tal study ma-te-r
-i-als and anal-y-sis code. All
- []
-
-
-Underfull \hbox (badness 2799) in paragraph at lines 586--589
-\T1/ppl/m/n/9 study ma-te-ri-als can be found on our OSF repos-i-tory [][]$\T1/
-pcr/m/n/9 https : / / osf . io / nwcx6 / ?view _ only =
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 591.
-
-LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 5
-96.
-(/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ppl.fd
-File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
-)
-
-Package xcolor Warning: Incompatible color definition on input line 608.
-
-
-Package xcolor Warning: Incompatible color definition on input line 613.
-
-
-Package xcolor Warning: Incompatible color definition on input line 620.
-
-
-Package xcolor Warning: Incompatible color definition on input line 625.
-
-
-Package xcolor Warning: Incompatible color definition on input line 632.
-
-
-Package xcolor Warning: Incompatible color definition on input line 647.
+Package xcolor Warning: Incompatible color definition on input line 564.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [9]
+<figure3.jpg, id=220, 9033.75pt x 11041.25pt>
+File: figure3.jpg Graphic file (type jpg)
+<use figure3.jpg>
+Package pdftex.def Info: figure3.jpg  used on input line 567.
+(pdftex.def)             Requested size: 376.42575pt x 459.93864pt.
 
-Package xcolor Warning: Incompatible color definition on input line 650.
-
-
-Underfull \hbox (badness 1546) in paragraph at lines 690--696
-[][]\T1/ppl/m/n/9 Büttner, F., Toomey, E., Mc-Clean, S., Roe, M., & De-lahunt, 
-E. (2020). Are ques-tion-able re-search
- []
-
-
-Underfull \hbox (badness 1019) in paragraph at lines 724--728
-\T1/ppl/m/n/9 analysis of sur-vey data. \T1/ppl/m/it/9 PloS One\T1/ppl/m/n/9 , 
-\T1/ppl/m/it/9 4\T1/ppl/m/n/9 (5), e5738. [][]$\T1/pcr/m/n/9 https : / / doi . 
-org / 10 . 1371 / journal . pone .
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 752.
+Package xcolor Warning: Incompatible color definition on input line 570.
 
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
-[10]
-Underfull \hbox (badness 1360) in paragraph at lines 810--815
-[][]\T1/ppl/m/n/9 Turner, B. O., Paul, E. J., Miller, M. B., & Bar-bey, A. K. (
-2018). Small sam-ple sizes re-duce the
- []
+[10 <./figure3.jpg>]
 
-Setting LastPage
+Package xcolor Warning: Incompatible color definition on input line 574.
 
-Package xcolor Warning: Incompatible color definition on input line 834.
+
+Package xcolor Warning: Incompatible color definition on input line 593.
+
+
+Package xcolor Warning: Incompatible color definition on input line 674.
 
 
 Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
 [11]
 
-Package caption Warning: Unused \captionsetup[table] on input line 138.
+Package xcolor Warning: Incompatible color definition on input line 766.
+
+
+Overfull \vbox (21.4162pt too high) has occurred while \output is active []
+
+[12]
+
+Package xcolor Warning: Incompatible color definition on input line 768.
+
+
+Package xcolor Warning: Incompatible color definition on input line 817.
+
+
+Package xcolor Warning: Incompatible color definition on input line 840.
+
+
+Overfull \vbox (21.51176pt too high) has occurred while \output is active []
+
+[13]
+
+Package xcolor Warning: Incompatible color definition on input line 841.
+
+
+Overfull \vbox (21.4162pt too high) has occurred while \output is active []
+
+[14]
+
+Package xcolor Warning: Incompatible color definition on input line 844.
+
+
+Package xcolor Warning: Incompatible color definition on input line 847.
+
+
+Underfull \hbox (badness 6775) in paragraph at lines 849--852
+\T1/ppl/m/n/9 The au-thors agree to share the raw data, dig-i-tal study ma-te-r
+i-als and anal-y-sis code. All
+ []
+
+
+Underfull \hbox (badness 2318) in paragraph at lines 849--852
+\T1/ppl/m/n/9 study ma-te-ri-als can be found on our OSF repos-i-tory: [][]$\T1
+/pcr/m/n/9 https : / / osf . io / nwcx6 / ?view _ only =
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 854.
+
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 8
+59.
+(/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+)
+
+Package xcolor Warning: Incompatible color definition on input line 871.
+
+
+Package xcolor Warning: Incompatible color definition on input line 878.
+
+
+Package xcolor Warning: Incompatible color definition on input line 886.
+
+
+Package xcolor Warning: Incompatible color definition on input line 893.
+
+
+Package xcolor Warning: Incompatible color definition on input line 908.
+
+
+Overfull \vbox (21.51176pt too high) has occurred while \output is active []
+
+[15]
+
+Package xcolor Warning: Incompatible color definition on input line 911.
+
+
+Underfull \hbox (badness 1546) in paragraph at lines 955--961
+[][]\T1/ppl/m/n/9 Büttner, F., Toomey, E., Mc-Clean, S., Roe, M., & De-lahunt, 
+E. (2020). Are ques-tion-able re-search
+ []
+
+
+Underfull \hbox (badness 1019) in paragraph at lines 1000--1004
+\T1/ppl/m/n/9 analysis of sur-vey data. \T1/ppl/m/it/9 PloS One\T1/ppl/m/n/9 , 
+\T1/ppl/m/it/9 4\T1/ppl/m/n/9 (5), e5738. [][]$\T1/pcr/m/n/9 https : / / doi . 
+org / 10 . 1371 / journal . pone .
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1020.
+
+
+Overfull \vbox (21.51176pt too high) has occurred while \output is active []
+
+[16]
+
+Package xcolor Warning: Incompatible color definition on input line 1116.
+
+
+Overfull \vbox (21.4162pt too high) has occurred while \output is active []
+
+[17]
+Underfull \hbox (badness 1360) in paragraph at lines 1146--1151
+[][]\T1/ppl/m/n/9 Turner, B. O., Paul, E. J., Miller, M. B., & Bar-bey, A. K. (
+2018). Small sam-ple sizes re-duce the
+ []
+
+Setting LastPage
+
+Package xcolor Warning: Incompatible color definition on input line 1174.
+
+
+Overfull \vbox (21.51176pt too high) has occurred while \output is active []
+
+[18]
+
+Package caption Warning: Unused \captionsetup[table] on input line 149.
 See the caption package documentation for explanation.
 
 (./skeleton.aux)
@@ -1099,34 +1201,36 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 Package rerunfilecheck Info: File `skeleton.out' has not changed.
-(rerunfilecheck)             Checksum: 2ADABF16D7DC06A1C2D37848C11A1A14;5363.
+(rerunfilecheck)             Checksum: 2306F19DBF2FD2C919FC34A8CB4A2C52;5302.
  ) 
 Here is how much of TeX's memory you used:
- 14479 strings out of 480472
- 216589 string characters out of 5897480
- 549023 words of memory out of 5000000
- 31775 multiletter control sequences out of 15000+600000
- 452570 words of font info for 109 fonts, out of 8000000 for 9000
+ 14733 strings out of 480559
+ 220426 string characters out of 5901948
+ 555494 words of memory out of 5000000
+ 31912 multiletter control sequences out of 15000+600000
+ 459886 words of font info for 115 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
- 75i,12n,80p,425b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,11n,80p,596b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}
 </Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi9.pfb></Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr7.pfb></Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr8.pfb></Users/aaroncaldwell/Library/TinyTeX/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/aaroncaldwell/Library/TinyTeX/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></Users/aaroncaldwell/Libra
-ry/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></Users/aaroncaldwell/
-Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></Users/aaroncal
-dwell/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></Users/aa
-roncaldwell/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></U
-sers/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplr8a.p
-fb></Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/up
-lri8a.pfb>
-Output written on skeleton.pdf (11 pages, 771029 bytes).
+/cmmi7.pfb></Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi9.pfb></Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr7.pfb></Users/aaroncaldwell/Library/TinyTeX/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/aaroncaldwell/Library/TinyTeX
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/aaroncaldwell/Libra
+ry/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/aaroncal
+dwell/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></Use
+rs/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
+</Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8
+a.pfb></Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic
+/uhvr8a.pfb></Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/type1/urw/he
+lvetic/uhvro8a.pfb></Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts/type1
+/urw/palatino/uplr8a.pfb></Users/aaroncaldwell/Library/TinyTeX/texmf-dist/fonts
+/type1/urw/palatino/uplri8a.pfb>
+Output written on skeleton.pdf (18 pages, 5271756 bytes).
 PDF statistics:
- 381 PDF objects out of 1000 (max. 8388607)
- 333 compressed objects within 4 object streams
- 102 named destinations out of 1000 (max. 500000)
- 266 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 476 PDF objects out of 1000 (max. 8388607)
+ 415 compressed objects within 5 object streams
+ 124 named destinations out of 1000 (max. 500000)
+ 271 words of extra memory for PDF output out of 10000 (max. 10000000)
 
