@@ -369,6 +369,10 @@ tab_clinreg = table(df_clin$prereg)
 
 binom_clinreg = binom.test(tab_clinreg[2], sum(tab_clinreg))
 
+### by journal -----
+tab_clinregj = table(df_clin$prereg, df_clin$journal)
+
+
 # RCT breakdown ---------
 
 df_rct = subset(df_all, rct == "Yes")
@@ -452,7 +456,7 @@ emm_plot = plot(emm_samps) +
   theme_bw() +
   theme(text = element_text(face = "bold"))
 
-fig3 = ggarrange(p_dissup,p_dishypo,emm_plot,
+fig3 = ggarrange(p_dishypo,p_dissup,emm_plot,
                  ncol = 1,
                  labels = "AUTO")
 
