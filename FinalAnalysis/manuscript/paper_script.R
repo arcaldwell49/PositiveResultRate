@@ -153,12 +153,21 @@ sig_pr2 = paste0(round(binom_sig2$estimate*100,2),"\\% [",
                 round(binom_sig2$conf.int[2]*100,2)
                 ,"]")
 
+ct_sig3 = table(subset(df_all, hypo_tested == "Yes")$sig_test)
+
+binom_sig3 = binom.test(ct_sig3[2], sum(ct_sig3))
+sig_pr3 = paste0(round(binom_sig3$estimate*100,2),"\\% [",
+                 round(binom_sig3$conf.int[1]*100,2),", ", 
+                 round(binom_sig3$conf.int[2]*100,2)
+                 ,"]")
+
+
 ct_ptype = table(df_all$pval_type)
 binom_ptype = binom.test(ct_ptype[[2]],sum(ct_ptype))
 ptype_pr = paste0(round(binom_ptype$estimate*100,2),"\\% [",
                   round(binom_ptype$conf.int[1]*100,2),", ", 
                   round(binom_ptype$conf.int[2]*100,2)
-                  ,"] of manuscripts reported exact p-values (p = .045) versus relative p-values (p < .05)")
+                  ,"] of manuscripts reported exact p-values for all results (p = .045) versus only relative p-values (p < .05)")
 
 ct_ptype2 = table(df_all$pval_type)
 
@@ -437,7 +446,7 @@ p_dishypo = df_all %>%
 
 emm_plot = plot(emm_samps) +
   scale_x_continuous(trans = "log",
-                     breaks = c(20,150,1095)) +
+                     breaks = c(10,15,20,30,40,50,65,80,110,150,1095)) +
   labs(x = "Estimated Mean Sample Size (log scale)",
        y = "") +
   theme_bw() +
