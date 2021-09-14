@@ -83,7 +83,7 @@ fig_1b = df_all %>%
                      expand = c(0,0)) +
   labs(x = "Level of Hypothesis Support",
        y = "Relative Frequency",
-       fill = "") +
+       fill = "Hypothesis Support") +
   theme_classic() +
   scale_fill_viridis_d(option = "E") +
   theme(legend.position = "none")
@@ -116,6 +116,15 @@ ggsave("figure1.jpg",
        height = 8,
        width = 7,
        dpi = 800)
+
+tab_sup = df_all %>%
+  select(hypo_tested, support) %>%
+  drop_na() %>%
+  group_by(support) %>%
+  summarize(n = n())
+tots_sup = sum(tab_sup$n)
+tab_sup$perc = tab_sup$n/tots_sup*100
+  
 
 # Contingency Table 1 ----
 
@@ -537,7 +546,7 @@ p_2d = df_all %>%
         text = element_text(face = "bold"))
 
 
-fig_2  = ggarrange(p_2a, p_2b, p_2c, p_2d,
+fig_2  = ggarrange(p_2b, p_2a, p_2c, p_2d,
                    ncol = 1,
                    labels = "AUTO")
 
