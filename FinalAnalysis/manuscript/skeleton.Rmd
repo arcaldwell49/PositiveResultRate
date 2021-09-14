@@ -41,7 +41,7 @@ abstract: 'Scientists rely upon an accurate scientific literature in order to bu
   hypothesis ~70\% of the time. However, a study of journals that cover the entire
   field of kinesiology has yet to be completed, and the quality of other reporting
   practices, such as clinical trial registration, has not been evaluated. In this study we retrospectively evaluated 300 original research articles from
-  the flagship journals of America (Medicine and Science in Sport and Exercise), Europe
+  the flagship journals of the North America (Medicine and Science in Sport and Exercise), Europe
   (European Journal of Sport Science), and Australia (Journal of Science and Medicine
   in Sport).  The hypothesis testing rate (~64\%) and positive result rate (~81\%) were much lower than what has been reported in other fields (e.g., psychology), and there was only weak evidence for our hypothesis that the positive result rate exceeded 90\%. However, the positive result rate is still considered unreasonably high Additionally, most studies did not report trial registration, and rarely included accessible data indicating rather poor reporting practices. The majority of studies relied upon significance testing (~92\%), but it was more concerning that a majority of studies (~82\%) without a stated hypothesis still relied upon significance testing. Overall, the positive result rate in kinesiology is unacceptable high, despite being lower than other fields such as psychology, and most published manuscripts demonstrated subpar reporting practices.'
 citation: 'Name et al. (2021). The Nature of Our Literature\: A Registered Report
@@ -129,7 +129,7 @@ To ensure that our questionnaire for our raters accurately and consistently refl
 
 ## Statistical Analysis 
 
-A detailed summary of the planned hypothesis test and “power” analysis can be found at our Open Science Framework [repository](#data). Additional, data related to the inter-rater reliability can be found within the supplemental material.
+A detailed summary of the planned hypothesis test and “power” analysis can be found at our Open Science Framework [repository](#data). Additional data related to the inter-rater reliability can be found within the supplemental material.
 
 ### Confirmatory Analyses
 
@@ -255,7 +255,7 @@ Following Stage 1 in-principle acceptance, the authors agreed to pre-registratio
 
 ## Conflicts of Interest
 
-ARC, RT, and VRY currently serve as executive committee members for the Society of Transparency, Openness, and Replication in Kinesiology (STORK). VRY is a section editor and ARC is on the Steering Board for Registered Reports in Kinesiology. Neither will be involved in any aspect of handling this manuscript except as authors.  The opinions or assertions contained herein are the private views of the author(s) and are not to be construed as official or reflecting the views of the Army or the Department of Defense. Any citations of commercial organizations and trade names in this report do not constitute an official Department of the Army endorsement of approval of the products or services of these organizations. No authors have any conflicts of interest to disclose. Approved for public release; distribution is unlimited.
+ARC, RT, and VRY currently serve as executive committee members for the Society of Transparency, Openness, and Replication in Kinesiology (STORK). VRY is a section editor and ARC is on the Steering Board for Registered Reports in Kinesiology. Neither will be involved in any aspect of handling this manuscript except as authors.  
 
 \newpage
 
