@@ -259,7 +259,7 @@ samp_pr = paste0(
   ", ",
   round(binom_samp$conf.int[2] * 100, 2)
   ,
-  "] of manuscripts reported total and group sample sizes."
+  "] of manuscripts reported all the required sample size information (total and group sample sizes)."
 )
 
 # Sample Size Analysis ------
