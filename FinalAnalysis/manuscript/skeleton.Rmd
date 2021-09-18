@@ -147,7 +147,7 @@ There was weak support for our hypothesis that manuscripts would find some suppo
 
 ```{r fig1, fig.cap="Figure 1. A) Posterior distributions from Bayesian model with the 50\\% and 95\\% percent compatibility intervals represented by the error bars at the bottom and B) Relative frequencies of the level of support reported for manuscripts with hypotheses (N = 191) with 17.8\\% report no support, 28.8\\% stating partial support, 46.6\\% stating full support, and  6.81\\% for which support was unclear or not stated.", out.width = "90%"}
 knitr::include_graphics("figure1.jpg")
-# Note add frequencies to captions
+
 ```
 
 \newpage
