@@ -10,6 +10,7 @@ bibliography: refs.bib
 header-includes:
 - \usepackage{caption}
 - \captionsetup[figure]{labelformat=empty}
+- \pagenumbering{arabic} 
 editor_options: 
   chunk_output_type: console
 ---
@@ -33,9 +34,10 @@ library(ggdist)
 library(distributional)
 library(broom)
 library(ggpubr)
-library(epitab)
 library(gtsummary)
 library(labelled)
+library(afex)
+library(emmeans)
 # Testing out data analysis
 # import data ------------
 df_all =  read_csv("df_all.csv") %>%
@@ -284,7 +286,7 @@ fig1 = ggarrange(p_f1a,
 
 \newpage
 
-# Figure 1
+## Levels of Support
 
 ```{r}
 tab_sup = df_all %>%
@@ -300,33 +302,29 @@ knitr::kable(tab_sup)
 
 \newpage
 
-```{r fig1, echo=FALSE, fig.cap="Figure 1. A) Posterior distributions from Bayesian model with the 50\\% and 95\\% percent compatibility intervals represented by the error bars at the bottom and B) Relative frequencies of the level of support reported for manuscripts with hypotheses (N = 191) with 17.8\\% report no support, 28.8\\% stating partial support, 46.6\\% stating full support, and  6.81\\% for which support was unclear or not stated.", fig.width = 6, fig.height=8}
-fig1
-```
-
-\newpage
-
 # Exploratory Analyses
 
-## Split by Hypothesis Tested
+## Statistics by Hypothesis Tested
 
 ```{r}
 
 ctab1 = df_all %>% 
-  #filter(hypo_tested == "Yes") %>%
-  select(effect_size, sig_test, hypo_tested) %>%
-  tbl_summary(by = hypo_tested,
+  select(effect_size, sig_test, 
+         hypo_tested, pval_type,
+         n_just) %>%
+  mutate(pval_type = structure(pval_type, label = "P-value reported"),
+         n_just = structure(n_just,
+                            label = "Sample Size Justification")) %>%
+  tbl_summary(by = hypo_tested, 
               type = list(sig_test ~ "categorical",
-                          effect_size ~ "categorical")) %>%
-  add_p(pvalue_fun = ~style_pvalue(.x, digits = 2)) %>%
-  add_overall() %>%
-  add_n() %>%
-  modify_header(label ~ "**Variable**") %>%
+                          effect_size ~ "categorical",
+                          n_just ~ "categorical")) %>%
+  # add_p(pvalue_fun = ~style_pvalue(.x, digits = 2)) %>%
+  add_overall() %>% add_n() %>% modify_header(label ~ "**Variable**") %>%
   modify_spanning_header(c("stat_1", "stat_2") ~ "**Hypothesis Tested**") %>%
   bold_labels()
 
 ctab1
-
 ```
 
 \newpage
@@ -444,59 +442,83 @@ ptype_pr2
 
 \newpage
 
+# Preregistration by Study Type
+
 ```{r}
 ctab2 = df_all %>% 
-  filter(sig_test == "Yes") %>%
-  select(effect_size, pval_sig, pval_type) %>%
-  mutate_all(as.factor) %>%
-  drop_na() %>%
-  contingency_table(independents=list("Effect Size Reported" = "effect_size",
-                                      "p-value Type" = "pval_type"),
-                    outcomes=list("Significant p-value" = "pval_sig"),
-                    crosstab_funcs=list(freq())) #%>%
-  #neat_table(caption = "Statistics Reported") 
-
-# Prereg Descriptives -----
-
-ctab_prereg = df_all %>% 
   select(clin_trial, rct, animal, prereg) %>%
-  mutate_all(as.factor) %>%
-  drop_na() %>%
-  contingency_table(
-  independents = list(
-    "Clinical Trial" = "clin_trial",
-    "RCT" = "rct",
-    "Animal Study" = "animal"
-  ),
-  outcomes = list("Preregistration" = "prereg"),
-  crosstab_funcs=list(freq()))
+  mutate(clin_trial = structure(clin_trial, 
+                               label = "Clinical Trial"),
+         rct = structure(rct,
+                      label = "RCT"),
+         animal = structure(animal,
+                         label = "Animal Study")) %>%
+  tbl_summary(by = prereg, 
+              type = list(clin_trial ~ "categorical",
+                          rct ~ "categorical",
+                          animal ~ "categorical")) %>%
+  # add_p(pvalue_fun = ~style_pvalue(.x, digits = 2)) %>%
+  add_overall() %>% add_n() %>% modify_header(label ~ "**Variable**") %>%
+  modify_spanning_header(c("stat_1", "stat_2") ~ "**Preregistration**") %>%
+  bold_labels()
 
+ctab2
+
+```
+
+\newpage
+
+## Preregistration Rate
+
+```{r}
 ct_prereg = table(df_all$prereg)
+ct_prereg
 
 binom_prereg = binom.test(ct_prereg[[2]],sum(ct_prereg))
+binom_prereg
+
 prereg_pr = paste0(round(binom_prereg$estimate*100,2),"\\% [",
                    round(binom_prereg$conf.int[1]*100,2),", ", 
                    round(binom_prereg$conf.int[2]*100,2)
                    ,"] of manuscripts reporting preregistration or clinical trial registration information")
+prereg_pr
 
-# Sample Size Information -----------
+```
 
-ctab_ss = df_all %>%
+\newpage
+
+# Sample Size by Journal
+
+```{r}
+ctab3 = df_all %>% 
   select(journal, n_just, sample_info) %>%
-  mutate_all(as.factor) %>%
-  drop_na() %>%
-  contingency_table(
-  independents = list(
-    "Sample Size Justification" = "n_just",
-    "Sample Size Reported" = "sample_info"
-  ),
-  outcomes = list("Journal" = "journal"),
-  crosstab_funcs = list(freq())
-) 
+  mutate(n_just = structure(n_just,
+                      label = "Sample Size Justification"),
+         sample_info = structure(sample_info,
+                         label = "Sample Size Information")) %>%
+  tbl_summary(by = journal, 
+              type = list(n_just ~ "categorical",
+                          sample_info ~ "categorical")) %>%
+  # add_p(pvalue_fun = ~style_pvalue(.x, digits = 2)) %>%
+  add_overall() %>% add_n() %>% modify_header(label ~ "**Variable**") %>%
+  modify_spanning_header(c("stat_1", "stat_2") ~ "**Journal**") %>%
+  bold_labels()
+
+ctab3
+```
+
+\newpage
+
+## Sample Size Justification
+
+```{r}
 
 ct_njust = table(df_all$n_just)
+ct_njust
 
 binom_njust = binom.test(ct_njust[[2]], sum(ct_njust))
+binom_njust
+
 njust_pr = paste0(
   round(binom_njust$estimate * 100, 2),
   "% [",
@@ -506,10 +528,21 @@ njust_pr = paste0(
   ,
   "]"
 )
+njust_pr
+```
+
+\newpage
+
+## Sample Size Information
+
+```{r}
 
 ct_samp = table(df_all$sample_info)
+ct_samp
 
 binom_samp = binom.test(ct_samp[[3]], sum(ct_samp))
+binom_samp
+
 samp_pr = paste0(
   round(binom_samp$estimate * 100, 2),
   "% [",
@@ -519,53 +552,77 @@ samp_pr = paste0(
   ,
   "] of manuscripts reported all the required sample size information (total and group sample sizes)."
 )
+samp_pr
+```
 
-# Sample Size Analysis ------
+# Sample Size by Discipline
 
+```{r}
 
-# problems with med1way not sure if result is accurate
-samp_1way = df_all %>%
-  select(n, sci_cat) %>%
-  mutate(n = as.numeric(n)) %>%
-  drop_na() %>%
-  WRS2::med1way(formula = n ~ sci_cat)
-
-# checking residuals; aov are fair
-library(afex)
 aov_1way = df_all %>%
-  select(n, sci_cat, doi) %>%
-  mutate(n = as.numeric(n)) %>%
-  drop_na() %>%
+  select(n, sci_cat, doi) %>% mutate(n = as.numeric(n)) %>% drop_na() %>%
   afex::aov_4(formula = log(n) ~ sci_cat + (1|doi))
+# Not perfect fit but close
+# fit is best with log transform compared to others
+# See MASS::boxcox(aov_1way); very close to best fit
+plot(performance::check_normality(aov_1way))
 
+knitr::kable(nice(aov_1way))
 
-library(emmeans)
-emm_samps = emmeans::emmeans(aov_1way, ~ sci_cat,
-                             type = "response")
+emm_samps = emmeans::emmeans(aov_1way, ~ sci_cat, type = "response")
 
-  
-# Other open Science Practices -----
+knitr::kable(emm_samps)
+```
+
+\newpage
+
+# Other Open Science Practices
+
+## Data Availability Statements
+```{r}
 
 ct_datstat = table(df_all$data_state)
+ct_datstat
 
 binom_datstat = binom.test(ct_datstat[[2]],300)
+binom_datstat
+
 datstat_pr = paste0(round(binom_datstat$estimate*100,2),"% [",
                  round(binom_datstat$conf.int[1]*100,2),", ", 
                  round(binom_datstat$conf.int[2]*100,2)
                  ,"] of manuscripts had a data accessibility statement")
+datstat_pr
+```
 
+\newpage
+
+## Open Data Availability
+
+```{r}
 ct_odat = table(df_all$open_data)
+ct_odat
 
 binom_odat = binom.test(ct_odat[[2]],300)
+binom_odat
 odat_pr = paste0(round(binom_odat$estimate*100,2),"% [",
                  round(binom_odat$conf.int[1]*100,2),", ", 
                  round(binom_odat$conf.int[2]*100,2)
                  ,"] of manuscripts reported some form of data sharing or open data")
+odat_pr
+```
 
+\newpage
+
+# Replication Studies
+
+```{r}
 
 ct_replic = table(df_all$replic)
+ct_replic
 
 binom_replic = binom.test(0,300)
+binom_replic
+
 replic_pr = paste0(
   round(binom_replic$estimate * 100, 2),
   "% [",
@@ -575,62 +632,132 @@ replic_pr = paste0(
   ,
   "] of manuscripts explicitly stated they were replicating a previous study."
 )
+replic_pr
+```
 
-p_n = df_all %>%
-  ggplot(aes(x = as.numeric(n))) +
-  geom_boxplot(fill = "skyblue3",
-               alpha = 0.55) +
-  labs(title = "Sample Size by Discipline",
-       x = "Total Sample Size (log scale)") +
-  theme_bw() +
-  facet_wrap(~sci_cat,
-             scales ="free",
-             ncol = 2) +
-  scale_x_continuous(trans = "log10") +
-  theme(axis.ticks.y = element_blank(),
-        axis.text.y = element_blank())
+\newpage
 
-# By Journal ----
+# Analysis by Journal
 
+## Hypothesis Support
+
+```{r}
 ## Hypothesis Support -----
 tab_jhyp = table(df_all$journal,df_all$support)
-chisq_support = chisq.test(tab_jhyp)
+tab_jhyp
 
+chisq_support = chisq.test(tab_jhyp)
+chisq_support
+```
+
+\newpage
+
+## Hypothesis Tested
+
+```{r}
 ## Hypothesis Tested -----
 tab_jtest = table(df_all$journal,df_all$hypo_tested)
-chisq_jtest = chisq.test(tab_jtest)
+tab_jtest
 
+chisq_jtest = chisq.test(tab_jtest)
+chisq_jtest
+```
+
+\newpage
+
+## Significance Testing
+
+```{r}
 ## Significance Testing -----
 tab_jsig = table(df_all$journal,df_all$sig_test)
-chisq_jsig = chisq.test(tab_jsig)
+tab_jsig
 
+chisq_jsig = chisq.test(tab_jsig)
+chisq_jsig
+```
+
+\newpage
+
+## Effect Sizes
+
+```{r}
 ## Effect Size -----
 tab_jes = table(df_all$journal,df_all$effect_size)
-chisq_jes = chisq.test(tab_jes)
+tab_jes 
 
+chisq_jes = chisq.test(tab_jes)
+chisq_jes 
+```
+
+\newpage
+
+## Sample Size Justification
+
+```{r}
 ## Sample Size Justification -----
 tab_jjust = table(df_all$journal,df_all$n_just)
-chisq_jjust = chisq.test(tab_jjust)
+tab_jjust
 
+chisq_jjust = chisq.test(tab_jjust)
+chisq_jjust
+```
+
+\newpage
+
+# Analysis among Clinical Trials
+
+## Hypothesis Support
+
+```{r}
 # Clinical Trial breakdown ------
 df_clin = subset(df_all, clin_trial == "Yes")
 
 ## Hypothesis Support (di)
 tab_clindisup = table(df_clin$di_sup)
+tab_clindisup
+
 binom_clindisup = binom.test(tab_clindisup[2], sum(tab_clindisup),
                              p = .8)
+binom_clindisup
+
 tab_clinsup = table(df_clin$support)
+knitr::kable(tab_clinsup)
+
+```
+
+\newpage
+
+## Hypothesis Tested
+
+```{r}
 
 ## Hypothesis Tested
 tab_clinhypo = table(df_clin$hypo_tested)
+tab_clinhypo
+
 binom_clinhypo = binom.test(tab_clinhypo[2], sum(tab_clinhypo),
                              p = .6)
+binom_clinhypo
+
+```
+
+## Sample Size Justification
+
+```{r}
 
 ## Sample Size Just ---------
 tab_clinjust = table(df_clin$n_just)
+tab_clinjust
 binom_clinjust = binom.test(tab_clinjust[2], sum(tab_clinjust))
+binom_clinjust
 
-## Pregreg -------
+```
+
+\newpage
+
+## Preregistration
+
+```{r}
 
 tab_clinreg = table(df_clin$prereg)
 
@@ -639,45 +766,94 @@ binom_clinreg = binom.test(tab_clinreg[2], sum(tab_clinreg))
 ### by journal -----
 tab_clinregj = table(df_clin$prereg, df_clin$journal)
 
+```
 
+# Analysis by RCT
+
+## Hypothesis Support
+
+```{r}
 # RCT breakdown ---------
 
 df_rct = subset(df_all, rct == "Yes")
 
 ## Hypothesis Support (di)
 tab_rctdisup = table(df_rct$di_sup)
+tab_rctdisup
+
 binom_rctdisup = binom.test(tab_rctdisup[2], sum(tab_rctdisup),
                              p = .8)
+binom_rctdisup
 tab_rctsup = table(df_rct$support)
+
+knitr::kable(tab_rctsup)
+```
+
+\newpage
+
+## Hypothesis Tested
+
+```{r}
 
 ## Hypothesis Tested
 tab_rcthypo = table(df_rct$hypo_tested)
 binom_rcthypo = binom.test(tab_rcthypo[2], sum(tab_rcthypo),
                             p = .6)
 
+```
+
+\newpage
+
+## Sample Size Justification
+ 
+```{r}
 ## Sample Size Just ---------
 tab_rctjust = table(df_rct$n_just)
-binom_rctjust = binom.test(tab_rctjust[2], sum(tab_rctjust))
+tab_rctjust
 
+binom_rctjust = binom.test(tab_rctjust[2], sum(tab_rctjust))
+binom_rctjust
+```
+
+\newpage
+
+## Preregisration
+
+```{r}
 tab_rctreg = table(df_rct$prereg)
 
 binom_rctreg = binom.test(tab_rctreg[2], sum(tab_rctreg))
+```
 
-## Sample Size Info -------
-# All studies reported sample size information
-#tab_clinssj = table(df_clin$sample_info)
-#binom_clinssj = binom.test(tab_clinssj)
+# Analysis by Discipline
 
-
-# Breakdown by Discipline ----------
-
-## Hypothesis Tested ---------
+```{r}
 
 tab_dissupp = table(df_all$sci_cat, df_all$support)
-chisq_dissupp = chisq.test(tab_dissupp)
+tab_dissupp
 
+chisq_dissupp = chisq.test(tab_dissupp)
+chisq_dissupp
+
+```
+
+\newpage
+
+## Hypothesis Tested
+
+```{r}
 tab_dishypop = table(df_all$sci_cat, df_all$hypo_tested)
+tab_dishypop
+
 chisq_dishypop = chisq.test(tab_dishypop)
+chisq_dishypop
+```
+
+\newpage
+
+## Plots
+
+```{r}
 
 p_dissup = df_all %>%
   group_by(support, sci_cat) %>%
@@ -726,14 +902,6 @@ emm_plot = plot(emm_samps) +
 fig3 = ggarrange(p_dishypo,p_dissup,emm_plot,
                  ncol = 1,
                  labels = "AUTO")
-```
-
-\newpage
-
-# Figure 3
-
-```{r fig3,echo=FALSE,  fig.cap="Figure 3. The breakdown, by discipline, for A) indication of whether a hypothesis was tested B) level of reported support for hypotheses,  and C) the estimated total sample size (grey bands indicate 95\\% confidence intervals).", out.width = "90%"}
-fig3
 ```
 
 \newpage
@@ -820,10 +988,26 @@ fig_2  = ggarrange(p_2b, p_2a, p_2c, p_2d,
 
 \newpage
 
+# Figure 1
+
+```{r fig1, echo=FALSE, fig.cap="Figure 1. A) Posterior distributions from Bayesian model with the 50\\% and 95\\% percent compatibility intervals represented by the error bars at the bottom and B) Relative frequencies of the level of support reported for manuscripts with hypotheses (N = 191) with 17.8\\% report no support, 28.8\\% stating partial support, 46.6\\% stating full support, and  6.81\\% for which support was unclear or not stated.", fig.width = 6, fig.height=7}
+fig1
+```
+
+\newpage
+
 # Figure 2
 
-```{r fig2,echo=FALSE,  fig.cap="Figure 2. Relative frequencies, by journal, for A) level of reported support for hypotheses, B) indication of whether a hypothesis was tested, C) indication of whether an effect size was reported, or D) indication of if sample size was justified by the authors. Journals included the European Journal of Sport Science (EJSS), the Journal of Science and Medicine in Sport (JSAMS), and Medicine and Science in Sport and Exercise (MSSE), ", fig.width = 6, fig.height=8}
+```{r fig2,echo=FALSE,  fig.cap="Figure 2. Relative frequencies, by journal, for A) level of reported support for hypotheses, B) indication of whether a hypothesis was tested, C) indication of whether an effect size was reported, or D) indication of if sample size was justified by the authors. Journals included the European Journal of Sport Science (EJSS), the Journal of Science and Medicine in Sport (JSAMS), and Medicine and Science in Sport and Exercise (MSSE), ", fig.width=6, fig.height=7}
 fig_2
+```
+
+\newpage
+
+# Figure 3
+
+```{r fig3,echo=FALSE,  fig.cap="Figure 3. The breakdown, by discipline, for A) indication of whether a hypothesis was tested B) level of reported support for hypotheses,  and C) the estimated total sample size (grey bands indicate 95\\% confidence intervals).", fig.width=6, fig.height=7}
+fig3
 ```
 
 \newpage
