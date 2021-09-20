@@ -554,4 +554,4 @@ ggsave("figure2.jpg",
        fig_2,
        dpi = 1000,
        width = 8,
-       height = 11)
+       height = 10)
