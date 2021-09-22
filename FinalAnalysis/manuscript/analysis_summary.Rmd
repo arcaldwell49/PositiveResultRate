@@ -661,6 +661,8 @@ tab_jtest
 
 chisq_jtest = chisq.test(tab_jtest)
 chisq_jtest
+
+# BayesFactor::contingencyTableBF(tab_jtest, sampleType = "poisson")
 ```
 
 \newpage
