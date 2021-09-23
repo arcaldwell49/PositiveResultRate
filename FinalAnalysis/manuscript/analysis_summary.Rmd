@@ -555,6 +555,8 @@ samp_pr = paste0(
 samp_pr
 ```
 
+\newpage
+
 # Sample Size by Discipline
 
 ```{r}
@@ -572,6 +574,12 @@ knitr::kable(nice(aov_1way))
 emm_samps = emmeans::emmeans(aov_1way, ~ sci_cat, type = "response")
 
 knitr::kable(emm_samps)
+```
+
+## Non-Parametric Analysis
+
+```{r}
+kruskal.test(as.numeric(n) ~ sci_cat, data = df_all)
 ```
 
 \newpage
