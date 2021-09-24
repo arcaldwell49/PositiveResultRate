@@ -8,7 +8,7 @@ author:
   affiliation: '1'
 - name: Another Nombre
   affiliation: '2'
-date: "`r Sys.Date()`"
+date: "2021-09-24"
 output:
   word_document: 
     keep_md: yes
@@ -62,26 +62,7 @@ editor_options:
 \captionsetup[figure]{labelformat=empty}
 \raggedbottom
 
-```{r setup, include=FALSE}
-# To COMPILE RUN THE CODE BELOW
-# rmarkdown::render(<your-rmd-file.rmd>, output_format ="all")
-library(knitr)
-library(tidyverse)
-library(kableExtra)
-library(scales)
-## Global options
-#options(max.print="75")
-opts_chunk$set(echo=FALSE,
-	             cache=FALSE,
-               prompt=FALSE,
-               tidy=TRUE,
-               comment=NA,
-               message=FALSE,
-               warning=FALSE,fig.pos = "H") #,fig.pos = "H", out.extra = ""
-#opts_knit$set(width=75)
 
-source("paper_script.R")
-```
 
 # Introduction
 
@@ -146,12 +127,9 @@ Sample sizes were compared between disciplines using a one-way Analysis of Varia
 
 ## Confirmatory Results
 
-There was weak support for our hypothesis that manuscripts would find some support for their hypothesis 80\% of the time. There was only a `r round(h_test$hypothesis$Post.Prob,4)*100`\% posterior probability of our hypothesis with it being `r round(h_test$hypothesis$Evid.Ratio,2)` times more likely than the null hypothesis. However, the data did favor our secondary hypothesis that at least 60\% of manuscripts perform hypothesis testing with it being `r round(h_test2$hypothesis$Evid.Ratio,2)` times more likely than the null (Posterior Probability: `r round(h_test2$hypothesis$Post.Prob,4)*100`\%). Overall, we estimate that the positive result rate is `r round(h_ci[1],4)*100`\% [`r round(h_ci[3],4)*100`, `r round(h_ci[4],4)*100`], and there is a `r round(h_ci2[1],4)*100`\% [`r round(h_ci2[3],4)*100`, `r round(h_ci2[4],4)*100`] rate of hypotheses being tested in manuscripts (Figure 1A). Interestingly, we did find a substantial rate (6.8\%) of manuscripts not reporting whether or not a hypothesis was supported (Figure 1B).
+There was weak support for our hypothesis that manuscripts would find some support for their hypothesis 80\% of the time. There was only a 70.82\% posterior probability of our hypothesis with it being 2.43 times more likely than the null hypothesis. However, the data did favor our secondary hypothesis that at least 60\% of manuscripts perform hypothesis testing with it being 9.72 times more likely than the null (Posterior Probability: 90.67\%). Overall, we estimate that the positive result rate is 81.43\% [75.78, 86.3], and there is a 63.58\% [58.12, 68.97] rate of hypotheses being tested in manuscripts (Figure 1A). Interestingly, we did find a substantial rate (6.8\%) of manuscripts not reporting whether or not a hypothesis was supported (Figure 1B).
 
-```{r fig1, fig.cap="Figure 1. A) Posterior distributions from Bayesian model with the 50\\% and 95\\% percent compatibility intervals represented by the error bars at the bottom and B) Relative frequencies of the level of support reported for manuscripts with  a hypothesis (N = 191) with 17.8\\% report no support, 28.8\\% stating partial support, 46.6\\% stating full support, and  6.81\\% for which support was unclear or not stated.", out.width = "90%"}
-knitr::include_graphics("figure1.jpg")
-
-```
+![Figure 1. A) Posterior distributions from Bayesian model with the 50\% and 95\% percent compatibility intervals represented by the error bars at the bottom and B) Relative frequencies of the level of support reported for manuscripts with  a hypothesis (N = 191) with 17.8\% report no support, 28.8\% stating partial support, 46.6\% stating full support, and  6.81\% for which support was unclear or not stated.](figure1.jpg){width=90%}
 
 \newpage
 
@@ -159,33 +137,29 @@ knitr::include_graphics("figure1.jpg")
 
 ### Statistics Reporting
 
-Nearly all manuscripts, `r sig_pr`, reported some form of significance testing. Even when a hypothesis was not stated or tested, significance testing was utilized in `r sig_pr2` of manuscripts (89 of the 109 manuscripts without a stated hypothesis). Most manuscripts, `r eff_pr`, also reported some form of effect size to accompany the results. In addition, `r ptype_pr`. Though, `r ptype_pr2`, and therefore changed their reporting method within the paper by switching between exact and relative p-values.
+Nearly all manuscripts, 90\% [86.03, 93.15], reported some form of significance testing. Even when a hypothesis was not stated or tested, significance testing was utilized in 81.65\% [73.09, 88.42] of manuscripts (89 of the 109 manuscripts without a stated hypothesis). Most manuscripts, 79.33\% [74.3, 83.77], also reported some form of effect size to accompany the results. In addition, 33.7\% [28.09, 39.68] of manuscripts reported exact p-values for all results (p = .045) versus only relative p-values (p < .05). Though, 89.63\% [85.36, 93] of manuscripts reported at least *some* exact p-values (e.g., p = .045) versus relative p-values (e.g., p < .05), and therefore changed their reporting method within the paper by switching between exact and relative p-values.
 
 ### Other Important Reporting Practices
 
-Registration or preregistration of studies was low with `r prereg_pr`. Sample size information was often well reported, with `r samp_pr`. However, sample size justification information (e.g., power analysis) only appeared in `r njust_pr` of manuscripts. None of the manuscripts analyzed for this study were considered a replication attempt by the original study authors. Only `r datstat_pr`. Further, `r odat_pr`. 
+Registration or preregistration of studies was low with 9\% [6.01, 12.82] of manuscripts reporting preregistration or clinical trial registration information. Sample size information was often well reported, with 97.67% [95.25, 99.06] of manuscripts reported all the required sample size information (total and group sample sizes).. However, sample size justification information (e.g., power analysis) only appeared in 22.67% [18.05, 27.83] of manuscripts. None of the manuscripts analyzed for this study were considered a replication attempt by the original study authors. Only 2.33% [0.94, 4.75] of manuscripts had a data accessibility statement. Further, 0.67% [0.08, 2.39] of manuscripts reported some form of data sharing or open data. 
 
 ### Analysis by Journal
 
-We tested for differences in the degree of support for the first stated hypothesis between the three journals, but no differences were noted, $\chi^2$(`r chisq_support$parameter`) = `r round(chisq_support$statistic,2)`; `r pvalue(chisq_support$p.value, add_p = TRUE)`,  (Figure 2B). All three journals had "Full support" for the stated hypothesis in >45\% of manuscripts. However, there were clear differences, $\chi^2$(`r chisq_jtest$parameter`) = `r round(chisq_jtest$statistic,2)`; `r pvalue(chisq_jtest$p.value, add_p = TRUE)`, in the rate of hypotheses being tested (Figure 2A). The majority of MSSE and EJSS had hypothesis tests (74\% and 71\% respectively), but JSAMS had a much lower rate of hypothesis tests (46\%). An effect size was often reported in manuscripts, but EJSS (90\%) had a much better reporting rate, $\chi^2$(`r chisq_jes$parameter`) = `r round(chisq_jes$statistic,2)`; `r pvalue(chisq_jes$p.value, add_p = TRUE)`, compared to JSAMS (72\%) or MSSE (76\%; Figure 2C). While sample size justifications were rare (Figure 2D), MSSE (35\%) had a higher rate of reporting a sample size justification, $\chi^2$(`r chisq_jjust$parameter`) = `r round(chisq_jjust$statistic,2)`; `r pvalue(chisq_jjust$p.value, add_p = TRUE)`, compared to EJSS (19\%) or JSAMS (14\%). The rate of reporting significance tests in all journals was high (> 80\%). However, JSAMS (84\%) reported a slightly lower rate of significance tests, $\chi^2$(`r chisq_jsig$parameter`) = `r round(chisq_jsig$statistic,2)`; `r pvalue(chisq_jsig$p.value, add_p = TRUE)`, than EJSS (92\%) or MSSE (94\%).
+We tested for differences in the degree of support for the first stated hypothesis between the three journals, but no differences were noted, $\chi^2$(6) = 2.4; p=0.879,  (Figure 2B). All three journals had "Full support" for the stated hypothesis in >45\% of manuscripts. However, there were clear differences, $\chi^2$(2) = 20.43; p<0.001, in the rate of hypotheses being tested (Figure 2A). The majority of MSSE and EJSS had hypothesis tests (74\% and 71\% respectively), but JSAMS had a much lower rate of hypothesis tests (46\%). An effect size was often reported in manuscripts, but EJSS (90\%) had a much better reporting rate, $\chi^2$(2) = 10.9; p=0.004, compared to JSAMS (72\%) or MSSE (76\%; Figure 2C). While sample size justifications were rare (Figure 2D), MSSE (35\%) had a higher rate of reporting a sample size justification, $\chi^2$(2) = 13.73; p=0.001, compared to EJSS (19\%) or JSAMS (14\%). The rate of reporting significance tests in all journals was high (> 80\%). However, JSAMS (84\%) reported a slightly lower rate of significance tests, $\chi^2$(2) = 6.22; p=0.045, than EJSS (92\%) or MSSE (94\%).
 
 \newpage
 
-```{r fig2, fig.cap="Figure 2. Relative frequencies, by journal, for A) level of reported support for a hypothesis, B) indication of whether a hypothesis was tested, C) indication of whether an effect size was reported, or D) indication of if sample size was justified by the authors. Journals included the European Journal of Sport Science (EJSS), the Journal of Science and Medicine in Sport (JSAMS), and Medicine and Science in Sport and Exercise (MSSE), ", out.width = '50%'}
-knitr::include_graphics("figure2.jpg")
-```
+![Figure 2. Relative frequencies, by journal, for A) level of reported support for a hypothesis, B) indication of whether a hypothesis was tested, C) indication of whether an effect size was reported, or D) indication of if sample size was justified by the authors. Journals included the European Journal of Sport Science (EJSS), the Journal of Science and Medicine in Sport (JSAMS), and Medicine and Science in Sport and Exercise (MSSE), ](figure2.jpg){width=50%}
 
 \newpage
 
 ### Analysis by Discipline
 
-When comparing between disciplines, we observed a large variation in the degree of support found for the proposed hypothesis, $\chi^2$(`r chisq_dissupp$parameter`) = `r round(chisq_dissupp$statistic,2)`; `r pvalue(chisq_dissupp$p.value, add_p = TRUE)`. In fact, motor behavior and environmental physiology studies all found full or partial support within the sample of manuscripts (Figure 3B). Basic physiology was the worst at not reporting whether or not a hypothesis was supported with 37.5\% of the studies never making a clear statement of support (Figure 3B). The rate of hypothesis testing differed greatly between disciplines, $\chi^2$(`r chisq_dishypop$parameter`) = `r round(chisq_dishypop$statistic,2)`; `r pvalue(chisq_dishypop$p.value, add_p = TRUE)` (Figure 3A). The extremes of the spectrum ranged from epidemiology (25.9\%) to basic physiology (88.9\%). Sample size, evaluated using a linear model with a natural log transformation of the total sample size, differed between disciplines, F(9, 285) = 21.81, p = $2.2 \cdot 10^{-16}$, $\eta^2_g$ = 0.408. The estimated average sample size, derived from the estimated marginal mean, per discipline ranged from the lowest in environmental physiology, N = 16 [7, 37], to the highest in epidemiology, N = 1162 [691, 1952] (Figure 2C).
+When comparing between disciplines, we observed a large variation in the degree of support found for the proposed hypothesis, $\chi^2$(27) = 40.02; p=0.051. In fact, motor behavior and environmental physiology studies all found full or partial support within the sample of manuscripts (Figure 3B). Basic physiology was the worst at not reporting whether or not a hypothesis was supported with 37.5\% of the studies never making a clear statement of support (Figure 3B). The rate of hypothesis testing differed greatly between disciplines, $\chi^2$(9) = 28.44; p<0.001 (Figure 3A). The extremes of the spectrum ranged from epidemiology (25.9\%) to basic physiology (88.9\%). Sample size, evaluated using a linear model with a natural log transformation of the total sample size, differed between disciplines, F(9, 285) = 21.81, p = $2.2 \cdot 10^{-16}$, $\eta^2_g$ = 0.408. The estimated average sample size, derived from the estimated marginal mean, per discipline ranged from the lowest in environmental physiology, N = 16 [7, 37], to the highest in epidemiology, N = 1162 [691, 1952] (Figure 2C).
 
 \newpage
 
-```{r fig3, fig.cap="Figure 3. The breakdown, by discipline, for A) indication of whether a hypothesis was tested B) level of reported support for a hypothesis,  and C) the estimated total sample size (grey bands indicate 95\\% confidence intervals).", out.width = "90%"}
-knitr::include_graphics("figure3.jpg")
-```
+![Figure 3. The breakdown, by discipline, for A) indication of whether a hypothesis was tested B) level of reported support for a hypothesis,  and C) the estimated total sample size (grey bands indicate 95\% confidence intervals).](figure3.jpg){width=90%}
 
 \newpage
 
@@ -255,9 +229,7 @@ This research was not a funded activity. All necessary support was provided by t
 
 TBA
 
-```{r}
-# We would like to thank John P. Mills for his assistance in setting up our Qualtrics survey for the coding process. We also thank Megan E. Rosa-Caldwell for her assistance in obtaining and organizing the manuscripts from EJSS. We would also like to thank Anne Scheel and Fionn Buttner for their early feedback on this project's design.
-```
+
 
 
 
@@ -266,9 +238,7 @@ TBA
 
 TBA
 
-```{r}
-# Following Stage 1 in-principle acceptance, the authors agreed to pre-registration of the approved protocol on the Open Science Framework. The IPA registration can be found here: https://osf.io/3pqr7.
-```
+
 
 
 
@@ -277,9 +247,7 @@ TBA
 
 TBA
 
-```{r}
-# ARC, RT, and VRY currently serve as executive committee members for the Society of Transparency, Openness, and Replication in Kinesiology (STORK). VRY is a section editor and ARC is on the Steering Board for Registered Reports in Kinesiology. Neither will be involved in any aspect of handling this manuscript except as authors.  
-```
+
 
 
 \newpage
