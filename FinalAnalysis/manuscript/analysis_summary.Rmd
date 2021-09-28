@@ -205,7 +205,7 @@ test_pos = posterior_interval(m_final,
 knitr::kable(test_pos, caption = "Hyp Test #1: 95% Posterior C.I.")
 
 h_test2 <- hypothesis(m_final2, "Intercept > 0.6")
-knitr::kable(h_test$hypothesis, caption = "Hypothesis Test #2")
+knitr::kable(h_test2$hypothesis, caption = "Hypothesis Test #2")
 
 h_ci2 = fixef(m_final2)
 test_pos2 = posterior_interval(m_final2,
@@ -770,13 +770,18 @@ binom_clinjust
 ```{r}
 
 tab_clinreg = table(df_clin$prereg)
+tab_clinreg
 
 binom_clinreg = binom.test(tab_clinreg[2], sum(tab_clinreg))
+binom_clinreg
 
 ### by journal -----
 tab_clinregj = table(df_clin$prereg, df_clin$journal)
+knitr::kable(tab_clinregj)
 
 ```
+
+\newpage
 
 # Analysis by RCT
 
@@ -804,11 +809,13 @@ knitr::kable(tab_rctsup)
 ## Hypothesis Tested
 
 ```{r}
-
 ## Hypothesis Tested
 tab_rcthypo = table(df_rct$hypo_tested)
+knitr::kable(tab_rcthypo)
+
 binom_rcthypo = binom.test(tab_rcthypo[2], sum(tab_rcthypo),
                             p = .6)
+binom_rcthypo
 
 ```
 
@@ -825,22 +832,25 @@ binom_rctjust = binom.test(tab_rctjust[2], sum(tab_rctjust))
 binom_rctjust
 ```
 
-\newpage
-
-## Preregisration
+## Preregistration 
 
 ```{r}
 tab_rctreg = table(df_rct$prereg)
+knitr::kable(tab_rctreg)
 
 binom_rctreg = binom.test(tab_rctreg[2], sum(tab_rctreg))
+binom_rctreg
 ```
+
+\newpage
 
 # Analysis by Discipline
 
 ```{r}
 
 tab_dissupp = table(df_all$sci_cat, df_all$support)
-tab_dissupp
+colnames(tab_dissupp) = c("Unclear","No", "Partial", "Full")
+knitr::kable(tab_dissupp)
 
 chisq_dissupp = chisq.test(tab_dissupp)
 chisq_dissupp
