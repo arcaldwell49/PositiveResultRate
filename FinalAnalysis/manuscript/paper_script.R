@@ -176,7 +176,7 @@ binom_ptype = binom.test(ct_ptype[[2]],sum(ct_ptype))
 ptype_pr = paste0(round(binom_ptype$estimate*100,2),"\\% [",
                   round(binom_ptype$conf.int[1]*100,2),", ", 
                   round(binom_ptype$conf.int[2]*100,2)
-                  ,"] of manuscripts reported exact p-values for all results (p = .045) versus only relative p-values (p < .05)")
+                  ,"] of manuscripts reported exact p-values for all results (e.g., p=0.045) versus only relative p-values (e.g., p<0.05)")
 
 ct_ptype2 = table(df_all$pval_type)
 
@@ -184,7 +184,7 @@ binom_ptype2 = binom.test(ct_ptype2[[2]]+ct_ptype2[[1]],sum(ct_ptype2))
 ptype_pr2 = paste0(round(binom_ptype2$estimate*100,2),"\\% [",
                    round(binom_ptype2$conf.int[1]*100,2),", ", 
                    round(binom_ptype2$conf.int[2]*100,2)
-                   ,"] of manuscripts reported at least *some* exact p-values (e.g., p = .045) versus relative p-values (e.g., p < .05)")
+                   ,"] of manuscripts reported at least *some* exact p-values (e.g., p=0.045) versus relative p-values (e.g., p<0.05)")
 
 
 ctab2 = df_all %>% 
@@ -437,7 +437,8 @@ p_dissup = df_all %>%
   scale_fill_viridis_d(option = "E") +
   theme(legend.position = "bottom") +
   coord_flip()+
-  theme(text = element_text(face = "bold"))
+  theme(text = element_text(face = "bold")) + 
+  guides(fill = guide_legend(reverse=TRUE))
 
 p_dishypo = df_all %>%
   group_by(hypo_tested, sci_cat) %>%
@@ -455,7 +456,8 @@ p_dishypo = df_all %>%
   scale_fill_viridis_d(option = "E") +
   theme(legend.position = "bottom") +
   coord_flip() +
-  theme(text = element_text(face = "bold"))
+  theme(text = element_text(face = "bold")) + 
+  guides(fill = guide_legend(reverse=TRUE))
 
 emm_plot = plot(emm_samps) +
   scale_x_continuous(trans = "log",
@@ -492,7 +494,8 @@ p_2a = df_all %>%
   theme_classic() +
   scale_fill_viridis_d(option = "E") +
   theme(legend.position = "top",
-        text = element_text(face = "bold"))
+        text = element_text(face = "bold")) + 
+  guides(fill = guide_legend(reverse=TRUE))
 
 p_2b = df_all %>%
   group_by(journal, hypo_tested) %>%
@@ -509,7 +512,8 @@ p_2b = df_all %>%
   theme_classic() +
   scale_fill_viridis_d(option = "E") +
   theme(legend.position = "top",
-        text = element_text(face = "bold"))
+        text = element_text(face = "bold")) + 
+  guides(fill = guide_legend(reverse=TRUE))
 
 p_2c = df_all %>%
   group_by(journal, effect_size) %>%
@@ -526,7 +530,8 @@ p_2c = df_all %>%
   theme_classic() +
   scale_fill_viridis_d(option = "E") +
   theme(legend.position = "top",
-        text = element_text(face = "bold"))
+        text = element_text(face = "bold")) + 
+  guides(fill = guide_legend(reverse=TRUE))
 
 p_2d = df_all %>%
   group_by(journal, n_just) %>%
@@ -543,7 +548,8 @@ p_2d = df_all %>%
   theme_classic() +
   scale_fill_viridis_d(option = "E") +
   theme(legend.position = "top",
-        text = element_text(face = "bold"))
+        text = element_text(face = "bold")) + 
+  guides(fill = guide_legend(reverse=TRUE))
 
 
 fig_2  = ggarrange(p_2b, p_2a, p_2c, p_2d,
