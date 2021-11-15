@@ -191,7 +191,12 @@ Sample sizes were compared between disciplines using a one-way Analysis of Varia
 There was weak support for our hypothesis that manuscripts would find some support for their hypothesis 80\% of the time. There was only a `r round(h_test$hypothesis$Post.Prob,4)*100`\% posterior probability of our hypothesis with it being `r round(h_test$hypothesis$Evid.Ratio,2)` times more likely than the null hypothesis. However, the data did favor our secondary hypothesis that at least 60\% of manuscripts perform hypothesis testing with it being `r round(h_test2$hypothesis$Evid.Ratio,2)` times more likely than the null (Posterior Probability: `r round(h_test2$hypothesis$Post.Prob,4)*100`\%). Overall, we estimate that the positive result rate is `r round(h_ci[1],4)*100`\% [`r round(h_ci[3],4)*100`, `r round(h_ci[4],4)*100`], and there is a `r round(h_ci2[1],4)*100`\% [`r round(h_ci2[3],4)*100`, `r round(h_ci2[4],4)*100`] rate of hypotheses being tested in manuscripts (Figure 1A). Interestingly, we did find a substantial rate (6.8\%) of manuscripts not reporting whether or not a hypothesis was supported (Figure 1B).
 
 ```{r fig1, fig.cap="Figure 1. A) Posterior distributions from Bayesian model with the 50\\% and 95\\% percent compatibility intervals represented by the error bars at the bottom and B) Relative frequencies of the level of support reported for manuscripts with  a hypothesis (N = 191) with 17.8\\% report no support, 28.8\\% stating partial support, 46.6\\% stating full support, and  6.81\\% for which support was unclear or not stated.", out.width = "90%"}
+
+if(knitr::is_html_output()){
 knitr::include_graphics("figure1.jpg")
+} else{
+  knitr::include_graphics("figure1.pdf")
+}
 
 ```
 
@@ -214,7 +219,12 @@ We tested for differences in the degree of support for the first stated hypothes
 \newpage
 
 ```{r fig2, fig.cap="Figure 2. Relative frequencies, by journal, for A) level of reported support for a hypothesis, B) indication of whether a hypothesis was tested, C) indication of whether an effect size was reported, or D) indication of if sample size was justified by the authors. Journals included the European Journal of Sport Science (EJSS), the Journal of Science and Medicine in Sport (JSAMS), and Medicine and Science in Sport and Exercise (MSSE)", out.width = '100%'}
+
+if(knitr::is_html_output()){
 knitr::include_graphics("figure2.jpg")
+} else{
+  knitr::include_graphics("figure2.pdf")
+}
 ```
 
 \newpage
@@ -226,7 +236,12 @@ When comparing between disciplines, we observed a large variation in the degree 
 \newpage
 
 ```{r fig3, fig.cap="Figure 3. The breakdown, by discipline, for A) indication of whether a hypothesis was tested B) level of reported support for a hypothesis,  and C) the estimated total sample size (grey bands indicate 95\\% confidence intervals).", out.width = "100%"}
+
+if(knitr::is_html_output()){
 knitr::include_graphics("figure3.jpg")
+} else{
+  knitr::include_graphics("figure3.pdf")
+}
 ```
 
 \newpage
@@ -276,9 +291,7 @@ A moderate proportion (~64\%) of scientific articles published by society-led ki
 
 ## Data Accessibility {#data}
 
-The authors agree to share the raw data, digital study materials and analysis code. All study materials can be found on our Open Science Framework repository: 
-
-https://doi.org/10.17605/OSF.IO/NWCX6
+The authors agree to share the raw data, digital study materials and analysis code. All study materials can be found on our Open Science Framework repository: https://doi.org/10.17605/OSF.IO/NWCX6
 
 ## Author Contributions
 

@@ -117,6 +117,12 @@ ggsave("figure1.jpg",
        width = 7,
        dpi = 800)
 
+ggsave("figure1.pdf",
+       fig1,
+       #compression = "lzw",
+       height = 8,
+       width = 7)
+
 tab_sup = df_all %>%
   select(hypo_tested, support) %>%
   drop_na() %>%
@@ -477,6 +483,12 @@ ggsave("figure3.jpg",
        width = 9,
        height = 11)
 
+ggsave("figure3.pdf",
+       fig3,
+       width = 9,
+       height = 11)
+
+
 # Main Figures --------------
 
 p_2a = df_all %>%
@@ -559,5 +571,10 @@ fig_2  = ggarrange(p_2b, p_2a, p_2c, p_2d,
 ggsave("figure2.jpg",
        fig_2,
        dpi = 1000,
+       width = 8,
+       height = 10)
+
+ggsave("figure2.pdf",
+       fig_2,
        width = 8,
        height = 10)
