@@ -94,12 +94,15 @@ $endfor$
 %%%% Insert corresponding author and its email address}
 \corres{
   $corresp_author_name$\\
-  e-mail: \\
-  $corresp_author_email$
+  {\footnotesize $corresp_author_email$}
 }
 \inserttype{
-$article_type$
+{\Large $article_type$}
 }
+
+%\insertrisenote{
+%{ $risenote$}
+%}
 
 \insertcite{
   $citation$
@@ -116,6 +119,11 @@ $abstract$
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \providecommand{\EndFirstPage}{%
 }
+
+\definecolor{jobcolor}{cmyk}{0,0,0,.95}
+\definecolor{joblightcolor}{cmyk}{0,0,0,.95}
+\definecolor{abstractcolor}{RGB}{207, 250, 209}
+\definecolor{copyrightcolor}{RGB}{207, 250, 209}
 
 \maketitle
 

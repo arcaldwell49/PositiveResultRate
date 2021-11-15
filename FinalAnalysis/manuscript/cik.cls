@@ -592,10 +592,10 @@
   \vskip 2em%
   \begin{center}%
   \let \footnote \thanks
-    {\LARGE\mathversion{bold} \@title \par}%
-    \vskip 1.5em%
+    {\LARGE\mathversion{bold} \@title \par \par}%
+    \vskip 2.5em%
     {\large
-      \lineskip .5em%
+      \lineskip 2.5em%
       \begin{tabular}[t]{c}%
         \@author
       \end{tabular}\par}%
@@ -1117,8 +1117,8 @@
 
 \def\supertitlefont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{24}{26}\selectfont\raggedright}
 \def\titlefont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{20}{22}\selectfont\raggedright\color{jobcolor}}
-\def\authorfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{11}{15}\selectfont\raggedright\color{jobcolor}}
-\def\addressfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{11}{15}\selectfont\raggedright}
+\def\authorfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{11}{18}\selectfont\raggedright\color{jobcolor}}
+\def\addressfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{8}{12}\selectfont\raggedright}
 \def\abstractfont{\fontfamily{\rmdefault}\fontseries{m}\fontshape{n}\fontsize{9}{12}\selectfont\parindent1em}
 \def\keywordfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright\mathversion{bold}}
 \def\subjectfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright\mathversion{bold}}
@@ -1311,7 +1311,7 @@ at https://doi.org/\@doi\ or via http://\@jname.royalsocietypublishing.org.\par}
 \vspace*{-5.5pc}
 \noindent\begin{minipage}[!t]{50mm}
 \hskip-1pc
-\vbox to 242mm{{\vskip68pt\includegraphics[width=55mm,scale=0.6]{CIK_title_blktxt.png}\vskip10pt
+\vbox to 242mm{{\vskip68pt\includegraphics[width=55mm,scale=0.6]{rise.png}\vskip10pt
 %{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{13.5}{15}\selectfont\raggedright 
 %\textcolor{jobcolor}{storkjournals.org}}\vskip10pt
 \if@citearticle@provided
