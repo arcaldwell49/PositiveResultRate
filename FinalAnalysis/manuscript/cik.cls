@@ -1116,8 +1116,8 @@
 \fi
 
 \def\supertitlefont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{24}{26}\selectfont\raggedright}
-\def\titlefont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{20}{22}\selectfont\raggedright\color{jobcolor}}
-\def\authorfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{11}{18}\selectfont\raggedright\color{jobcolor}}
+\def\titlefont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{18}{22}\selectfont\raggedright\color{jobcolor}}
+\def\authorfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{9}{18}\selectfont\raggedright\color{jobcolor}}
 \def\addressfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{8}{12}\selectfont\raggedright}
 \def\abstractfont{\fontfamily{\rmdefault}\fontseries{m}\fontshape{n}\fontsize{9}{12}\selectfont\parindent1em}
 \def\keywordfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright\mathversion{bold}}
@@ -1388,9 +1388,9 @@ at https://doi.org/\@doi\ or via http://\@jname.royalsocietypublishing.org.\par}
 \vspace*{-11pt}
     \rule{90mm}{.5pt}\vspace*{2pt}
     {{\authorfont \@author\vphantom{$^1$}\par}}\vspace*{3pt}
-    \rule{90mm}{.5pt}
+    \rule{90mm}{.5pt}\vspace*{2pt}
     \ifx\@address\empty\else
-        {{\addressfont \leavevmode\vphantom{$^1$}\@address\par}}
+        {{\addressfont \@address\par}}
     \fi
     \ifvoid\absbox\else
         \vskip5pt%

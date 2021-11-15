@@ -9,28 +9,27 @@ author:
 - name: Joe P. Warne
   affiliation: '3, 4'
 - name: Christoph Schneider
-  affiliation: '5'
-- name: Chris McCrum
-  affiliation: '6'
-- name: Whitley Atkins
+  affiliation: '5, 6'
+- name: Christopher McCrum
   affiliation: '7'
-- name: Jenny Murphy
+- name: Whitley C. Atkins
+  affiliation: '8'
+- name: Jennifer Murphy
   affiliation: '3'
 - name: Claudia Romero Medina
   affiliation: '2'
 - name: Sena Harlley
   affiliation: '2'
 - name: Aaron R. Caldwell
-  affiliation: '8'
+  affiliation: '9'
 date: "`r Sys.Date()`"
 output:
-  html_document:
-    template: simplehtml.html
-    self_contained: no
   pdf_document: 
     template: template.tex
     keep_tex: yes
-    latex_engine: xelatex
+  html_document:
+    template: simplehtml.html
+    self_contained: no
   word_document: 
     keep_md: yes
 address:
@@ -43,12 +42,14 @@ address:
 - code: '4'
   address: Setanta College, Thurles Chamber of Commerce, Tipperary, Ireland. 
 - code: '5'
-  address: Faculty of Sport Science, Ruhr University Bochum, Bochum, Germany. 
+  address: Department of Training and Exercise Science, Faculty of Sport Science, Ruhr University, Bochum, Germany. 
 - code: '6'
-  address: Department of Nutrition and Movement Sciences, NUTRIM School of Nutrition and Translational Research in Metabolism, Maastricht University, Maastricht, The Netherlands. 
+  address: Department of Cardiology and Angiology, Contilia Heart and Vascular Center, Essen, Germany
 - code: '7'
-  address: Department of Health, Human Performance and Recreation, University of Arkansas, Fayetteville, AR, USA.
+  address: Department of Nutrition and Movement Sciences, NUTRIM School of Nutrition and Translational Research in Metabolism, Maastricht University, Maastricht, The Netherlands. 
 - code: '8'
+  address: Department of Health, Human Performance and Recreation, University of Arkansas, Fayetteville, AR, USA.
+- code: '9'
   address: Society for Transparency, Openess, and Replication in Kinesiology, Hayward, CA, USA.
 corresp_author_name: Aaron R. Caldwell
 corresp_author_email: aaron@storkinesiology.org
@@ -285,9 +286,9 @@ https://doi.org/10.17605/OSF.IO/NWCX6
 - Vanessa R. Yingling: Investigation, Data curation, Supervision, Writing – review & editing. 
 - Joe P. Warne: Investigation, Data curation, Supervision, Writing – review & editing. 
 - Christoph Schneider: Investigation, Writing – review & editing. 
-- Chris McCrum: Investigation, Writing – review & editing. 
-- Whitley Atkins: Investigation, Writing – review & editing. 
-- Jenny Murphy: Investigation, Writing – review & editing. 
+- Christopher McCrum: Investigation, Writing – review & editing. 
+- Whitley C. Atkins: Investigation, Writing – review & editing. 
+- Jennifer Murphy: Investigation, Writing – review & editing. 
 - Claudia Romero Medina: Investigation, Writing – review & editing. 
 - Sena Harrley: Investigation, Writing – review & editing. 
 - Aaron R. Caldwell: Conceptualization, Project administration, Methodology, Data curation, Formal Analysis, Software, Visualization, Writing – review & editing. 
