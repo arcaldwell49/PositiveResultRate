@@ -1143,6 +1143,7 @@
 \newif\if@esm@provided \@esm@providedfalse
 \newif\if@others@provided \@others@providedfalse
 \newif\if@corres@provided \@corres@providedfalse
+\newif\if@risenote@provided \@risenote@providedfalse
 \newif\if@keywords@provided \@keywords@providedfalse
 \newif\if@subject@provided \@subject@providedfalse
 \newif\if@citearticle@provided \@citearticle@providedfalse
@@ -1202,6 +1203,12 @@
      \gdef\@corres{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright 
      \correshead}\par #1}}%
      
+\def\@risenote{}
+\newcommand\risenote[1]{%
+     \global\@risenote@providedtrue%
+     \gdef\@risenote{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright 
+     \risenotehead}\par #1}}%
+     
 \def\@insertcite{}
 \newcommand\insertcite[1]{%
      \gdef\@insertcite{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright 
@@ -1249,6 +1256,7 @@ at https://doi.org/\@doi\ or via http://\@jname.royalsocietypublishing.org.\par}
 
 \def\correshead{Author for correspondence:}%
 \def\citehead{Please cite as:}%
+\def\risenotehead{Editor's Note:}%
 
 \renewcommand\maketitle{\par
   \begingroup
@@ -1346,6 +1354,11 @@ at https://doi.org/\@doi\ or via http://\@jname.royalsocietypublishing.org.\par}
     \fi
   \if@corres@provided
         {\keywordfont \@corres\par}
+\vskip16pt
+    \else
+    \fi
+  \if@risenote@provided
+        {\keywordfont \@risenote\par}
   \else
    \fi
 \vfill

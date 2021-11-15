@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.11.15)  15 NOV 2021 11:00
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.11.15)  15 NOV 2021 11:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -259,8 +259,8 @@ Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
 \c@mythm=\count284
 \rotdimen=\dimen175
 \symEulerExtension=\mathgroup6
-LaTeX Font Info:    Redeclaring math symbol \intop on input line 1465.
-LaTeX Font Info:    Redeclaring math symbol \ointop on input line 1466.
+LaTeX Font Info:    Redeclaring math symbol \intop on input line 1478.
+LaTeX Font Info:    Redeclaring math symbol \ointop on input line 1479.
 \eqntext=\dimen176
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
@@ -421,7 +421,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip64
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 1542.
+Package hyperref Info: Option `colorlinks' set `true' on input line 1555.
 ) (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 LaTeX Font Info:    Trying to load font information for T1+ppl on input line 11
@@ -752,29 +752,29 @@ Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
-Underfull \hbox (badness 1742) in paragraph at lines 135--165
+Underfull \hbox (badness 1742) in paragraph at lines 137--167
 \T1/ppl/m/n/9 and poor re-port-ing prac-tices may be hin-der-ing sci-en-tific 
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 135--165
+Underfull \hbox (badness 1360) in paragraph at lines 137--167
 \T1/ppl/m/n/9 to Ki-ne-si-ol-ogy, stud-ies that tested a hy-poth-e-sis in-di-ca
 ted 
  []
 
 
-Underfull \hbox (badness 2119) in paragraph at lines 135--165
+Underfull \hbox (badness 2119) in paragraph at lines 137--167
 \T1/ppl/m/n/9 sup-port for their pri-mary hy-poth-e-sis ~70% of the time. 
  []
 
 
-Underfull \hbox (badness 1558) in paragraph at lines 135--165
+Underfull \hbox (badness 1558) in paragraph at lines 137--167
 \T1/ppl/m/n/9 with-out a stated hy-poth-e-sis still re-lied upon sig-nif-i-canc
 e 
  []
 
 
-Underfull \hbox (badness 1454) in paragraph at lines 135--165
+Underfull \hbox (badness 1454) in paragraph at lines 137--167
 \T1/ppl/m/n/9 test-ing. Over-all, the pos-i-tive re-sult rate in ki-ne-si-ol-og
 y is 
  []
@@ -782,98 +782,102 @@ y is
 File: rise.png Graphic file (type bmp)
 <rise.png>
 
-Overfull \hbox (14.23901pt too wide) in paragraph at lines 180--180
+Overfull \hbox (14.23901pt too wide) in paragraph at lines 182--182
 [][] 
  []
 
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 15.30011pt on input line 180.
+(Font)              scaled to size 15.30011pt on input line 182.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 5.95004pt on input line 180.
+(Font)              scaled to size 5.95004pt on input line 182.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 12.24008pt on input line 180.
+(Font)              scaled to size 12.24008pt on input line 182.
 File: OpenAccesslogo_bw.pdf Graphic file (type pdf)
 <use OpenAccesslogo_bw.pdf>
 
-Underfull \hbox (badness 2894) in paragraph at lines 180--180
+Underfull \hbox (badness 2894) in paragraph at lines 182--182
 \T1/ppl/m/n/7 Open-ness, and Repli-ca-tion in Ki-ne-si-ol-ogy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 182--182
 \T1/ppl/m/n/7 At-tri-bu-tion Li-cense[][], which per-mits
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 182--182
 \T1/ppl/m/n/7 un-re-stricted use, pro-vided the orig-i-nal
  []
 
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.50006pt on input line 180.
+(Font)              scaled to size 8.50006pt on input line 182.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.50006pt on input line 180.
+(Font)              scaled to size 8.50006pt on input line 182.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 180.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 182.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.50006pt on input line 180.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 180
+(Font)              scaled to size 8.50006pt on input line 182.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 182
 .
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 180
+LaTeX Font Info:    Trying to load font information for U+msb on input line 182
 .
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+euex on input line 18
-0.
+2.
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/ueuex.fd
 File: ueuex.fd 2013/01/14 v3.01 Euler extra symbols
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.65005pt on input line 180.
+(Font)              scaled to size 7.65005pt on input line 182.
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 18
-0.
+2.
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 File: STORK_overlay_black.png Graphic file (type bmp)
 <STORK_overlay_black.png>
+
+Overfull \vbox (40.39107pt too high) detected at line 182
+ []
+
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 17.00012pt on input line 180.
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 180.
+(Font)              scaled to size 17.00012pt on input line 182.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 182.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 180.
+(Font)              size <5> substituted on input line 182.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <5.5> not available
-(Font)              size <5> substituted on input line 180.
+(Font)              size <5> substituted on input line 182.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 180.
+(Font)              size <5> substituted on input line 182.
 
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.80005pt on input line 180.
+(Font)              scaled to size 6.80005pt on input line 182.
 
-Overfull \hbox (170.7147pt too wide) in paragraph at lines 180--180
+Overfull \hbox (170.7147pt too wide) in paragraph at lines 182--182
 [] 
  []
 
 
-Overfull \hbox (3.46417pt too wide) in paragraph at lines 180--180
+Overfull \hbox (3.46417pt too wide) in paragraph at lines 182--182
 [][][][][][][] 
  []
 
 
-Overfull \vbox (113.67143pt too high) detected at line 180
+Overfull \vbox (113.67143pt too high) detected at line 182
  []
 
 
-Overfull \hbox (5.79492pt too wide) in paragraph at lines 180--180
+Overfull \hbox (5.79492pt too wide) in paragraph at lines 182--182
 $[]$|  $[]$ 
  []
 
@@ -892,23 +896,23 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 13.6001pt on input line 188.
+(Font)              scaled to size 13.6001pt on input line 190.
 
-Underfull \hbox (badness 1275) in paragraph at lines 313--325
+Underfull \hbox (badness 1275) in paragraph at lines 315--327
 \T1/ppl/m/n/9 re-ports to eval-u-ate against tra-di-tional pub-li-ca-tion for-m
 ats. The adop-tion of reg-is-tered re-ports in
  []
 
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 7.65005pt on input line 325.
+(Font)              scaled to size 7.65005pt on input line 327.
 
 Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
 [2]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 11.90009pt on input line 344.
+(Font)              scaled to size 11.90009pt on input line 346.
 
-Underfull \hbox (badness 1418) in paragraph at lines 346--369
+Underfull \hbox (badness 1418) in paragraph at lines 348--371
 \T1/ppl/m/n/9 tu-to-ri-als/reports, opin-ions, com-men-taries, per-spec-tives, 
 con-fer-ence pro-ceed-ings, nar-ra-tive re-views,
  []
@@ -921,13 +925,13 @@ Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
 [4]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.20007pt on input line 533.
+(Font)              scaled to size 10.20007pt on input line 535.
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [5]
-File: figure1.png Graphic file (type bmp)
-<figure1.png>
+File: figure1.jpg Graphic file (type bmp)
+<figure1.jpg>
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
@@ -935,8 +939,8 @@ Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
 [7]
-File: figure2.png Graphic file (type bmp)
-<figure2.png>
+File: figure2.jpg Graphic file (type bmp)
+<figure2.jpg>
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
@@ -966,11 +970,11 @@ Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
 [14]
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 1
-105.
+109.
 (/Users/aaroncaldwell/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
-Underfull \hbox (badness 6825) in paragraph at lines 1105--1108
+Underfull \hbox (badness 6825) in paragraph at lines 1109--1112
 []\T1/ppl/m/n/9 Rosie Twomey: Con-cep-tu-al-iza-tion, Project ad-min-is-tra-tio
 n, Method-ol-ogy, Data cu-ra-tion,
  []
@@ -979,20 +983,20 @@ n, Method-ol-ogy, Data cu-ra-tion,
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [15]
-Underfull \hbox (badness 1546) in paragraph at lines 1210--1216
+Underfull \hbox (badness 1546) in paragraph at lines 1214--1220
 [][]\T1/ppl/m/n/9 Büttner, F., Toomey, E., Mc-Clean, S., Roe, M., & De-lahunt, 
 E. (2020). Are ques-tion-able re-search
  []
 
 
-Overfull \hbox (117.84222pt too wide) in paragraph at lines 1243--1246
+Overfull \hbox (117.84222pt too wide) in paragraph at lines 1247--1250
 [][]\T1/ppl/m/n/9 Clinical tri-als. (2021). In \T1/ppl/m/it/9 ICMJE\T1/ppl/m/n/
 9 . [][]$\T1/pcr/m/n/9 http : / / www . icmje . org / recommendations / browse 
 / publishing-[]and-[]editorial-[]issues /
  []
 
 
-Underfull \hbox (badness 1019) in paragraph at lines 1259--1263
+Underfull \hbox (badness 1019) in paragraph at lines 1263--1267
 \T1/ppl/m/n/9 analysis of sur-vey data. \T1/ppl/m/it/9 PloS One\T1/ppl/m/n/9 , 
 \T1/ppl/m/it/9 4\T1/ppl/m/n/9 (5), e5738. [][]$\T1/pcr/m/n/9 https : / / doi . 
 org / 10 . 1371 / journal . pone .
@@ -1002,7 +1006,7 @@ org / 10 . 1371 / journal . pone .
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [16]
-Underfull \hbox (badness 1939) in paragraph at lines 1275--1280
+Underfull \hbox (badness 1939) in paragraph at lines 1279--1284
 \T1/ppl/m/it/9 in Meth-ods and Prac-tices in Psy-cho-log-i-cal Sci-ence\T1/ppl/
 m/n/9 , \T1/ppl/m/it/9 1\T1/ppl/m/n/9 (2), 198--218. [][]$\T1/pcr/m/n/9 https :
  / / doi . org / 10 . 1177 /
@@ -1016,7 +1020,7 @@ Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 [17]
 Missing character: There is no ‐ ("2010) in font pplr8t!
 
-Underfull \hbox (badness 1360) in paragraph at lines 1431--1436
+Underfull \hbox (badness 1360) in paragraph at lines 1435--1440
 [][]\T1/ppl/m/n/9 Turner, B. O., Paul, E. J., Miller, M. B., & Bar-bey, A. K. (
 2018). Small sam-ple sizes re-duce the
  []
@@ -1026,7 +1030,7 @@ Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
 [18]
 
-Package caption Warning: Unused \captionsetup[table] on input line 183.
+Package caption Warning: Unused \captionsetup[table] on input line 185.
 See the caption package documentation for explanation.
 
 (./Caldwell_Twomey_PRR.aux)
@@ -1038,12 +1042,12 @@ Package rerunfilecheck Info: File `Caldwell_Twomey_PRR.out' has not changed.
 (rerunfilecheck)             Checksum: AA3419DC7801F0B804C0B65D96C93AC7;5758.
  ) 
 Here is how much of TeX's memory you used:
- 15331 strings out of 478274
- 247391 string characters out of 5855052
- 568685 words of memory out of 5000000
- 35538 multiletter control sequences out of 15000+600000
+ 15345 strings out of 478274
+ 247621 string characters out of 5855052
+ 568763 words of memory out of 5000000
+ 35552 multiletter control sequences out of 15000+600000
  450601 words of font info for 104 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
- 75i,12n,78p,610b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,12n,78p,608b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Caldwell_Twomey_PRR.pdf (18 pages).
