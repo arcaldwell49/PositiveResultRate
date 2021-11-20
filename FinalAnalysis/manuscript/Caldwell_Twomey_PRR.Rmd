@@ -24,12 +24,12 @@ author:
   affiliation: '9'
 date: "`r Sys.Date()`"
 output:
-  html_document:
-    template: simplehtml.html
-    self_contained: no
   pdf_document: 
     template: template.tex
     keep_tex: yes
+  html_document:
+    template: simplehtml.html
+    self_contained: no
   word_document: 
     keep_md: yes
 address:
@@ -42,7 +42,7 @@ address:
 - code: '4'
   address: Setanta College, Thurles Chamber of Commerce, Tipperary, Ireland. 
 - code: '5'
-  address: Department of Training and Exercise Science, Faculty of Sport Science, Ruhr University, Bochum, Germany. 
+  address: Department of Training and Exercise Science, Faculty of Sport Science, Ruhr University Bochum, Bochum, Germany. 
 - code: '6'
   address: Department of Cardiology and Angiology, Contilia Heart and Vascular Center, Essen, Germany
 - code: '7'
@@ -61,8 +61,8 @@ keywords:
 - Metaresearch
 - Kinesiology
 - Sport and Exercise Science
-abstract: 'Scientists rely upon an accurate scientific literature in order to build and test new theories about the natural world. In the past decade, observational studies of the scientific literature have indicated that numerous questionable research practices and poor reporting practices may be hindering scientific progress. In particular, 3 recent studies have indicated an implausibly high rate of studies with positive (i.e., hypothesis confirming) results. In Sports Medicine, a field closely related to Kinesiology, studies that tested a hypothesis indicated support for their primary hypothesis ~70\% of the time. However, a study of journals that cover the entire field of kinesiology has yet to be completed, and the quality of other reporting practices, such as clinical trial registration, has not been evaluated. In this study we retrospectively evaluated 300 original research articles from the flagship journals of North America (Medicine and Science in Sport and Exercise), Europe (European Journal of Sport Science), and Australia (Journal of Science and Medicine in Sport). The hypothesis testing rate (~64\%) and positive result rate (~81\%) were much lower than what has been reported in other fields (e.g., psychology), and there was only weak evidence for our hypothesis that the positive result rate exceeded 80\%. However, the positive result rate is still considered unreasonably high. Additionally, most studies did not report trial registration, and rarely included accessible data indicating rather poor reporting practices. The majority of studies relied upon significance testing (~92\%), but it was more concerning that a majority of studies (~82\%) without a stated hypothesis still relied upon significance testing. Overall, the positive result rate in kinesiology is unacceptably high, despite being lower than other fields such as psychology, and most published manuscripts demonstrated subpar reporting practices.'
-citation: "Twomey et al. (2021). The Nature of Our Literature\\: A Registered Report on the Positive Result Rate and Reporting Practices in Kinesiology. \\textit{Communications in Kinesiology}. doi: 10.51224/XXXXXXXXX"
+abstract: 'Scientists rely upon an accurate scientific literature in order to build and test new theories about the natural world. In the past decade, observational studies of the scientific literature have indicated that numerous questionable research practices and poor reporting practices may be hindering scientific progress. In particular, 3 recent studies have indicated an implausibly high rate of studies with positive (i.e., hypothesis confirming) results. In sports medicine, a field closely related to kinesiology, studies that tested a hypothesis indicated support for their primary hypothesis ~70\% of the time. However, a study of journals that cover the entire field of kinesiology has yet to be completed, and the quality of other reporting practices, such as clinical trial registration, has not been evaluated. In this study we retrospectively evaluated 300 original research articles from the flagship journals of North America (Medicine and Science in Sport and Exercise), Europe (European Journal of Sport Science), and Australia (Journal of Science and Medicine in Sport). The hypothesis testing rate (~64\%) and positive result rate (~81\%) were much lower than what has been reported in other fields (e.g., psychology), and there was only weak evidence for our hypothesis that the positive result rate exceeded 80\%. However, the positive result rate is still considered unreasonably high. Additionally, most studies did not report trial registration, and rarely included accessible data indicating rather poor reporting practices. The majority of studies relied upon significance testing (~92\%), but it was more concerning that a majority of studies (~82\%) without a stated hypothesis still relied upon significance testing. Overall, the positive result rate in kinesiology is unacceptably high, despite being lower than other fields such as psychology, and most published manuscripts demonstrated subpar reporting practices.'
+citation: "Twomey et al. (2021). The Nature of Our Literature\\: A Registered Report on the Positive Result Rate and Reporting Practices in Kinesiology. \\textit{Communications in Kinesiology}. doi: 10.51224/cik.v1i3.43"
 risenote: "This article is included within the RiSE issue of Communications in Kinesiology at the behest of the editors due to its rigor, reproducibility, and transparency."
 lineno: false
 bibliography: refs.bib
@@ -216,6 +216,10 @@ Registration or preregistration of studies was low with `r prereg_pr`. Sample si
 
 We tested for differences in the degree of support for the first stated hypothesis between the three journals, but no differences were noted, $\chi^2$(`r chisq_support$parameter`) = `r round(chisq_support$statistic,2)`; `r pvalue(chisq_support$p.value, add_p = TRUE)`,  (Figure 2B). All three journals had "Full support" for the stated hypothesis in >45\% of manuscripts. However, there were clear differences, $\chi^2$(`r chisq_jtest$parameter`) = `r round(chisq_jtest$statistic,2)`; `r pvalue(chisq_jtest$p.value, add_p = TRUE)`, in the rate of hypotheses being tested (Figure 2A). The majority of MSSE and EJSS had hypothesis tests (74\% and 71\% respectively), but JSAMS had a much lower rate of hypothesis tests (46\%). An effect size was often reported in manuscripts, but EJSS (90\%) had a much better reporting rate, $\chi^2$(`r chisq_jes$parameter`) = `r round(chisq_jes$statistic,2)`; `r pvalue(chisq_jes$p.value, add_p = TRUE)`, compared to JSAMS (72\%) or MSSE (76\%; Figure 2C). While sample size justifications were rare (Figure 2D), MSSE (35\%) had a higher rate of reporting a sample size justification, $\chi^2$(`r chisq_jjust$parameter`) = `r round(chisq_jjust$statistic,2)`; `r pvalue(chisq_jjust$p.value, add_p = TRUE)`, compared to EJSS (19\%) or JSAMS (14\%). The rate of reporting significance tests in all journals was high (> 80\%). However, JSAMS (84\%) reported a slightly lower rate of significance tests, $\chi^2$(`r chisq_jsig$parameter`) = `r round(chisq_jsig$statistic,2)`; `r pvalue(chisq_jsig$p.value, add_p = TRUE)`, than EJSS (92\%) or MSSE (94\%).
 
+### Analysis by Discipline
+
+When comparing between disciplines, we observed a large variation in the degree of support found for the proposed hypothesis, $\chi^2$(`r chisq_dissupp$parameter`) = `r round(chisq_dissupp$statistic,2)`; `r pvalue(chisq_dissupp$p.value, add_p = TRUE)`. In fact, motor behavior and environmental physiology studies all found full or partial support within the sample of manuscripts (Figure 3B). Basic physiology was the worst at not reporting whether or not a hypothesis was supported with 37.5\% of the studies never making a clear statement of support (Figure 3B). The rate of hypothesis testing differed greatly between disciplines, $\chi^2$(`r chisq_dishypop$parameter`) = `r round(chisq_dishypop$statistic,2)`; `r pvalue(chisq_dishypop$p.value, add_p = TRUE)` (Figure 3A). The extremes of the spectrum ranged from epidemiology (25.9\%) to basic physiology (88.9\%). Sample size, evaluated using a linear model with a natural log transformation of the total sample size, differed between disciplines, F(9, 285) = 21.81, p=$2.2 \cdot 10^{-16}$, $\eta^2_g$ = 0.408. The estimated average sample size, derived from the estimated marginal mean, per discipline ranged from the lowest in environmental physiology, N = 16 [7, 37], to the highest in epidemiology, N = 1162 [691, 1952] (Figure 2C).
+
 \newpage
 
 ```{r fig2, fig.cap="Figure 2. Relative frequencies, by journal, for A) level of reported support for a hypothesis, B) indication of whether a hypothesis was tested, C) indication of whether an effect size was reported, or D) indication of if sample size was justified by the authors. Journals included the European Journal of Sport Science (EJSS), the Journal of Science and Medicine in Sport (JSAMS), and Medicine and Science in Sport and Exercise (MSSE)", out.width = '100%'}
@@ -226,12 +230,6 @@ knitr::include_graphics("figure2.jpg")
   knitr::include_graphics("figure2.pdf")
 }
 ```
-
-\newpage
-
-### Analysis by Discipline
-
-When comparing between disciplines, we observed a large variation in the degree of support found for the proposed hypothesis, $\chi^2$(`r chisq_dissupp$parameter`) = `r round(chisq_dissupp$statistic,2)`; `r pvalue(chisq_dissupp$p.value, add_p = TRUE)`. In fact, motor behavior and environmental physiology studies all found full or partial support within the sample of manuscripts (Figure 3B). Basic physiology was the worst at not reporting whether or not a hypothesis was supported with 37.5\% of the studies never making a clear statement of support (Figure 3B). The rate of hypothesis testing differed greatly between disciplines, $\chi^2$(`r chisq_dishypop$parameter`) = `r round(chisq_dishypop$statistic,2)`; `r pvalue(chisq_dishypop$p.value, add_p = TRUE)` (Figure 3A). The extremes of the spectrum ranged from epidemiology (25.9\%) to basic physiology (88.9\%). Sample size, evaluated using a linear model with a natural log transformation of the total sample size, differed between disciplines, F(9, 285) = 21.81, p=$2.2 \cdot 10^{-16}$, $\eta^2_g$ = 0.408. The estimated average sample size, derived from the estimated marginal mean, per discipline ranged from the lowest in environmental physiology, N = 16 [7, 37], to the highest in epidemiology, N = 1162 [691, 1952] (Figure 2C).
 
 \newpage
 
