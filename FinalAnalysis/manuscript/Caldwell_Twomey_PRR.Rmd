@@ -24,12 +24,12 @@ author:
   affiliation: '9'
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
-    template: template.tex
-    keep_tex: yes
   html_document:
     template: simplehtml.html
     self_contained: no
+  pdf_document: 
+    template: template.tex
+    keep_tex: yes
   word_document: 
     keep_md: yes
 address:
@@ -63,6 +63,8 @@ keywords:
 - Sport and Exercise Science
 abstract: 'Scientists rely upon an accurate scientific literature in order to build and test new theories about the natural world. In the past decade, observational studies of the scientific literature have indicated that numerous questionable research practices and poor reporting practices may be hindering scientific progress. In particular, 3 recent studies have indicated an implausibly high rate of studies with positive (i.e., hypothesis confirming) results. In sports medicine, a field closely related to kinesiology, studies that tested a hypothesis indicated support for their primary hypothesis ~70\% of the time. However, a study of journals that cover the entire field of kinesiology has yet to be completed, and the quality of other reporting practices, such as clinical trial registration, has not been evaluated. In this study we retrospectively evaluated 300 original research articles from the flagship journals of North America (Medicine and Science in Sport and Exercise), Europe (European Journal of Sport Science), and Australia (Journal of Science and Medicine in Sport). The hypothesis testing rate (~64\%) and positive result rate (~81\%) were much lower than what has been reported in other fields (e.g., psychology), and there was only weak evidence for our hypothesis that the positive result rate exceeded 80\%. However, the positive result rate is still considered unreasonably high. Additionally, most studies did not report trial registration, and rarely included accessible data indicating rather poor reporting practices. The majority of studies relied upon significance testing (~92\%), but it was more concerning that a majority of studies (~82\%) without a stated hypothesis still relied upon significance testing. Overall, the positive result rate in kinesiology is unacceptably high, despite being lower than other fields such as psychology, and most published manuscripts demonstrated subpar reporting practices.'
 citation: "Twomey et al. (2021). The Nature of Our Literature\\: A Registered Report on the Positive Result Rate and Reporting Practices in Kinesiology. \\textit{Communications in Kinesiology}. doi: 10.51224/cik.v1i3.43"
+editor: "Zachary Zenko"
+rise: true
 risenote: "This article is included within the RiSE issue of Communications in Kinesiology at the behest of the editors due to its rigor, reproducibility, and transparency."
 lineno: false
 bibliography: refs.bib
@@ -318,7 +320,7 @@ Following Stage 1 in-principle acceptance, the authors agreed to pre-registratio
 
 ## Conflicts of Interest
 
-ARC, RT, and VRY currently serve or served as executive committee members for the Society of Transparency, Openness, and Replication in Kinesiology (STORK). VRY is a section editor and ARC is on the Steering Board for Registered Reports in Kinesiology. Neither were involved in any aspect of handling this manuscript except as authors.
+ARC, RT, and VRY currently serve or served as executive committee members for the Society of Transparency, Openness, and Replication in Kinesiology (STORK). VRY is a section editor and ARC is on the Steering Board for STORK journals. Neither were involved in any aspect of handling this manuscript except as authors.
 
 \newpage
 

@@ -485,7 +485,7 @@
 \hbox to \the\myrunhwidth{\dotfill}}}\end{turn}}}\hspace*{-3.5pc}}
 
  \def\ps@plain{\vskip-3pc\let\@mkboth\@gobbletwo
-         \def\@oddfoot{\noindent\raisebox{-7.5pt}{} % \hskip-12.8pt\includegraphics[width=50mm,scale=0.45]{STORK_overlay_black.png}
+         \def\@oddfoot{\noindent\raisebox{-7.5pt}{} % \hskip-12.8pt\includegraphics[width=50mm,scale=0.45]{STORK_overlay_blk.pdf}
          %\ifopenacc
             %\hskip28.8pt\colorbox{copyrightcolor}{\hbox to 75mm{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{7.5}{10}\selectfont 
             %\vbox{\hsize75mm \textcolor{black}{$\copyright$ Published by the Society for Transparency, Openness, and Replication in Kinesiology under the terms of the \href{http://creativecommons.org/licenses/}{Creative Commons Attribution License}, which permits unrestricted use, provided the original author and source are credited.\vphantom{g}}}\par}}
@@ -592,10 +592,10 @@
   \vskip 2em%
   \begin{center}%
   \let \footnote \thanks
-    {\LARGE\mathversion{bold} \@title \par \par}%
-    \vskip 2.5em%
+    {\LARGE\mathversion{bold} \@title \par}%
+    \vskip 1.5em%
     {\large
-      \lineskip 2.5em%
+      \lineskip .5em%
       \begin{tabular}[t]{c}%
         \@author
       \end{tabular}\par}%
@@ -1115,14 +1115,14 @@
   \onecolumn
 \fi
 
-\def\supertitlefont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{24}{26}\selectfont\raggedright}
-\def\titlefont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{18}{22}\selectfont\raggedright\color{jobcolor}}
-\def\authorfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{9}{18}\selectfont\raggedright\color{jobcolor}}
+\def\supertitlefont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{14}{35}\selectfont\raggedright}
+\def\titlefont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{14}{20}\selectfont\raggedright\color{jobcolor}}
+\def\authorfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{9}{17}\selectfont\raggedright\color{jobcolor}}
 \def\addressfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{8}{12}\selectfont\raggedright}
-\def\abstractfont{\fontfamily{\rmdefault}\fontseries{m}\fontshape{n}\fontsize{9}{12}\selectfont\parindent1em}
-\def\keywordfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright\mathversion{bold}}
-\def\subjectfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright\mathversion{bold}}
-\def\researchfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright\mathversion{bold}}
+\def\abstractfont{\fontfamily{\rmdefault}\fontseries{m}\fontshape{n}\fontsize{8}{12}\selectfont\parindent1em}
+\def\keywordfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{9}{12}\selectfont\raggedright\mathversion{bold}}
+\def\subjectfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{9}{12}\selectfont\raggedright\mathversion{bold}}
+\def\researchfont{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{9}{12}\selectfont\raggedright\mathversion{bold}}
 
 
 \newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
@@ -1144,6 +1144,7 @@
 \newif\if@others@provided \@others@providedfalse
 \newif\if@corres@provided \@corres@providedfalse
 \newif\if@risenote@provided \@risenote@providedfalse
+\newif\if@editor@provided \@editor@providedfalse
 \newif\if@keywords@provided \@keywords@providedfalse
 \newif\if@subject@provided \@subject@providedfalse
 \newif\if@citearticle@provided \@citearticle@providedfalse
@@ -1173,14 +1174,14 @@
 
 \noindent\ignorespaces}{\par\egroup}
 
-\def\keywordsname{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright Keywords:}}
+\def\keywordsname{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{9}{12}\selectfont\raggedright Keywords:}}
 \def\@keywords{}
 \newcommand\keywords[1]{%
      \global\@keywords@providedtrue%
      \gdef\@keywords{{\keywordsname}\par #1}}%
 
 
-\def\subjectname{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright Subject Areas:}}
+\def\subjectname{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{9}{12}\selectfont\raggedright Subject Areas:}}
 \def\@subject{}
 \newcommand\subject[1]{%
      \global\@subject@providedtrue%
@@ -1189,7 +1190,7 @@
 \def\titlehead{\@inserttype}
 
 \def\researchname{{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{18}{31}\selectfont\raggedright%
-\raisebox{7pt}{\titlehead}\ifopenacc\hfill\hfill%
+\raisebox{9pt}{\titlehead}\ifopenacc\hfill\hfill%
 \else\hfill\fi{\includegraphics{OpenAccesslogo_bw}\hfill}\par}}
 
 \def\@citearticle{}
@@ -1200,23 +1201,29 @@
 \def\@corres{}
 \newcommand\corres[1]{%
      \global\@corres@providedtrue%
-     \gdef\@corres{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright 
+     \gdef\@corres{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{8}{12}\selectfont\raggedright 
      \correshead}\par #1}}%
      
 \def\@risenote{}
 \newcommand\risenote[1]{%
      \global\@risenote@providedtrue%
-     \gdef\@risenote{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright 
+     \gdef\@risenote{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{8}{12}\selectfont\raggedright 
      \risenotehead}\par #1}}%
+     
+\def\@editor{}
+\newcommand\editor[1]{%
+     \global\@editor@providedtrue%
+     \gdef\@editor{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright 
+     \editorhead}\par #1}}%
      
 \def\@insertcite{}
 \newcommand\insertcite[1]{%
-     \gdef\@insertcite{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright 
+     \gdef\@insertcite{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{8}{12}\selectfont\raggedright 
      \citehead}\par #1}}%
      
 \def\@inserttype{}
 \newcommand\inserttype[1]{%
-     \gdef\@inserttype{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{7}{11}\selectfont\raggedright }\par #1}}%
+     \gdef\@inserttype{{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\fontsize{8}{12}\selectfont\raggedright }\par #1}}%
 
 %\def\@history{{\fontfamily{\sfdefault}\fontseries{m}\fontshape{n}\fontsize{10}{14}\selectfont\raggedright Article Accepted for Publication}}
 %\newcommand\history[1]{%
@@ -1256,6 +1263,7 @@ at https://doi.org/\@doi\ or via http://\@jname.royalsocietypublishing.org.\par}
 
 \def\correshead{Author for correspondence:}%
 \def\citehead{Please cite as:}%
+\def\editorhead{Editor:}%
 \def\risenotehead{Editor's Note:}%
 
 \renewcommand\maketitle{\par
@@ -1324,7 +1332,7 @@ at https://doi.org/\@doi\ or via http://\@jname.royalsocietypublishing.org.\par}
 %\textcolor{jobcolor}{storkjournals.org}}\vskip10pt
 \if@citearticle@provided
         \vskip11pt
-        {\researchfont \@citearticle\par}
+        { \researchfont \@citearticle\par}
 \vskip10pt
     \else
     {\researchname}
@@ -1340,21 +1348,32 @@ at https://doi.org/\@doi\ or via http://\@jname.royalsocietypublishing.org.\par}
 %\vskip22pt
 %\fi
 {\keywordfont \@insertcite\par}
-\vskip12pt
+\vskip8pt
 
     \if@subject@provided
         {\subjectfont \@subject\par}
-\vskip12pt
+\vskip8pt
     \else
     \fi
     \if@keywords@provided
         {\keywordfont \@keywords\par}
-\vskip16pt
+
+
+\vskip12pt
+
     \else
     \fi
   \if@corres@provided
         {\keywordfont \@corres\par}
-\vskip16pt
+
+
+\vskip12pt
+    \else
+    \fi
+  \if@editor@provided
+        {\keywordfont \@editor\par}
+\vskip12pt
+
     \else
     \fi
   \if@risenote@provided
@@ -1388,7 +1407,7 @@ at https://doi.org/\@doi\ or via http://\@jname.royalsocietypublishing.org.\par}
 \vspace*{-11pt}
     \rule{90mm}{.5pt}\vspace*{2pt}
     {{\authorfont \@author\vphantom{$^1$}\par}}\vspace*{3pt}
-    \rule{90mm}{.5pt}\vspace*{2pt}
+    \rule{90mm}{.5pt}
     \ifx\@address\empty\else
         {{\addressfont \@address\par}}
     \fi
