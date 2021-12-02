@@ -316,7 +316,7 @@ We would like to thank John P. Mills for his assistance in setting up our Qualtr
 
 ## Preregistration
 
-Following Stage 1 in-principle acceptance, the authors agreed to preregistration of the approved protocol on the Open Science Framework. The IPA registration can be found here: https://osf.io/3pqr7.
+Following Stage 1 in-principle acceptance, the authors agreed to preregistration of the approved protocol on the Open Science Framework. The original IPA registration did not archive correctly (https://osf.io/3pqr7) and second IPA protocol was registered in its place (https://doi.org/10.17605/OSF.IO/9UBW7).
 
 ## Conflicts of Interest
 
